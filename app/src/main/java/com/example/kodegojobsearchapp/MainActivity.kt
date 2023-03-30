@@ -28,7 +28,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_sign_out -> {
-                // do something for item 1
+                val bottomSheetDialogFragment = MyBottomSheetDialogFragment()
+                bottomSheetDialogFragment.show(supportFragmentManager, "MyBottomSheetDialogFragment")
                 true
             }
             else -> super.onOptionsItemSelected(item)
