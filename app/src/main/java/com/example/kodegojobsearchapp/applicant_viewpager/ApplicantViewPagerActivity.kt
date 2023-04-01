@@ -32,6 +32,7 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         fragmentAdapter.addFragment(HomeFragment())
         fragmentAdapter.addFragment(JobListingFragment())
         fragmentAdapter.addFragment(ProfileFragment())
+        fragmentAdapter.addFragment(AccountFragment())
 
         with(binding.viewPager2) {
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
