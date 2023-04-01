@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.applicant_viewpager.FragmentKeys
-import com.example.kodegojobsearchapp.databinding.FragmentEmployerHomeBinding
+import com.example.kodegojobsearchapp.databinding.FragmentEmployerJobsBinding
 
-class EmployerHomeFragment : Fragment() {
-    private lateinit var _binding: FragmentEmployerHomeBinding
+class EmployerJobsFragment : Fragment() {
+    private lateinit var _binding: FragmentEmployerJobsBinding
     private val binding get() = _binding
 
     init {
@@ -20,7 +20,7 @@ class EmployerHomeFragment : Fragment() {
     }
     private fun getTabInfo(){
         this.arguments = Bundle().apply {
-            putString(FragmentKeys.TabName, "Home")
+            putString(FragmentKeys.TabName, "Jobs")
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,13 +32,8 @@ class EmployerHomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentEmployerHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentEmployerJobsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        //TODO: Implement
-    }
 }
