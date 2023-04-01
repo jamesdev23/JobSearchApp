@@ -10,7 +10,7 @@ class FragmentAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
 
     var fragmentList: ArrayList<Fragment> = ArrayList()
 
-    public fun addFragment(fragment: Fragment) {
+    fun addFragment(fragment: Fragment) {
         fragmentList.add(fragment)
     }
 
