@@ -8,13 +8,13 @@
     android:padding="10dp"
     android:weightSum="10">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"
         android:text="Thursday, March 30th" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.5"

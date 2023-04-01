@@ -8,4 +8,4 @@ data class FirebaseApplicant(
     val userID: String = "",
     val applicantID: String = "",
     val profession: String = ""
-): Parcelable
+): Parcelable {}
