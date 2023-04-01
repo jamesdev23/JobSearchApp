@@ -7,6 +7,6 @@ class Applicant(): User() {
     var profession: String = ""
 
     fun exportFirebaseApplicant(): FirebaseApplicant{
-        return FirebaseApplicant(uID, applicantID, profession)
+        return FirebaseApplicant(uID, applicantID, profession) //TODO: Confirm ReferenceID user (uID)
     }
 }
