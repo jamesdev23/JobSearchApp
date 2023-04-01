@@ -15,6 +15,16 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    init {
+        if(this.arguments == null) {
+            getTabInfo()
+        }
+    }
+    private fun getTabInfo(){
+        this.arguments = Bundle().apply {
+            putString(FragmentKeys.TabName, "Home")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

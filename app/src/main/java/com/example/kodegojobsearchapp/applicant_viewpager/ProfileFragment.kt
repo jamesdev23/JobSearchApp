@@ -14,6 +14,16 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
+    init {
+        if(this.arguments == null) {
+            getTabInfo()
+        }
+    }
+    private fun getTabInfo(){
+        this.arguments = Bundle().apply {
+            putString(FragmentKeys.TabName, "Profile")
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

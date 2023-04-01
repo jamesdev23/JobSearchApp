@@ -27,7 +27,7 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         supportActionBar?.title = "Job Search"
         supportActionBar?.displayOptions
 
-        var fragmentAdapter = FragmentAdapter(supportFragmentManager, lifecycle)
+        val fragmentAdapter = FragmentAdapter(supportFragmentManager, lifecycle)
 
         fragmentAdapter.addFragment(HomeFragment())
         fragmentAdapter.addFragment(JobListingFragment())
@@ -38,14 +38,21 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
             adapter = fragmentAdapter
         }
 
-        var tabs: ArrayList<String> = ArrayList()
-
+        val tabs: ArrayList<String> = ArrayList()
         tabs.add("Home")
         tabs.add("Job Listing")
         tabs.add("Profile")
-
+        /**
+         * Used Fragment Arguments to get Fragment TabName
+         */
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-            tab.text = tabs[position]
+            var text: String = "Unknown"
+            with(fragmentAdapter.fragmentList[position]) {
+                arguments?.let {
+                    text = it.getString(FragmentKeys.TabName) ?: "Unknown"
+                }
+            }
+            tab.text = text
         }.attach()
 
     }
@@ -66,6 +73,7 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if(binding.viewPager2.currentItem == 0) {
             super.onBackPressed()

@@ -14,7 +14,16 @@ class JobListingFragment : Fragment() {
     private var _binding: FragmentJobListingBinding? = null
     private val binding get() = _binding!!
 
-
+    init {
+        if(this.arguments == null) {
+            getTabInfo()
+        }
+    }
+    private fun getTabInfo(){
+        this.arguments = Bundle().apply {
+            putString(FragmentKeys.TabName, "Job Listing")
+        }
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
