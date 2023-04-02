@@ -8,12 +8,14 @@ import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kodegojobsearchapp.MyBottomSheetDialogFragment
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.FragmentAdapter
 import com.example.kodegojobsearchapp.adapter.ViewPagerAdapter
 import com.example.kodegojobsearchapp.databinding.ActivityApplicantViewPagerBinding
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ApplicantViewPagerActivity : AppCompatActivity() {
@@ -63,9 +65,10 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         binding.viewPager2.adapter = viewPagerAdapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-            val tabView = viewPagerAdapter.getTabView(position)
+            val tabView = viewPagerAdapter.getTabView(position, binding.viewPager2)
             tab.customView = tabView
         }.attach()
+
 
     }
 
