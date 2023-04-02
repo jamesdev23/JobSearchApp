@@ -2,6 +2,7 @@ package com.example.kodegojobsearchapp.employer_viewpager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.viewpager2.widget.ViewPager2
 import com.example.kodegojobsearchapp.adapter.FragmentAdapter
 import com.example.kodegojobsearchapp.applicant_viewpager.AccountFragment
 import com.example.kodegojobsearchapp.applicant_viewpager.FragmentKeys
@@ -24,9 +25,11 @@ class EmployerActivity : AppCompatActivity() {
         fragmentAdapter.addFragment(EmployerProfileFragment())
         fragmentAdapter.addFragment(AccountFragment())
 
-        /**
-         * Used Fragment Arguments to get Fragment TabName
-         */
+        with(binding.viewPager2) {
+            orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            adapter = fragmentAdapter
+        }
+
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
             var text: String = "Unknown"
             with(fragmentAdapter.fragmentList[position]) {

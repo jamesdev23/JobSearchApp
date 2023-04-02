@@ -11,17 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KodegoJobSearchApp"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".EmployerActivity"-->
-<!--            android:exported="false" />-->
         <activity
-            android:name=".applicant_viewpager.ApplicantViewPagerActivity"
+            android:name=".employer_viewpager.EmployerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".applicant_viewpager.ApplicantViewPagerActivity"
+            android:exported="true">
+
         </activity>
         <activity
             android:name=".SignInActivity"
