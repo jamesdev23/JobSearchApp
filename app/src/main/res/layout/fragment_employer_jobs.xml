@@ -3,23 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="20dp"
     android:orientation="vertical"
-    tools:context=".employer_viewpager.EmployerJobsFragment">
+    tools:context=".employer_viewpager.EmployerJobsFragment"
+    android:weightSum="10">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="0dp"
+        android:minHeight="150dp"
+        android:layout_weight="3"
         android:src="@drawable/image_sample_placeholder"
         android:layout_marginVertical="5dp"
+
         />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:minHeight="48dp"
         android:hint="Listing Title"
         android:layout_marginVertical="5dp"
+        android:layout_weight="1"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/listing_title"
@@ -33,24 +40,27 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
         android:hint="Full Description"
         android:layout_marginVertical="5dp"
+        android:layout_weight="4.8"
         >
+
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="textMultiLine"
+            android:maxLines="5"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <RadioGroup
         android:id="@+id/contract_type"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_marginVertical="5dp"
+        android:layout_weight="0.5"
         >
         <com.google.android.material.radiobutton.MaterialRadioButton
             android:layout_width="wrap_content"
@@ -65,8 +75,11 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginVertical="5dp"
-        android:text="Submit" />
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Submit"
+        android:background="@drawable/custombutton"
+        android:layout_weight="0.7"/>
 
 </LinearLayout>

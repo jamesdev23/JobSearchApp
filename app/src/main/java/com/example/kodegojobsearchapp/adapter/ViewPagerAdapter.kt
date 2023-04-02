@@ -14,7 +14,7 @@ import com.example.kodegojobsearchapp.applicant_viewpager.JobListingFragment
 import com.example.kodegojobsearchapp.applicant_viewpager.ProfileFragment
 import com.example.kodegojobsearchapp.databinding.TabItemBinding
 
-class ViewPagerAdapter(fragmentActivity: FragmentActivity, var context: Context) : FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(var fragmentList: ArrayList<Fragment>, fragmentActivity: FragmentActivity, var context: Context) : FragmentStateAdapter(fragmentActivity) {
 
     private val tabTitles = arrayOf("Home", "Search", "Profile", "Account")
 
@@ -28,13 +28,14 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity, var context: Context)
     override fun getItemCount(): Int = tabTitles.size
 
     override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> HomeFragment()
-            1 -> JobListingFragment()
-            2 -> ProfileFragment()
-            3 -> AccountFragment()
-            else -> throw IndexOutOfBoundsException()
-        }
+//        return when (position) {
+//            0 -> HomeFragment()
+//            1 -> JobListingFragment()
+//            2 -> ProfileFragment()
+//            3 -> AccountFragment()
+//            else -> throw IndexOutOfBoundsException()
+//        }
+        return fragmentList[position]
     }
 
     fun getTabView(position: Int, parent: ViewGroup): View {

@@ -9,6 +9,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kodegojobsearchapp.MyBottomSheetDialogFragment
 import com.example.kodegojobsearchapp.R
@@ -61,7 +62,14 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
 
         // uses new adapter to add icon
 
-        val viewPagerAdapter = ViewPagerAdapter(this, this)
+        val fragmentList: ArrayList<Fragment> = ArrayList()
+
+        fragmentList.add(HomeFragment())
+        fragmentList.add(JobListingFragment())
+        fragmentList.add(ProfileFragment())
+        fragmentList.add(AccountFragment())
+
+        val viewPagerAdapter = ViewPagerAdapter(fragmentList,this, this)
         binding.viewPager2.adapter = viewPagerAdapter
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->

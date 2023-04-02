@@ -48,6 +48,7 @@
         android:background="@drawable/custombutton"
         android:text="Sign Out"
         android:padding="5dp"
+        android:layout_marginBottom="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
