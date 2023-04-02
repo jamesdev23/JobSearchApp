@@ -96,7 +96,6 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         }
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if(binding.viewPager2.currentItem == 0) {
             super.onBackPressed()

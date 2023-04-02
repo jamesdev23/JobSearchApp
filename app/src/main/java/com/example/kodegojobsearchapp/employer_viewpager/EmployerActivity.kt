@@ -2,8 +2,12 @@ package com.example.kodegojobsearchapp.employer_viewpager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
+import com.example.kodegojobsearchapp.MyBottomSheetDialogFragment
+import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.FragmentAdapter
 import com.example.kodegojobsearchapp.adapter.ViewPagerAdapter
 import com.example.kodegojobsearchapp.applicant_viewpager.*
@@ -18,6 +22,9 @@ class EmployerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEmployerBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.title = "Job Search"
+        supportActionBar?.displayOptions
 
 //        fragmentAdapter = FragmentAdapter(supportFragmentManager, lifecycle)
 //        fragmentAdapter.addFragment(EmployerHomeFragment())
@@ -56,5 +63,29 @@ class EmployerActivity : AppCompatActivity() {
             val tabView = viewPagerAdapter.getTabView(position, binding.viewPager2)
             tab.customView = tabView
         }.attach()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_sign_out -> {
+                val bottomSheetDialogFragment = MyBottomSheetDialogFragment()
+                bottomSheetDialogFragment.show(supportFragmentManager, "MyBottomSheetDialogFragment")
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onBackPressed() {
+        if(binding.viewPager2.currentItem == 0) {
+            super.onBackPressed()
+        }else {
+            binding.viewPager2.currentItem = binding.viewPager2.currentItem - 1
+        }
     }
 }
