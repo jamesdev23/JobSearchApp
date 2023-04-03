@@ -31,46 +31,20 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         supportActionBar?.title = "Job Search"
         supportActionBar?.displayOptions
 
-//        val fragmentAdapter = FragmentAdapter(supportFragmentManager, lifecycle)
-//
-//        fragmentAdapter.addFragment(HomeFragment())
-//        fragmentAdapter.addFragment(JobListingFragment())
-//        fragmentAdapter.addFragment(ProfileFragment())
-//        fragmentAdapter.addFragment(AccountFragment())
-//
-//        with(binding.viewPager2) {
-//            orientation = ViewPager2.ORIENTATION_HORIZONTAL
-//            adapter = fragmentAdapter
-//        }
-//
-//        val tabs: ArrayList<String> = ArrayList()
-//        tabs.add("Home")
-//        tabs.add("Job Listing")
-//        tabs.add("Profile")
-//        /**
-//         * Used Fragment Arguments to get Fragment TabName
-//         */
-//        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-//            var text: String = "Unknown"
-//            with(fragmentAdapter.fragmentList[position]) {
-//                arguments?.let {
-//                    text = it.getString(FragmentKeys.TabName) ?: "Unknown"
-//                }
-//            }
-//            tab.text = text
-//        }.attach()
+        // uses new adapter for adding icons
 
-        // uses new adapter to add icon
+        val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, this)
+        
+        viewPagerAdapter.addFragment(HomeFragment())
+        viewPagerAdapter.addFragment(JobListingFragment())
+        viewPagerAdapter.addFragment(ProfileFragment())
+        viewPagerAdapter.addFragment(AccountFragment())
 
-        val fragmentList: ArrayList<Fragment> = ArrayList()
 
-        fragmentList.add(HomeFragment())
-        fragmentList.add(JobListingFragment())
-        fragmentList.add(ProfileFragment())
-        fragmentList.add(AccountFragment())
-
-        val viewPagerAdapter = ViewPagerAdapter(fragmentList,this, this)
-        binding.viewPager2.adapter = viewPagerAdapter
+        with(binding.viewPager2) {
+            orientation = ViewPager2.ORIENTATION_HORIZONTAL
+            adapter = viewPagerAdapter
+        }
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
             val tabView = viewPagerAdapter.getTabView(position, binding.viewPager2)

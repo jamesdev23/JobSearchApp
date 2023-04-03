@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.applicant_viewpager.AccountFragment
@@ -14,7 +16,9 @@ import com.example.kodegojobsearchapp.applicant_viewpager.JobListingFragment
 import com.example.kodegojobsearchapp.applicant_viewpager.ProfileFragment
 import com.example.kodegojobsearchapp.databinding.TabItemBinding
 
-class ViewPagerAdapter(var fragmentList: ArrayList<Fragment>, fragmentActivity: FragmentActivity, var context: Context) : FragmentStateAdapter(fragmentActivity) {
+class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, var context: Context) : FragmentStateAdapter(fragmentManager, lifecycle) {
+
+    private val fragmentList: ArrayList<Fragment> = ArrayList()
 
     private val tabTitles = arrayOf("Home", "Search", "Profile", "Account")
 
@@ -25,18 +29,13 @@ class ViewPagerAdapter(var fragmentList: ArrayList<Fragment>, fragmentActivity: 
         R.drawable.baseline_manage_accounts_24
     )
 
-    override fun getItemCount(): Int = tabTitles.size
-
-    override fun createFragment(position: Int): Fragment {
-//        return when (position) {
-//            0 -> HomeFragment()
-//            1 -> JobListingFragment()
-//            2 -> ProfileFragment()
-//            3 -> AccountFragment()
-//            else -> throw IndexOutOfBoundsException()
-//        }
-        return fragmentList[position]
+    fun addFragment(fragment: Fragment) {
+        fragmentList.add(fragment)
     }
+
+    override fun getItemCount(): Int = fragmentList.size
+
+    override fun createFragment(position: Int): Fragment = fragmentList[position]
 
     fun getTabView(position: Int, parent: ViewGroup): View {
         val itemBinding = TabItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
