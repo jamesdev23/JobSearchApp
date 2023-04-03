@@ -35,12 +35,6 @@ class EmployerActivity : AppCompatActivity() {
         viewPagerAdapter.addFragment(EmployerProfileFragment())
         viewPagerAdapter.addFragment(AccountFragment())
 
-        viewPagerAdapter.addFragment(HomeFragment())
-        viewPagerAdapter.addFragment(JobListingFragment())
-        viewPagerAdapter.addFragment(ProfileFragment())
-        viewPagerAdapter.addFragment(AccountFragment())
-
-
         with(binding.viewPager2) {
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
             adapter = viewPagerAdapter
