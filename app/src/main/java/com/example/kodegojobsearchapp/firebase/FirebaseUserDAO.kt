@@ -5,8 +5,10 @@ import android.util.Log
 import android.widget.Toast
 import com.example.kodegojobsearchapp.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 interface FirebaseUserDAO {
@@ -29,15 +31,12 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{ 
             .set(user, SetOptions.merge())
         task.await()
         return if (task.isSuccessful){
-            auth.signOut()
             Toast.makeText(context, "User Registration Successful", Toast.LENGTH_SHORT).show()
             true
         }else{
             Log.e("User Registration", task.exception!!.message.toString())
             false
         }
-
-        TODO("Not yet implemented")
     }
 
     override suspend fun registerAccount(
