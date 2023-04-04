@@ -79,9 +79,10 @@ class EmployerActivity : AppCompatActivity() {
     }
 
     private fun signOut() {
-        AuthUI.getInstance().signOut(this)
-        startActivity(Intent(this, SignInActivity::class.java))
-        finish()
+        AuthUI.getInstance().signOut(this).addOnSuccessListener {
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
+        }
     }
 
     private fun getPhotoUrl(): String? {
