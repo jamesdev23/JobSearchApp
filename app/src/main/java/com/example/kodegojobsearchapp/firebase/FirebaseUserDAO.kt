@@ -13,7 +13,6 @@ import kotlinx.coroutines.tasks.await
 
 interface FirebaseUserDAO {
     suspend fun addUser(user: User): Boolean
-    suspend fun registerAccount(firstName: String, lastName: String, email: String, password: String): Boolean /** For Email & Password Login */
     suspend fun getUser(uID: String): User?
     suspend fun updateUser(fields: HashMap<String, Any?>): Boolean
     suspend fun deleteUser()
@@ -37,15 +36,6 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{ 
             Log.e("User Registration", task.exception!!.message.toString())
             false
         }
-    }
-
-    override suspend fun registerAccount(
-        firstName: String,
-        lastName: String,
-        email: String,
-        password: String
-    ): Boolean {
-        TODO("Not yet implemented")
     }
 
     override suspend fun getUser(uID: String): User? {
