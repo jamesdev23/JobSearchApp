@@ -12,4 +12,6 @@
     <string name="welcome">Welcome!</string>
     <string name="job_seeker">Job Seeker</string>
     <string name="employer">Employer</string>
+    <string name="loading_user">Loading User</string>
+    <string name="please_wait">Please Wait</string>
 </resources>
