@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "661301940255",
+    "firebase_url": "https://job-search-app-b72ed-default-rtdb.firebaseio.com",
     "project_id": "job-search-app-b72ed",
     "storage_bucket": "job-search-app-b72ed.appspot.com"
   },
@@ -14,7 +15,23 @@
       },
       "oauth_client": [
         {
-          "client_id": "661301940255-5pne4vj2ounj0ooi8vlp072ilfdfe0tl.apps.googleusercontent.com",
+          "client_id": "661301940255-b5at2vprd3lq4ce8abel4n7kfi0pg1tn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kodegojobsearchapp",
+            "certificate_hash": "7c9b1a5d542f7812a20cfa93e5015a2f64d90d99"
+          }
+        },
+        {
+          "client_id": "661301940255-ipc0asf2jreh0cq6vokkfdobhpc7l1pb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kodegojobsearchapp",
+            "certificate_hash": "da062a7c44f9d67984f9b5ded83be11e7a0d570f"
+          }
+        },
+        {
+          "client_id": "661301940255-r8dup9im9cvuvfni5prbf0dnngcjg10l.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
