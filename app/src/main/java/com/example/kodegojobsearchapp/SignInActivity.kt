@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+
 class SignInActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignInBinding
     // Firebase instance variables
@@ -47,8 +48,8 @@ class SignInActivity : AppCompatActivity() {
                 .createSignInIntentBuilder()
                 .setLogo(R.drawable.job_search_app_small)
                 .setAvailableProviders(listOf(
-                    AuthUI.IdpConfig.EmailBuilder().build(),
                     AuthUI.IdpConfig.GoogleBuilder().build(),
+                    AuthUI.IdpConfig.GitHubBuilder().build()
                 ))
                 .build()
 
