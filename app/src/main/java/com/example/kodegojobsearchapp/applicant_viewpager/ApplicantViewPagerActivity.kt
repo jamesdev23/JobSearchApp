@@ -13,14 +13,20 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kodegojobsearchapp.MyBottomSheetDialogFragment
 import com.example.kodegojobsearchapp.R
+import com.example.kodegojobsearchapp.SignInActivity
 import com.example.kodegojobsearchapp.adapter.FragmentAdapter
 import com.example.kodegojobsearchapp.adapter.ViewPagerAdapter
 import com.example.kodegojobsearchapp.databinding.ActivityApplicantViewPagerBinding
+import com.firebase.ui.auth.AuthUI
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class ApplicantViewPagerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityApplicantViewPagerBinding
+    private lateinit var auth: FirebaseAuth
     private var doubleBackToExitPressedOnce = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +36,14 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
 
         supportActionBar?.title = "Job Search"
         supportActionBar?.displayOptions
+
+        auth = Firebase.auth
+        if (auth.currentUser == null) {
+            // Not signed in, launch the Sign In activity
+            startActivity(Intent(this, SignInActivity::class.java))
+            finish()
+            return
+        }
 
         // uses new adapter for adding icons
 
@@ -62,12 +76,36 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_sign_out -> {
-                val bottomSheetDialogFragment = MyBottomSheetDialogFragment()
-                bottomSheetDialogFragment.show(supportFragmentManager, "MyBottomSheetDialogFragment")
+                signOut()
+//                val bottomSheetDialogFragment = MyBottomSheetDialogFragment()
+//                bottomSheetDialogFragment.show(supportFragmentManager, "MyBottomSheetDialogFragment")
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun signOut() {
+        AuthUI.getInstance().signOut(this)
+        startActivity(Intent(this, SignInActivity::class.java))
+        finish()
+    }
+
+    private fun getPhotoUrl(): String? {
+        val user = auth.currentUser
+        return user?.photoUrl?.toString()
+    }
+
+    private fun getUserName(): String? {
+        val user = auth.currentUser
+        return if (user != null) {
+            user.displayName
+        } else ANONYMOUS
+    }
+
+    companion object {
+        private const val TAG = "MainActivity"
+        const val ANONYMOUS = "anonymous"
     }
 
     override fun onBackPressed() {

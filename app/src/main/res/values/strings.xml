@@ -8,4 +8,8 @@
     <string name="profile">Profile</string>
     <string name="account">Account</string>
     <string name="main_menu_tabs">MAIN MENU TABS</string>
+    <string name="app_logo">APP LOGO</string>
+    <string name="welcome">Welcome!</string>
+    <string name="job_seeker">Job Seeker</string>
+    <string name="employer">Employer</string>
 </resources>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "661301940255",
+    "project_id": "job-search-app-b72ed",
+    "storage_bucket": "job-search-app-b72ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661301940255:android:3ccc365d6cf0674a0f852a",
+        "android_client_info": {
+          "package_name": "com.example.kodegojobsearchapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661301940255-5pne4vj2ounj0ooi8vlp072ilfdfe0tl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1I37aQ-yAnyAjzVERnxQtti55QY7yd2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661301940255-5pne4vj2ounj0ooi8vlp072ilfdfe0tl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
