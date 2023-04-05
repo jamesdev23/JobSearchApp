@@ -1,12 +1,16 @@
 package com.example.kodegojobsearchapp.applicant_viewpager
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.kodegojobsearchapp.R
+import com.example.kodegojobsearchapp.SignInActivity
 import com.example.kodegojobsearchapp.databinding.FragmentAccountBinding
+import com.example.kodegojobsearchapp.wip.ChangeProfileDetailsActivity
+import com.example.kodegojobsearchapp.wip.ChangeProfilePictureActivity
+import com.firebase.ui.auth.AuthUI
 
 class AccountFragment : Fragment() {
     private lateinit var _binding: FragmentAccountBinding
@@ -32,15 +36,26 @@ class AccountFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentAccountBinding.inflate(inflater, container,false)
+
+        binding.btnEditProfilePicture.setOnClickListener {
+            val intent = Intent(requireContext(), ChangeProfilePictureActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnEditProfileDetails.setOnClickListener {
+            val intent = Intent(requireContext(), ChangeProfileDetailsActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.btnSignout.setOnClickListener {
+            AuthUI.getInstance().signOut(requireContext()).addOnSuccessListener {
+                startActivity(Intent(requireContext(), SignInActivity::class.java))
+            }
+        }
+
+
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.btnEditProfilePicture.setOnClickListener {
-
-        }
-    }
 
 }
