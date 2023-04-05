@@ -10,5 +10,7 @@ class UploadCoverLetterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityUploadCoverLetterBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.title = "Upload CV"
     }
 }

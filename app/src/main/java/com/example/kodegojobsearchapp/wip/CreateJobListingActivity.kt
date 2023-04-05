@@ -10,5 +10,7 @@ class CreateJobListingActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCreateJobListingBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.title = "Create Job Listing"
     }
 }

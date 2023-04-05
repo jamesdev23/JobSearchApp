@@ -13,6 +13,8 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
         binding = ActivityChangeProfileDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Change Profile Details"
+
         binding.btnCancal.setOnClickListener{
             onBackPressed()
         }

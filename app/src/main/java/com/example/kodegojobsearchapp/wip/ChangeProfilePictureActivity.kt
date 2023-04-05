@@ -11,6 +11,8 @@ class ChangeProfilePictureActivity : AppCompatActivity() {
         binding = ActivityChangeProfilePictureBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.title = "Change Profile Picture"
+
         binding.btnCancel.setOnClickListener{
             onBackPressed()
         }

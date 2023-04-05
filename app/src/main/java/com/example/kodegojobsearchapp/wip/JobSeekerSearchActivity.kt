@@ -11,5 +11,7 @@ class JobSeekerSearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityJobSeekerSearchBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.title = "Search Applicant"
     }
 }
