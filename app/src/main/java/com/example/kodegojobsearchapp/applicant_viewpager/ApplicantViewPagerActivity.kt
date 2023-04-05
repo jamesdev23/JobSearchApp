@@ -45,7 +45,7 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
             return
         }
 
-        // uses new adapter for adding icons
+        // uses new adapter to add icons
 
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, this)
         
@@ -77,8 +77,6 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_sign_out -> {
                 signOut()
-//                val bottomSheetDialogFragment = MyBottomSheetDialogFragment()
-//                bottomSheetDialogFragment.show(supportFragmentManager, "MyBottomSheetDialogFragment")
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -92,23 +90,6 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         }
     }
 
-    private fun getPhotoUrl(): String? {
-        val user = auth.currentUser
-        return user?.photoUrl?.toString()
-    }
-
-    private fun getUserName(): String? {
-        val user = auth.currentUser
-        return if (user != null) {
-            user.displayName
-        } else ANONYMOUS
-    }
-
-    companion object {
-        private const val TAG = "MainActivity"
-        const val ANONYMOUS = "anonymous"
-    }
-
     override fun onBackPressed() {
         if(binding.viewPager2.currentItem == 0) {
             super.onBackPressed()
@@ -117,5 +98,8 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         }
     }
 
-
+    companion object {
+        private const val TAG = "MainActivity"
+        const val ANONYMOUS = "anonymous"
+    }
 }
