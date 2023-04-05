@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".wip.UploadCoverLetterActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_activity_label"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="Upload CV"
+        android:textSize="30sp"
+        android:textAlignment="center"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="sample_cv.docx"
+        android:textAlignment="center"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_upload_cv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload CV"
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_apply"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply Settings"
+        android:padding="10dp"
+        />
+
+
+
+
+
+</LinearLayout>

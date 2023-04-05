@@ -12,6 +12,21 @@
         android:theme="@style/Theme.KodegoJobSearchApp"
         tools:targetApi="31">
         <activity
+            android:name=".wip.ChangeProfileDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".wip.ChangeProfilePictureActivity"
+            android:exported="false" />
+        <activity
+            android:name=".wip.UploadCoverLetterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".wip.JobSeekerSearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".wip.CreateJobListingActivity"
+            android:exported="false" />
+        <activity
             android:name=".employer_viewpager.EmployerActivity"
             android:exported="true">
         </activity>

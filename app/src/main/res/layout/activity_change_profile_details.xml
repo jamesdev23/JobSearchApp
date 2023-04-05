@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    tools:context=".wip.ChangeProfileDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="About:"
+            />
+
+
+        <EditText
+            android:id="@+id/tv_about_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="I am a highly motivated software developer with 5 years of experience in mobile development. I have a strong background in Java and Kotlin and am always eager to learn new technologies and programming languages."
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_education"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Education:"
+            />
+
+        <EditText
+            android:id="@+id/tv_education_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Bachelor of Science in Computer Science, XYZ University"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Position Desired:"
+            />
+
+        <EditText
+            android:id="@+id/tv_position_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Mobile Developer"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_salary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Salary:"
+            />
+
+        <EditText
+            android:id="@+id/tv_salary_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:text="$100,000 - $120,000 per year"
+            android:textColor="@android:color/black"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_skills"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Skills:"
+            />
+
+        <EditText
+            android:id="@+id/tv_skills_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Java, Kotlin, Android SDK, SQL, Git"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_license"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Licenses/Certifications:"
+            />
+
+        <EditText
+            android:id="@+id/tv_license_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Android Certified Developer, Oracle Java SE 11 Developer"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_employment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Employment:"
+            />
+
+        <EditText
+            android:id="@+id/tv_employment_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            android:text="Software Developer, ABC Company (2016-2021)\nSenior Mobile Developer, DEF Inc. (2013-2016)"
+            android:layout_marginBottom="20dp"
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_apply"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Profile"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_upload_cv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload CV"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_cancal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:padding="10dp"
+            />
+
+    </LinearLayout>
+
+
+
+</ScrollView>
