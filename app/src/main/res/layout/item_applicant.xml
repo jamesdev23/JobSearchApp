@@ -5,11 +5,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/job_title"
+        android:id="@+id/applicant_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Sample Name"
         android:textSize="18sp"
         android:textStyle="bold"
         android:padding="8dp"
@@ -17,21 +17,35 @@
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/job_location"
+        android:id="@+id/applicant_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Sample Title"
         android:textSize="14sp"
         android:padding="8dp"
         android:textColor="@android:color/black"
         />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/job_description"
+        android:id="@+id/applicant_rating"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Sample Rating"
         android:textSize="14sp"
         android:padding="8dp"
         android:textColor="@android:color/black"
         />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/applicant_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sample Description"
+        android:textSize="14sp"
+        android:padding="8dp"
+        android:textColor="@android:color/black"
+        />
+
+
 </LinearLayout>
+
