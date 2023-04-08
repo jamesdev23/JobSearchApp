@@ -3,6 +3,8 @@ package com.example.kodegojobsearchapp.firebase
 import android.content.Context
 import android.util.Log
 import com.example.kodegojobsearchapp.model.Applicant
+import com.google.firebase.firestore.SetOptions
+import kotlinx.coroutines.tasks.await
 
 interface FirebaseApplicantDAO {
     suspend fun addApplicant(applicant: Applicant): Boolean
@@ -13,23 +15,22 @@ interface FirebaseApplicantDAO {
 }
 
 class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), FirebaseApplicantDAO{
-    private val collection = FirebaseCollections.Applicant
+    private val collection = FirebaseCollections.Applicants
     override suspend fun addApplicant(applicant: Applicant): Boolean {
-        TODO("Not yet implemented")
-//        val reference = fireStore
-//            .collection(collection)
-//            .document()
-//        applicant.applicantID = reference.id
-//        val task = reference.set(applicant.exportFirebaseApplicant(), SetOptions.merge())
-//        task.await()
-//        Log.d("Add Applicant", task.result.toString(), task.exception)
-//        return if (task.isSuccessful){
-//            Log.i("Profile Creation", "Successful")
-//            true
-//        }else{
-//            Log.e("Profile Creation", task.exception!!.message.toString())
-//            false
-//        }
+        //TODO: Double-check process
+        val reference = fireStore
+            .collection(collection)
+            .document()
+        applicant.applicantID = reference.id
+        val task = reference.set(applicant.exportFirebaseApplicant(), SetOptions.merge())
+        task.await()
+        return if (task.isSuccessful){
+            Log.i("Applicant Creation", "Successful")
+            true
+        }else{
+            Log.e("Applicant Creation", task.exception?.message.toString())
+            false
+        }
     }
 
     override suspend fun getApplicant(uID: String): Applicant {
