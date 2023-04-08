@@ -6,9 +6,9 @@ import com.example.kodegojobsearchapp.model.Applicant
 
 interface FirebaseApplicantDAO {
     suspend fun addApplicant(applicant: Applicant): Boolean
-    suspend fun getProfile(uID: String): Applicant
+    suspend fun getApplicant(uID: String): Applicant
     suspend fun getApplicants(): ArrayList<Applicant>
-    suspend fun updateApplicant() //TODO: Not yet implemented
+    suspend fun updateApplicant(fields: HashMap<String, Any?>): Boolean //TODO: Not yet implemented
     suspend fun deleteApplicant()
 }
 
@@ -32,7 +32,7 @@ class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), 
 //        }
     }
 
-    override suspend fun getProfile(uID: String): Applicant {
+    override suspend fun getApplicant(uID: String): Applicant {
         TODO("Not yet implemented")
     }
 
@@ -40,7 +40,7 @@ class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), 
         TODO("Not yet implemented")
     }
 
-    override suspend fun updateApplicant() {
+    override suspend fun updateApplicant(fields: HashMap<String, Any?>): Boolean {
         TODO("Not yet implemented")
     }
 
