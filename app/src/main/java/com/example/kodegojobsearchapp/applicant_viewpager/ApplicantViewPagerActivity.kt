@@ -37,6 +37,7 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         supportActionBar?.title = "Job Search"
         supportActionBar?.displayOptions
 
+
         auth = Firebase.auth
         if (auth.currentUser == null) {
             // Not signed in, launch the Sign In activity

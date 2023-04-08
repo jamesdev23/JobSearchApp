@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,7 +8,6 @@
     android:orientation="vertical"
     android:weightSum="10"
     tools:context=".applicant_viewpager.ApplicantViewPagerActivity">
-
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
@@ -30,5 +29,5 @@
         android:contentDescription="@string/main_menu_tabs"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
 
