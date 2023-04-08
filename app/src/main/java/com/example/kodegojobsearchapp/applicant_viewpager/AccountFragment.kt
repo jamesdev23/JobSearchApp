@@ -8,8 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.kodegojobsearchapp.SignInActivity
 import com.example.kodegojobsearchapp.databinding.FragmentAccountBinding
-import com.example.kodegojobsearchapp.wip.ChangeProfileDetailsActivity
-import com.example.kodegojobsearchapp.wip.ChangeProfilePictureActivity
+import com.example.kodegojobsearchapp.ChangeProfileDetailsActivity
+import com.example.kodegojobsearchapp.ChangeProfilePictureActivity
 import com.firebase.ui.auth.AuthUI
 
 class AccountFragment : Fragment() {

@@ -1,4 +1,4 @@
-package com.example.kodegojobsearchapp.wip
+package com.example.kodegojobsearchapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".employer_viewpager.EmployerProfileFragment">
+    tools:context=".employer_viewpager.EmployerProfileFragment"
+    android:padding="10dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image"

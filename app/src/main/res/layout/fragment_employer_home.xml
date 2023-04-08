@@ -9,30 +9,50 @@
     tools:context=".employer_viewpager.EmployerHomeFragment"
     android:weightSum="10">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_applicant_search"
+    <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:text="Applicant Search"
-        android:background="@drawable/custombutton"
-        android:layout_weight="0.7"/>
+        android:layout_weight="0.7"
+        android:text="@string/job_listing"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:padding="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list_job_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="5dp"
-        android:layout_weight="8.6"
+        android:layout_weight="8.5"
         android:scrollbars="vertical"
         android:scrollbarStyle="insideOverlay"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_create_job_listing"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="Create Job Listing"
-        android:background="@drawable/custombutton"
-        android:layout_weight="0.7"/>
+        android:orientation="horizontal"
+        android:layout_weight="0.7"
+        android:weightSum="10">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_applicant_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="@string/applicant_search"
+            android:background="@drawable/custombutton"
+            android:layout_marginEnd="10dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_create_job_listing"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="@string/create_job_listing"
+            android:background="@drawable/custombutton" />
+
+
+    </LinearLayout>
+
+
 </LinearLayout>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.JobListingAdapter
 import com.example.kodegojobsearchapp.applicant_viewpager.FragmentKeys
@@ -48,6 +49,11 @@ class EmployerHomeFragment : Fragment() {
         jobListingAdapter = JobListingAdapter(jobListing)
         binding.listJobList.layoutManager = LinearLayoutManager(activity)
         binding.listJobList.adapter = jobListingAdapter
+
+        binding.btnCreateJobListing.setOnClickListener {
+            val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager2)
+            viewPager?.currentItem = 1
+        }
     }
 
     fun init(){

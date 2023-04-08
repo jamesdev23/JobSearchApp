@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="20dp"
+    android:padding="10dp"
     android:orientation="vertical"
     tools:context=".employer_viewpager.EmployerJobsFragment"
     android:weightSum="10">
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:minHeight="150dp"
-        android:layout_weight="3"
+        android:layout_weight="2"
         android:src="@drawable/image_sample_placeholder"
         android:layout_marginVertical="5dp"
 
@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:minHeight="48dp"
-        android:hint="Listing Title"
+        android:hint="@string/listing_title"
         android:layout_marginVertical="5dp"
         android:layout_weight="1"
         >
@@ -40,9 +40,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:hint="Full Description"
+        android:hint="@string/full_description"
         android:layout_marginVertical="5dp"
-        android:layout_weight="4.8"
+        android:layout_weight="5.4"
         >
 
         <com.google.android.material.textfield.TextInputEditText
@@ -54,32 +54,41 @@
             />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <RadioGroup
-        android:id="@+id/contract_type"
+<!--    <RadioGroup-->
+<!--        android:id="@+id/contract_type"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginVertical="5dp"-->
+<!--        android:layout_weight="0.5"-->
+<!--        >-->
+<!--        <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="@string/full_time" />-->
+<!--        <com.google.android.material.radiobutton.MaterialRadioButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:text="@string/part_time" />-->
+<!--    </RadioGroup>-->
+
+    <androidx.appcompat.widget.AppCompatSpinner
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_marginVertical="5dp"
-        android:layout_weight="0.5"
-        >
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Full Time" />
-        <com.google.android.material.radiobutton.MaterialRadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Part-Time" />
-    </RadioGroup>
+        android:layout_weight="0.8"
+        android:id="@+id/spin_contract_type"
+        android:entries="@array/contract_type_options"
+        android:layout_marginBottom="10dp"/>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:text="Submit"
+        android:layout_weight="0.7"
+        android:minHeight="48dp"
+        android:text="@string/submit"
         android:background="@drawable/custombutton"
-        android:layout_weight="0.7"/>
+        />
 
 </LinearLayout>

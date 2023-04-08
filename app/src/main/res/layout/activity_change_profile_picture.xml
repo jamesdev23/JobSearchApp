@@ -8,7 +8,7 @@
     android:padding="16dp"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:context=".wip.ChangeProfilePictureActivity">
+    tools:context=".ChangeProfilePictureActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/jobseeker_profile_picture"
