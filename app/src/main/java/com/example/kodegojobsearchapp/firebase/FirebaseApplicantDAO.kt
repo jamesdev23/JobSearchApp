@@ -17,7 +17,6 @@ interface FirebaseApplicantDAO {
 class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), FirebaseApplicantDAO{
     private val collection = FirebaseCollections.Applicants
     override suspend fun addApplicant(applicant: Applicant): Boolean {
-        //TODO: Double-check process
         val reference = fireStore
             .collection(collection)
             .document()
