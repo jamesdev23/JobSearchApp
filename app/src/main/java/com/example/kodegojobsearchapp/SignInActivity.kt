@@ -46,7 +46,7 @@ class SignInActivity : AppCompatActivity() {
             // https://firebase.google.com/docs/auth/android/firebaseui
             val signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
-                .setLogo(R.drawable.job_search_app_small)
+                .setLogo(R.drawable.job_search_logo_text_white)
                 .setAvailableProviders(listOf(
                     AuthUI.IdpConfig.GoogleBuilder().build(),
                     AuthUI.IdpConfig.GitHubBuilder().build()

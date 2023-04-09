@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- thin:300,normal:400,bold:700,semi-bold:600,extra-bold:800,black:900 -->
 <font-family xmlns:android="http://schemas.android.com/apk/res/android">
     <font
         android:fontStyle="normal"

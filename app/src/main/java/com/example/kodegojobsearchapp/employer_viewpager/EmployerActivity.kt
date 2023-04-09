@@ -30,8 +30,12 @@ class EmployerActivity : AppCompatActivity() {
         binding = ActivityEmployerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Job Search"
-        supportActionBar?.displayOptions
+        supportActionBar?.apply{
+            title = ""
+            setHomeAsUpIndicator(R.mipmap.job_search_icon)
+            setDisplayHomeAsUpEnabled(true)
+            displayOptions
+        }
 
         auth = Firebase.auth
         if (auth.currentUser == null) {

@@ -14,7 +14,7 @@
         android:id="@+id/jobseeker_profile_picture"
         android:layout_width="match_parent"
         android:layout_height="350dp"
-        android:src="@drawable/job_search_app_small"
+        android:src="@drawable/job_search_logo_text_white"
         android:layout_marginBottom="50dp"
         android:padding="10dp"
         />

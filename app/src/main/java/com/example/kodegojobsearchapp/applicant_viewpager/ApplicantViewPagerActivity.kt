@@ -3,22 +3,14 @@ package com.example.kodegojobsearchapp.applicant_viewpager
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.example.kodegojobsearchapp.MyBottomSheetDialogFragment
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.SignInActivity
-import com.example.kodegojobsearchapp.adapter.FragmentAdapter
 import com.example.kodegojobsearchapp.adapter.ViewPagerAdapter
 import com.example.kodegojobsearchapp.databinding.ActivityApplicantViewPagerBinding
 import com.firebase.ui.auth.AuthUI
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -34,9 +26,12 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         binding = ActivityApplicantViewPagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        supportActionBar?.title = "Job Search"
-        supportActionBar?.displayOptions
-
+        supportActionBar?.apply{
+            title = ""
+            setHomeAsUpIndicator(R.mipmap.job_search_icon)
+            setDisplayHomeAsUpEnabled(true)
+            displayOptions
+        }
 
         auth = Firebase.auth
         if (auth.currentUser == null) {

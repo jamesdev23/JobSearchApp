@@ -9,6 +9,8 @@
     android:weightSum="10"
     tools:context=".applicant_viewpager.ApplicantViewPagerActivity">
 
+
+
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
         android:layout_width="match_parent"

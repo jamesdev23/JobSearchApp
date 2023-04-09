@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="jobsearchapp_logo_background">#FFFFFF</color>
+    <color name="job_search_icon_background">#1866E1</color>
 </resources>
