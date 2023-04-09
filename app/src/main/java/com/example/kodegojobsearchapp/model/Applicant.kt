@@ -4,9 +4,10 @@ import com.example.kodegojobsearchapp.firebase_models.FirebaseApplicant
 
 class Applicant(): User() {
     var applicantID: String = ""
-    var profession: String = ""
+    var occupation: String = ""
+    var description: String = ""
 
     fun exportFirebaseApplicant(): FirebaseApplicant{
-        return FirebaseApplicant(uID, applicantID, profession) //TODO: Confirm ReferenceID user (uID)
+        return FirebaseApplicant(uID, applicantID, occupation, description)
     }
 }
