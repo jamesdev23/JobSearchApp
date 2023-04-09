@@ -9,7 +9,10 @@
     android:weightSum="10"
     tools:context=".applicant_viewpager.ApplicantViewPagerActivity">
 
-
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        app:dividerColor="@color/sea_serpent_blue_500"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
@@ -27,7 +30,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@color/snow_white"
+        android:background="@color/royal_azure_blue"
         android:contentDescription="@string/main_menu_tabs"/>
 
 
