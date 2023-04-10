@@ -3,16 +3,18 @@
     <style name="Theme.KodegoJobSearchApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/royal_azure_blue</item>
-        <item name="colorPrimaryVariant">@color/royal_azure_blue</item>
+        <item name="colorPrimaryVariant">@color/blue_bonnet</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/spring_teal</item>
-        <item name="colorSecondaryVariant">@color/pastel_teal</item>
+        <item name="colorSecondary">@color/dark_turquoise</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/royal_azure_blue</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/sourcesanspro_regular</item>
+        <item name="android:windowBackground">@color/snow_white</item>
+
     </style>
     <style name="Theme.KodegoJobSearchApp.NoActionBar">
         <item name="windowActionBar">false</item>

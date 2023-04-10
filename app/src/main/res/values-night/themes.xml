@@ -2,12 +2,12 @@
     <!-- Base application theme. -->
     <style name="Theme.KodegoJobSearchApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/middle_blue_green</item>
-        <item name="colorPrimaryVariant">@color/middle_blue_green</item>
+        <item name="colorPrimary">@color/royal_azure_blue</item>
+        <item name="colorPrimaryVariant">@color/blue_bonnet</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/spring_teal</item>
-        <item name="colorSecondaryVariant">@color/pastel_teal</item>
+        <item name="colorSecondary">@color/dark_turquoise</item>
+        <item name="colorSecondaryVariant">@color/teal_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>

@@ -8,6 +8,15 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <!-- theme color -->
+    <color name="royal_azure_blue">#1866E1</color>
+    <color name="blue_bonnet">#2E18E1</color>
+    <color name="dark_turquoise">#18CBE1</color>
+    <color name="ruby_red">#E11866</color>
+    <color name="gamboge_orange">#E19318</color>
+    <color name="caribbean_green">#18E193</color>
+    <color name="antique_steel_grey">#828382</color>
+
     <!--    custom color-->
     <color name="indigo">#1D3F6E</color>
     <color name="may_green">#4E9B47</color>
@@ -32,7 +41,7 @@
     <color name="spring_teal">#0EA7A5</color>
     <color name="pastel_teal">#63B7B7</color>
     <color name="snow_white">#F2F0EB</color>
-    <color name="royal_azure_blue">#1866E1</color>
+
 
 
     <color name="transparent">#00000000</color>

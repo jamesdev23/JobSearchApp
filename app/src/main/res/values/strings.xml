@@ -37,4 +37,8 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="sign_out">Sign Out</string>
+    <string name="edit_profile_picture">Edit Profile Picture</string>
+    <string name="edit_profile_details">Edit Profile Details</string>
+    <string name="change_password">Change Password</string>
+    <string name="log_out">Log out</string>
 </resources>

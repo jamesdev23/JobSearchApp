@@ -16,7 +16,6 @@
         android:text="Job Listing"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:textAlignment="center"
         app:layout_constraintTop_toTopOf="parent"
         />
 

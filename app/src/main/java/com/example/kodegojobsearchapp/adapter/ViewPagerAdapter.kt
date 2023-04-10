@@ -5,16 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.kodegojobsearchapp.R
-import com.example.kodegojobsearchapp.applicant_viewpager.AccountFragment
-import com.example.kodegojobsearchapp.applicant_viewpager.HomeFragment
-import com.example.kodegojobsearchapp.applicant_viewpager.JobListingFragment
-import com.example.kodegojobsearchapp.applicant_viewpager.ProfileFragment
-import com.example.kodegojobsearchapp.databinding.TabItemBinding
+import com.example.kodegojobsearchapp.databinding.ItemTabBinding
 
 class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, var context: Context) : FragmentStateAdapter(fragmentManager, lifecycle) {
 
@@ -38,7 +33,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, v
     override fun createFragment(position: Int): Fragment = fragmentList[position]
 
     fun getTabView(position: Int, parent: ViewGroup): View {
-        val itemBinding = TabItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val itemBinding = ItemTabBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val tabTitle = itemBinding.tabTitle
         val tabIcon = itemBinding.tabIcon
         tabTitle.text = tabTitles[position]

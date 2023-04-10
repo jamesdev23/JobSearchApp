@@ -88,7 +88,7 @@
         android:layout_weight="0.7"
         android:minHeight="48dp"
         android:text="@string/submit"
-        android:background="@drawable/custombutton"
+        android:background="@drawable/round_button"
         />
 
 </LinearLayout>

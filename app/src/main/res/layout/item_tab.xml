@@ -13,11 +13,12 @@
         android:src="@drawable/baseline_home_24"
         android:contentDescription="TAB ICON" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tab_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/home"
-        android:textSize="12sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
 </LinearLayout>
