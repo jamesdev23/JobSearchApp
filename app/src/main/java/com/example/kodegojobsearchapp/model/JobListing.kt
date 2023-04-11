@@ -28,7 +28,7 @@ data class IndeedJobListing(
     val formattedRelativeTime: String = ""
 )
 
-data class IndeedJobListResponse(
+data class IndeedJobListResponse( //TODO: Implement API
     val version: Int = 0,
     val query: String = "",
     val location: String = "",
