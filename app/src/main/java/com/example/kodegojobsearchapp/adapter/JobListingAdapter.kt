@@ -7,7 +7,7 @@ import com.example.kodegojobsearchapp.databinding.ItemJobListingBinding
 import com.example.kodegojobsearchapp.model.JobListing
 import com.google.android.material.snackbar.Snackbar
 
-class JobListingAdapter(var jobsListing: ArrayList<JobListing>): RecyclerView.Adapter<ViewHolder>() {
+class JobListingAdapter(var jobListing: ArrayList<JobListing>): RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemJobListingBinding
             .inflate(
@@ -16,10 +16,10 @@ class JobListingAdapter(var jobsListing: ArrayList<JobListing>): RecyclerView.Ad
         return ViewHolder(itemBinding)
     }
 
-    override fun getItemCount(): Int  = jobsListing.size
+    override fun getItemCount(): Int  = jobListing.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val binding = holder.itemBinding as ItemJobListingBinding
-        val jobList = jobsListing[position]
+        val jobList = jobListing[position]
         with(binding){
             jobTitle.text = jobList.title
             jobLocation.text = jobList.title
