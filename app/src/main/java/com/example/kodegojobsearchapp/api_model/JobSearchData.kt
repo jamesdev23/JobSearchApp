@@ -1,7 +1,5 @@
 package com.example.kodegojobsearchapp.api_model
 
-// TODO: (for nico) api model implementation
-
 import com.google.gson.annotations.SerializedName
 
 class JobSearchResultResponse {
@@ -155,6 +153,7 @@ class JobRequiredEducation{
     @SerializedName("professional_certification_mentioned")
     var professional_certification_mentioned: Boolean = false
 }
+
 class JobRequiredExperience{
     @SerializedName("no_experience_required")
     var no_experience_required: Boolean = false
@@ -168,5 +167,3 @@ class JobRequiredExperience{
     @SerializedName("experience_preferred")
     var experience_preferred: Boolean = false
 }
-
-
