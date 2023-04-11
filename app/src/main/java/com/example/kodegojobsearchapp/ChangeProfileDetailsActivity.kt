@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.kodegojobsearchapp.databinding.ActivityChangeProfileDetailsBinding
 
-//TODO: change activities in 'wip' folder to fragment and add to button OnClickListener
+//TODO: implement update profile details using DAO
 
 class ChangeProfileDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChangeProfileDetailsBinding
