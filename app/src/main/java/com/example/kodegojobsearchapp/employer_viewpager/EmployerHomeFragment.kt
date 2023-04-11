@@ -15,7 +15,7 @@ import com.example.kodegojobsearchapp.applicant_viewpager.FragmentKeys
 import com.example.kodegojobsearchapp.databinding.FragmentEmployerHomeBinding
 import com.example.kodegojobsearchapp.model.JobListing
 
-// TODO: (anyone) employer home implementation (no need to wait for API. we doing API -> firebase -> app anyway). hint: add data first to firebase then receive data from it and show via firebase db adapter
+// TODO: (anyone) employer home implementation. might need to wait for API first
 
 class EmployerHomeFragment : Fragment() {
     private lateinit var _binding: FragmentEmployerHomeBinding

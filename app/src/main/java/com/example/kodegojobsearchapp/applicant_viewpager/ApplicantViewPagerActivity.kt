@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
+
+
 class ApplicantViewPagerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityApplicantViewPagerBinding
     private lateinit var auth: FirebaseAuth

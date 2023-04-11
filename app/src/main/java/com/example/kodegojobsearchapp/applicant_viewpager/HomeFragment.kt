@@ -12,6 +12,8 @@ import com.example.kodegojobsearchapp.adapter.JobListingAdapter
 import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
 import com.example.kodegojobsearchapp.model.JobListing
 
+// TODO: (anyone) applicant home implementation. might need to wait for API
+
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null

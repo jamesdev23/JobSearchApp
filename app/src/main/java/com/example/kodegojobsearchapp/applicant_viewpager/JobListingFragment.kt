@@ -12,6 +12,8 @@ import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
 import com.example.kodegojobsearchapp.databinding.FragmentJobListingBinding
 import com.example.kodegojobsearchapp.model.JobListing
 
+// TODO: job listing implementation. might need API first
+
 class JobListingFragment : Fragment() {
 
     private var _binding: FragmentJobListingBinding? = null
