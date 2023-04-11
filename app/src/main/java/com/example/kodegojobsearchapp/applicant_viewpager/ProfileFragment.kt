@@ -10,6 +10,7 @@ import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
 import com.example.kodegojobsearchapp.databinding.FragmentProfileBinding
 
 // TODO: applicant profile implementation. hint: grab info from firebase db
+// TODO: #2: add prompt to create/fill up profile info (implementation is up to you) -nico
 
 class ProfileFragment : Fragment() {
 
