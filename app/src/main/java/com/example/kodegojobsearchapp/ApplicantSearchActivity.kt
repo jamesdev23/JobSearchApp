@@ -9,6 +9,7 @@ import com.example.kodegojobsearchapp.databinding.ActivityApplicantSearchBinding
 import com.example.kodegojobsearchapp.employer_viewpager.EmployerActivity
 import com.example.kodegojobsearchapp.model.JobSeeker
 
+// TODO: (anyone) applicant search implementation
 class ApplicantSearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivityApplicantSearchBinding
 

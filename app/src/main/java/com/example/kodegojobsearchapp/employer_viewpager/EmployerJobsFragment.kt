@@ -9,6 +9,7 @@ import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.applicant_viewpager.FragmentKeys
 import com.example.kodegojobsearchapp.databinding.FragmentEmployerJobsBinding
 
+// TODO: (anyone) job listing implementation
 class EmployerJobsFragment : Fragment() {
     private lateinit var _binding: FragmentEmployerJobsBinding
     private val binding get() = _binding
