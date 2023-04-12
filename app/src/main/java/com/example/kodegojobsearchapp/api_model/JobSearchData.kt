@@ -13,9 +13,9 @@ class JobSearchResultResponse {
     var parameters: Parameters = Parameters()
 
     @SerializedName("data")
-    var dataList: MutableList<JobListingData> = mutableListOf()
+    var dataList: ArrayList<JobListingData> = arrayListOf()
 
-    constructor(dataList: MutableList<JobListingData>, parameters: Parameters){
+    constructor(dataList: ArrayList<JobListingData>, parameters: Parameters){
         this.dataList = dataList
         this.parameters = parameters
     }
@@ -37,13 +37,13 @@ class JobListingData {
     var employerName: String = ""
 
     @SerializedName("employer_logo")
-    var employerLogo: String? = null
+    var employerLogo: Any? = null
 
     @SerializedName("employer_website")
-    var employerWebsite: String? = null
+    var employerWebsite: Any? = null
 
     @SerializedName("employer_company_type")
-    var employerCompanyType: String? = null
+    var employerCompanyType: Any? = null
 
     @SerializedName("job_publisher")
     var jobPublisher: String = ""
@@ -88,13 +88,13 @@ class JobListingData {
     var jobCountry: String = ""
 
     @SerializedName("job_latitude")
-    var job_latitude: Double = -1.0
+    var job_latitude: Double = 0.0
 
     @SerializedName("job_longitude")
-    var job_longitude: Double = -1.0 // 20th
+    var job_longitude: Double = 0.0 // 20th
 
     @SerializedName("job_benefits")
-    var job_benefits: String? = null
+    var job_benefits: Any? = null
 
     @SerializedName("job_google_link")
     var job_google_link: String = ""
@@ -109,7 +109,7 @@ class JobListingData {
     var job_required_experience: JobRequiredExperience = JobRequiredExperience()
 
     @SerializedName("job_required_skills")
-    var job_required_skills: String? = null
+    var job_required_skills: ArrayList<String> = arrayListOf()
 
     @SerializedName("job_required_education")
     var job_required_education: JobRequiredEducation = JobRequiredEducation()
@@ -118,22 +118,22 @@ class JobListingData {
     var job_experience_in_place_of_education: Boolean = false
 
     @SerializedName("job_min_salary")
-    var job_min_salary: Long? = null
+    var job_min_salary: Any? = null
 
     @SerializedName("job_max_salary")
-    var job_max_salary: Long? = null
+    var job_max_salary: Any? = null
 
     @SerializedName("job_salary_currency")
-    var job_salary_currency: String? = null
+    var job_salary_currency: Any? = null
 
     @SerializedName("job_salary_period")
-    var job_salary_period: String? = null // 30th
+    var job_salary_period: Any? = null // 30th
 
     @SerializedName("job_highlights")
     var job_highlights: JobHighlights = JobHighlights()
 
     @SerializedName("job_job_title")
-    var job_job_title: String? = null
+    var job_job_title: Any? = null
 
     @SerializedName("job_posting_language")
     var job_posting_language: String = ""
@@ -143,14 +143,22 @@ class JobListingData {
 
     @SerializedName("job_onet_job_zone")
     var job_onet_job_zone: String = ""
+
+    constructor(jobTitle: String, jobCountry: String, jobDescription: String)
 }
 
-class JobHighlights{
-    @SerializedName("Qualifications")
-    var qualifications: MutableList<String> = mutableListOf()
+class JobRequiredExperience{
+    @SerializedName("no_experience_required")
+    var no_experience_required: Boolean = false
 
-    @SerializedName("Responsibilities")
-    var responsibilities: MutableList<String> = mutableListOf()
+    @SerializedName("required_experience_in_months")
+    var required_experience_in_months: Int = 0
+
+    @SerializedName("experience_mentioned")
+    var experience_mentioned: Boolean = false
+
+    @SerializedName("experience_preferred")
+    var experience_preferred: Boolean = false
 }
 
 class JobRequiredEducation{
@@ -179,18 +187,15 @@ class JobRequiredEducation{
     var professional_certification_mentioned: Boolean = false
 }
 
-class JobRequiredExperience{
-    @SerializedName("no_experience_required")
-    var no_experience_required: Boolean = false
 
-    @SerializedName("required_experience_in_months")
-    var required_experience_in_months: Int = 0
+class JobHighlights{
+    @SerializedName("Qualifications")
+    var qualifications: ArrayList<String> = arrayListOf()
 
-    @SerializedName("experience_mentioned")
-    var experience_mentioned: Boolean = false
-
-    @SerializedName("experience_preferred")
-    var experience_preferred: Boolean = false
+    @SerializedName("Responsibilities")
+    var responsibilities: ArrayList<String> = arrayListOf()
 }
+
+
 
 

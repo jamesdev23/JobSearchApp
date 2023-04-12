@@ -18,18 +18,20 @@ class JobSearchResultDeserializer : JsonDeserializer<JobSearchResultResponse> {
         context: JsonDeserializationContext?
     ): JobSearchResultResponse {
 
+        val gson = Gson()
         val jsonObject = json?.asJsonObject
         val dataObject = jsonObject?.getAsJsonObject("data")
 
-        val results = mutableListOf<JobListingData>()
-        val jobSearchResultType = object : TypeToken<List<JobListingData>>() {}.type
-        dataObject?.getAsJsonArray("results")?.let { jsonArray ->
-            results.addAll(Gson().fromJson(jsonArray, jobSearchResultType))
-        }
+        val results = gson.fromJson<ArrayList<JobListingData>>(
+            dataObject?.getAsJsonArray("results"),
+            object : TypeToken<ArrayList<JobListingData>>() {}.type
+        )
 
-        val jobSearchMetadataType = object : TypeToken<Parameters>() {}.type
-        val metadata = Gson().fromJson(dataObject?.getAsJsonObject("metadata"), jobSearchMetadataType) as Parameters
+        val metadata = gson.fromJson<Parameters>(
+            dataObject?.getAsJsonArray("metadata"),
+            object : TypeToken<Parameters>() {}.type
+        )
 
-        return JobSearchResultResponse(results,metadata)
+        return JobSearchResultResponse(results, metadata)
     }
 }

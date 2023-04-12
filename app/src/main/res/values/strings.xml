@@ -43,4 +43,7 @@
     <string name="log_out">Log out</string>
     <string name="updating_applicant_data">Updating Applicant Data</string>
     <string name="updating_profile_picture">Updating Profile Picture</string>
+    <string name="job_title_1">Job Title 1</string>
+    <string name="job_location_1">Job Location 1</string>
+    <string name="job_description_1">Job Description 1</string>
 </resources>

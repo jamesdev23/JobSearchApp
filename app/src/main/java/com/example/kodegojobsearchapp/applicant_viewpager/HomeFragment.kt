@@ -29,10 +29,10 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-//    private lateinit var jobListingDataAdapter: JobListingDataAdapter
-//    private var jobListingData: ArrayList<JobListingData> = arrayListOf()
-    private lateinit var jobListingAdapter: JobListingAdapter
-    private var jobListing: ArrayList<JobListing> = arrayListOf()
+    private lateinit var jobListingDataAdapter: JobListingDataAdapter
+    private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
+//    private lateinit var jobListingAdapter: JobListingAdapter
+//    private var jobListing: ArrayList<JobListing> = arrayListOf()
 
     init {
         if(this.arguments == null) {
@@ -60,18 +60,18 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init()
+//        init()
 
-//        getData()  // uncomment to check api
+        jobListingDataAdapter = JobListingDataAdapter(requireActivity().applicationContext, jobListingDatas)
 
-//        jobListingDataAdapter = JobListingDataAdapter(jobListingData)
+//        jobListingAdapter = JobListingAdapter(jobListing)
+        binding.jobListingList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
-        jobListingAdapter = JobListingAdapter(jobListing)
-        binding.jobListingList.layoutManager = LinearLayoutManager(activity)
+        binding.jobListingList.adapter = jobListingDataAdapter
 
-//        binding.jobListingList.adapter = jobListingDataAdapter
+//        binding.jobListingList.adapter = jobListingAdapter
 
-        binding.jobListingList.adapter = jobListingAdapter
+        getData()  // uncomment to check api
     }
 
 
@@ -82,42 +82,39 @@ class HomeFragment : Fragment() {
     }
 
 
-    fun init(){
-        jobListing.add(JobListing("Software Developer", "New York, NY", "Looking for an experienced software developer to join our team"))
-        jobListing.add(JobListing("Data Analyst", "San Francisco, CA", "Seeking a data analyst with experience in machine learning"))
-        jobListing.add(JobListing("Product Manager", "Los Angeles, CA", "Exciting opportunity for a product manager with a background in mobile apps"))
-        jobListing.add(JobListing("Marketing Coordinator", "Chicago, IL", "Join our growing marketing team as a coordinator"))
-        jobListing.add(JobListing("Graphic Designer", "Houston, TX", "In-house graphic designer needed for a variety of projects"))
-    }
-
-//    private fun getData(){
-//        val call: Call<JobSearchResultResponse> = JobSearchAPIClient.getJobSearchData
-//            .getJobData(
-//                query = query,
-//                page = page,
-//                numPages = numPages
-//        )
-//
-//        call.enqueue(object : Callback<JobSearchResultResponse> {
-//            override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
-//                Log.d("API CALL", "Failed API CALL")
-//            }
-//
-//            override fun onResponse(
-//                call: Call<JobSearchResultResponse>,
-//                response: Response<JobSearchResultResponse>
-//            ) {
-//                var response: JobSearchResultResponse = response!!.body()!!
-//
-//                jobListingDataAdapter!!.setJobListing(response.dataList)
-//
-//                var jobListings = response.dataList
-//                for(jobListing in jobListings) {
-//                    Log.d("API CALL", "${jobListing.jobTitle} ${jobListing.employerName}")
-//                }
-//            }
-//        })
+//    fun init(){
+//        jobListing.add(JobListing("Software Developer", "New York, NY", "Looking for an experienced software developer to join our team"))
+//        jobListing.add(JobListing("Data Analyst", "San Francisco, CA", "Seeking a data analyst with experience in machine learning"))
+//        jobListing.add(JobListing("Product Manager", "Los Angeles, CA", "Exciting opportunity for a product manager with a background in mobile apps"))
+//        jobListing.add(JobListing("Marketing Coordinator", "Chicago, IL", "Join our growing marketing team as a coordinator"))
+//        jobListing.add(JobListing("Graphic Designer", "Houston, TX", "In-house graphic designer needed for a variety of projects"))
 //    }
+
+    private fun getData(){
+        val call: Call<JobSearchResultResponse> = JobSearchAPIClient
+            .getJobSearchData.getJobData(query, page, numPages)
+
+        call.enqueue(object : Callback<JobSearchResultResponse> {
+            override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
+                Log.d("API CALL", "Failed API CALL")
+                Log.e("error", t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<JobSearchResultResponse>,
+                response: Response<JobSearchResultResponse>
+            ) {
+                var response: JobSearchResultResponse = response!!.body()!!
+
+                jobListingDataAdapter!!.setList(response.dataList)
+
+                val jobListings = response.dataList
+                for(jobListing in jobListings) {
+                    Log.e("API CALL", "${jobListing.jobTitle} ${jobListing.employerName}")
+                }
+            }
+        })
+    }
 
     companion object {
         val query = "Python%20developer%20in%20Texas%2C%20USA"
