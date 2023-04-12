@@ -7,6 +7,11 @@ import kotlinx.parcelize.Parcelize
 data class FirebaseApplicant(
     val userID: String = "",
     val applicantID: String = "",
-    val occupation: String = "",
-    val description: String = ""
+    val about: String = "",
+    val education: String = "",
+    val positionDesired: String = "",
+    val salary: String = "",
+    val skills: String = "",
+    val licensesOrCertifications: String = "",
+    val employment: String = ""
 ): Parcelable
