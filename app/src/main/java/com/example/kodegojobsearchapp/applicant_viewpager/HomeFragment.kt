@@ -6,21 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kodegojobsearchapp.R
-import com.example.kodegojobsearchapp.adapter.JobListingAdapter
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
 import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
-import com.example.kodegojobsearchapp.model.JobListing
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Header
-import retrofit2.http.Query
 
 // TODO: (anyone) applicant home implementation. might need to wait for API
 // TODO: additional: fix failed api call issue
@@ -72,6 +66,8 @@ class HomeFragment : Fragment() {
 //        binding.jobListingList.adapter = jobListingAdapter
 
         getData()  // uncomment to check api
+
+
     }
 
 
@@ -108,16 +104,16 @@ class HomeFragment : Fragment() {
 
                 jobListingDataAdapter!!.setList(response.dataList)
 
-                val jobListings = response.dataList
-                for(jobListing in jobListings) {
-                    Log.e("API CALL", "${jobListing.jobTitle} ${jobListing.employerName}")
+                val dataLists = response.dataList
+                for(data in dataLists) {
+                    Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
                 }
             }
         })
     }
 
     companion object {
-        val query = "Python%20developer%20in%20Texas%2C%20USA"
+        val query = "Python developer in Texas, USA"
         val page = 1
         val numPages = 1
     }

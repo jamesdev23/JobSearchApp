@@ -46,6 +46,9 @@ object JobSearchAPIClient {
 }
 
 class CustomInterceptor : Interceptor {
+    private val API_KEY = "b160f8de0fmsh9bf806435608629p1f65b0jsnea1fc1fbc488"
+    private val API_HOST = "jsearch.p.rapidapi.com"
+
     override fun intercept(chain: Interceptor.Chain): Response {
         val request: Request = chain.request().newBuilder()
             .addHeader("X-RapidAPI-Key", API_KEY)
@@ -53,10 +56,5 @@ class CustomInterceptor : Interceptor {
             .build()
 
         return chain.proceed(request)
-    }
-
-    companion object{
-        const val API_KEY = "b160f8de0fmsh9bf806435608629p1f65b0jsnea1fc1fbc488"
-        const val API_HOST = "jsearch.p.rapidapi.com"
     }
 }

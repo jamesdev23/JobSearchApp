@@ -32,6 +32,6 @@ class JobSearchResultDeserializer : JsonDeserializer<JobSearchResultResponse> {
             object : TypeToken<Parameters>() {}.type
         )
 
-        return JobSearchResultResponse(results, metadata)
+        return JobSearchResultResponse(metadata, results)
     }
 }

@@ -1,16 +1,11 @@
 package com.example.kodegojobsearchapp.adapter
 
 import android.content.Context
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.databinding.ItemJobListingBinding
-import com.google.android.material.snackbar.Snackbar
-import com.squareup.picasso.MemoryPolicy
-import com.squareup.picasso.Picasso
 
 class JobListingDataAdapter (private var context: Context,
                            private var jobListings : ArrayList<JobListingData>)
@@ -32,7 +27,7 @@ class JobListingDataAdapter (private var context: Context,
         holder.bindItems(jobListings[position])
     }
 
-    fun setList(newJobListings: MutableList<JobListingData>) {
+    fun setList(newJobListings: ArrayList<JobListingData>) {
         this.jobListings.clear()
         this.jobListings.addAll(newJobListings)
         notifyDataSetChanged()
@@ -42,11 +37,9 @@ class JobListingDataAdapter (private var context: Context,
         RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bindItems(jobLists: JobListingData) {
-
             itemBinding.jobTitle.text = jobLists.jobTitle
             itemBinding.jobLocation.text = jobLists.jobCountry
             itemBinding.jobDescription.text = jobLists.jobDescription
         }
     }
 }
-
