@@ -1,34 +1,36 @@
 package com.example.kodegojobsearchapp.applicant_viewpager
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.JobListingAdapter
+import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
+import com.example.kodegojobsearchapp.api.JobSearchAPIClient
+import com.example.kodegojobsearchapp.api_model.JobListingData
+import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
 import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
-import com.example.kodegojobsearchapp.firebase.FirebaseApplicantDAOImpl
-import com.example.kodegojobsearchapp.model.Applicant
 import com.example.kodegojobsearchapp.model.JobListing
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
-import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.http.Header
+import retrofit2.http.Query
 
 // TODO: (anyone) applicant home implementation. might need to wait for API
+// TODO: additional: fix failed api call issue
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var jobListingAdapter: JobListingAdapter
-    private lateinit var dao: FirebaseApplicantDAOImpl
-    private lateinit var applicant: Applicant
-    private var jobListing: ArrayList<JobListing> = ArrayList()
+    private lateinit var jobListingDataAdapter: JobListingDataAdapter
+    private var jobListingData: ArrayList<JobListingData> = arrayListOf()
 
     init {
         if(this.arguments == null) {
@@ -55,32 +57,65 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dao = FirebaseApplicantDAOImpl(requireContext())
-        getApplicant()
 
-        init()
-        jobListingAdapter = JobListingAdapter(jobListing)
+//        init()
+
+        getData()
+
+        jobListingDataAdapter = JobListingDataAdapter(jobListingData)
         binding.jobListingList.layoutManager = LinearLayoutManager(activity)
-        binding.jobListingList.adapter = jobListingAdapter
+        binding.jobListingList.adapter = jobListingDataAdapter
     }
+
+
 
     override fun onDestroy() {
         super.onDestroy()
 
     }
 
-    private fun init(){
-        jobListing.add(JobListing("Software Developer", "New York, NY", "Looking for an experienced software developer to join our team"))
-        jobListing.add(JobListing("Data Analyst", "San Francisco, CA", "Seeking a data analyst with experience in machine learning"))
-        jobListing.add(JobListing("Product Manager", "Los Angeles, CA", "Exciting opportunity for a product manager with a background in mobile apps"))
-        jobListing.add(JobListing("Marketing Coordinator", "Chicago, IL", "Join our growing marketing team as a coordinator"))
-        jobListing.add(JobListing("Graphic Designer", "Houston, TX", "In-house graphic designer needed for a variety of projects"))
+
+//    fun init(){
+//        jobListing.add(JobListing("Software Developer", "New York, NY", "Looking for an experienced software developer to join our team"))
+//        jobListing.add(JobListing("Data Analyst", "San Francisco, CA", "Seeking a data analyst with experience in machine learning"))
+//        jobListing.add(JobListing("Product Manager", "Los Angeles, CA", "Exciting opportunity for a product manager with a background in mobile apps"))
+//        jobListing.add(JobListing("Marketing Coordinator", "Chicago, IL", "Join our growing marketing team as a coordinator"))
+//        jobListing.add(JobListing("Graphic Designer", "Houston, TX", "In-house graphic designer needed for a variety of projects"))
+//    }
+
+    private fun getData(){
+        val call: Call<JobSearchResultResponse> = JobSearchAPIClient.getJobSearchData
+            .getJobData(
+                query = query,
+                page = page,
+                numPages = numPages
+        )
+
+        call.enqueue(object : Callback<JobSearchResultResponse> {
+            override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
+                Log.d("API CALL", "Failed API CALL")
+            }
+
+            override fun onResponse(
+                call: Call<JobSearchResultResponse>,
+                response: Response<JobSearchResultResponse>
+            ) {
+                var response: JobSearchResultResponse = response!!.body()!!
+
+                jobListingDataAdapter!!.setJobListing(response.dataList)
+
+                var jobListings = response.dataList
+                for(jobListing in jobListings) {
+                    Log.d("API CALL", "${jobListing.jobTitle} ${jobListing.employerName}")
+                }
+            }
+        })
     }
 
-    private fun getApplicant(){
-        lifecycleScope.launch {
-            applicant = dao.getApplicant(Firebase.auth.currentUser!!.uid)
-
-        }
+    companion object {
+        val query = "Python%20developer%20in%20Texas%2C%20USA"
+        val page = 1
+        val numPages = 1
     }
+
 }

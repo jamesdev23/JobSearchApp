@@ -3,11 +3,11 @@ package com.example.kodegojobsearchapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.databinding.ItemJobListingBinding
-import com.example.kodegojobsearchapp.model.JobListing
 import com.google.android.material.snackbar.Snackbar
 
-class JobListingAdapter(var jobListings: ArrayList<JobListing>): RecyclerView.Adapter<ViewHolder>() {
+class JobListingDataAdapter(var jobListingsData: MutableList<JobListingData>): RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemJobListingBinding
             .inflate(
@@ -16,29 +16,30 @@ class JobListingAdapter(var jobListings: ArrayList<JobListing>): RecyclerView.Ad
         return ViewHolder(itemBinding)
     }
 
-    override fun getItemCount(): Int  = jobListings.size
+    override fun getItemCount(): Int  = jobListingsData.size
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val binding = holder.itemBinding as ItemJobListingBinding
-        val jobList = jobListings[position]
+        val jobList = jobListingsData[position]
+        val jobListLocation =  "{${jobList.jobCity}, ${jobList.jobState}, ${jobList.jobCountry}"
 
         with(binding){
-            jobTitle.text = jobList.title
-            jobLocation.text = jobList.location
-            jobDescription.text = jobList.description
+            jobTitle.text = jobList.jobTitle
+            jobLocation.text = jobListLocation
+            jobDescription.text = jobList.jobDescription
 
             root.setOnClickListener {
                 Snackbar.make(
                     it,
-                    "${jobList.title}, ${jobList}, ${jobList.description}",
+                    "${jobList.jobTitle}, ${jobListLocation}, ${jobList.jobDescription}",
                     Snackbar.LENGTH_SHORT
                 ).show()
             }
         }
     }
 
-    fun setJobListing(newJobListings: ArrayList<JobListing>){
-        this.jobListings.clear()
-        this.jobListings.addAll(newJobListings)
+    fun setJobListing(newJobListings: MutableList<JobListingData>){
+        this.jobListingsData.clear()
+        this.jobListingsData.addAll(newJobListings)
         notifyDataSetChanged()
     }
 

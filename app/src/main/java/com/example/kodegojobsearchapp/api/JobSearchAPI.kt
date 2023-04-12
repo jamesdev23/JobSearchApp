@@ -6,13 +6,11 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Query
 
-interface SearchAPI {
+interface JobSearchAPI {
     @GET("search")
-    fun getSearchList(
+    fun getJobData(
         @Query("query") query: String,
         @Query("page") page: Int,
-        @Query("num_pages") numPages: Int,
-        @Header("X-RapidAPI-Key") apiKey: String,
-        @Header("X-RapidAPI-Host") apiHost: String
+        @Query("num_pages") numPages: Int
     ): Call<JobSearchResultResponse>
 }

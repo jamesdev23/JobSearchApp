@@ -7,86 +7,109 @@ class JobSearchResultResponse {
     var status: String = ""
 
     @SerializedName("request_id")
-    var request_id: String = ""
+    var requestId: String = ""
 
     @SerializedName("parameters")
-    var parameters: Parameter = Parameter()
+    var parameters: Parameters = Parameters()
 
     @SerializedName("data")
-    var dataList: ArrayList<JobData> = ArrayList<JobData>()
+    var dataList: MutableList<JobListingData> = mutableListOf()
+
+    constructor(dataList: MutableList<JobListingData>, parameters: Parameters){
+        this.dataList = dataList
+        this.parameters = parameters
+    }
 }
 
-class Parameter {
+class Parameters {
     @SerializedName("query")
     var query: String = ""
 
     @SerializedName("page")
-    var page: Int = -1
+    var page: Int = 1
 
     @SerializedName("num_pages")
-    var num_pages: Int = -1
+    var numPages: Int = 1
 }
 
-class JobData {
+class JobListingData {
     @SerializedName("employer_name")
-    var employer_name: String = ""
+    var employerName: String = ""
 
     @SerializedName("employer_logo")
-    var employer_logo: String = ""
+    var employerLogo: String? = null
+
+    @SerializedName("employer_website")
+    var employerWebsite: String? = null
+
+    @SerializedName("employer_company_type")
+    var employerCompanyType: String? = null
 
     @SerializedName("job_publisher")
-    var job_publisher: String = ""
+    var jobPublisher: String = ""
 
     @SerializedName("job_id")
-    var job_id: String = ""
+    var jobId: String = ""
 
     @SerializedName("job_employment_type")
-    var job_employment_type: String = ""
+    var jobEmploymentType: String = ""
 
     @SerializedName("job_title")
-    var job_title: String = ""
+    var jobTitle: String = ""
 
     @SerializedName("job_apply_link")
-    var job_apply_link: String = ""
+    var jobApplyLink: String = ""
 
     @SerializedName("job_apply_is_direct")
-    var job_apply_is_direct: Boolean = false
+    var jobApplyIsDirect: Boolean = false  // 10th
 
     @SerializedName("job_apply_quality_score")
-    var job_apply_quality_score: Int = -1
+    var jobApplyQualityScore: Double = 0.0
 
     @SerializedName("job_description")
-    var job_description: String = ""
+    var jobDescription: String = ""
 
     @SerializedName("job_is_remote")
-    var job_is_remote: Boolean = false
+    var jobIsRemote: Boolean = false
 
     @SerializedName("job_posted_at_timestamp")
-    var job_posted_at_timestamp: Int = -1
+    var jobPostedAtTimestamp: Long = 0L
 
     @SerializedName("job_posted_at_datetime_utc")
-    var job_posted_at_datetime_utc: String = ""
+    var jobPostedAtDatetimeUtc: String = ""
 
     @SerializedName("job_city")
-    var job_city: String = ""
+    var jobCity: String = ""
 
     @SerializedName("job_state")
-    var job_state: String = ""
+    var jobState: String = ""
+
+    @SerializedName("job_country")
+    var jobCountry: String = ""
 
     @SerializedName("job_latitude")
     var job_latitude: Double = -1.0
 
     @SerializedName("job_longitude")
-    var job_longitude: Double = -1.0
+    var job_longitude: Double = -1.0 // 20th
+
+    @SerializedName("job_benefits")
+    var job_benefits: String? = null
 
     @SerializedName("job_google_link")
     var job_google_link: String = ""
+
+    @SerializedName("job_offer_expiration_datetime_utc")
+    var job_offer_expiration_datetime_utc: String = ""
+
+    @SerializedName("job_offer_expiration_timestamp")
+    var job_offer_expiration_timestamp: Long = 0L
 
     @SerializedName("job_required_experience")
     var job_required_experience: JobRequiredExperience = JobRequiredExperience()
 
     @SerializedName("job_required_skills")
-    var job_required_skills: ArrayList<String> = ArrayList()
+    var job_required_skills: String? = null
 
     @SerializedName("job_required_education")
     var job_required_education: JobRequiredEducation = JobRequiredEducation()
@@ -95,19 +118,22 @@ class JobData {
     var job_experience_in_place_of_education: Boolean = false
 
     @SerializedName("job_min_salary")
-    var job_min_salary: Int = -1
+    var job_min_salary: Long? = null
 
     @SerializedName("job_max_salary")
-    var job_max_salary: Int = -1
+    var job_max_salary: Long? = null
 
     @SerializedName("job_salary_currency")
-    var job_salary_currency: String = ""
+    var job_salary_currency: String? = null
 
     @SerializedName("job_salary_period")
-    var job_salary_period: String = ""
+    var job_salary_period: String? = null // 30th
 
     @SerializedName("job_highlights")
     var job_highlights: JobHighlights = JobHighlights()
+
+    @SerializedName("job_job_title")
+    var job_job_title: String? = null
 
     @SerializedName("job_posting_language")
     var job_posting_language: String = ""
@@ -117,15 +143,14 @@ class JobData {
 
     @SerializedName("job_onet_job_zone")
     var job_onet_job_zone: String = ""
-
 }
 
 class JobHighlights{
     @SerializedName("Qualifications")
-    var qualifications: ArrayList<String> = ArrayList()
+    var qualifications: ArrayList<String> = arrayListOf()
 
     @SerializedName("Responsibilities")
-    var responsibilities: ArrayList<String> = ArrayList()
+    var responsibilities: ArrayList<String> = arrayListOf()
 }
 
 class JobRequiredEducation{
@@ -159,7 +184,7 @@ class JobRequiredExperience{
     var no_experience_required: Boolean = false
 
     @SerializedName("required_experience_in_months")
-    var job_is_required_experience_in_monthsremote: Int = -1
+    var job_is_required_experience_in_monthsremote: Double = -1.0
 
     @SerializedName("required_experience_in_months")
     var required_experience_in_months: Boolean = false
@@ -167,3 +192,5 @@ class JobRequiredExperience{
     @SerializedName("experience_preferred")
     var experience_preferred: Boolean = false
 }
+
+
