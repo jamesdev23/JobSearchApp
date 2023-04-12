@@ -19,7 +19,7 @@ class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), 
     private val reference = fireStore.collection(collection)
 
     override suspend fun addApplicant(applicant: Applicant): Boolean {
-        val document = reference.document()
+        val document = reference.document(applicant.uID)
         applicant.applicantID = document.id
         val task = document.set(applicant.exportFirebaseApplicant(), SetOptions.merge())
         task.await()
@@ -40,12 +40,15 @@ class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), 
         task.await()
         return if (task.isSuccessful && task.result.data != null){
             Log.i("Applicant", task.result.toString())
-            task.result.toObject(Applicant::class.java)!!
+            val applicant = task.result.toObject(Applicant::class.java)!!
+            applicant.setUser(getUser(uID)!!)
+            applicant
         }else{
             Log.e("GetApplicant", task.exception?.message.toString())
             val applicant = Applicant()
             applicant.uID = uID
             addApplicant(applicant)
+            applicant.setUser(getUser(uID)!!)
             applicant
         }
     }

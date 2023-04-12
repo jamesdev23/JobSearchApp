@@ -52,7 +52,7 @@ class EmployerActivity : AppCompatActivity() {
         viewPagerAdapter.addFragment(EmployerHomeFragment())
         viewPagerAdapter.addFragment(EmployerJobsFragment())
         viewPagerAdapter.addFragment(EmployerProfileFragment())
-        viewPagerAdapter.addFragment(AccountFragment())
+        viewPagerAdapter.addFragment(AccountFragment()) //TODO: Change UI
 
         with(binding.viewPager2) {
             orientation = ViewPager2.ORIENTATION_HORIZONTAL
