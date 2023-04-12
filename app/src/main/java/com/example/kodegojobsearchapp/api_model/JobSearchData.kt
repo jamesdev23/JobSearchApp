@@ -184,10 +184,10 @@ class JobRequiredExperience{
     var no_experience_required: Boolean = false
 
     @SerializedName("required_experience_in_months")
-    var job_is_required_experience_in_monthsremote: Double = -1.0
+    var required_experience_in_months: Int = 0
 
-    @SerializedName("required_experience_in_months")
-    var required_experience_in_months: Boolean = false
+    @SerializedName("experience_mentioned")
+    var experience_mentioned: Boolean = false
 
     @SerializedName("experience_preferred")
     var experience_preferred: Boolean = false
