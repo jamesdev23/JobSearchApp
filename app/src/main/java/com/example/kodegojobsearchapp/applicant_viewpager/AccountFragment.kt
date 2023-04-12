@@ -45,6 +45,7 @@ class AccountFragment : Fragment() {
         binding.btnEditProfileDetails.setOnClickListener {
             val intent = Intent(requireContext(), ChangeProfileDetailsActivity::class.java)
             startActivity(intent)
+            requireActivity().finish() //TODO: Use ActivityForResult
         }
 
         binding.btnSignout.setOnClickListener {
