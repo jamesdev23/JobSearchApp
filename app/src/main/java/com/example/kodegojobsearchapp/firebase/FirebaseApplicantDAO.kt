@@ -10,7 +10,7 @@ interface FirebaseApplicantDAO {
     suspend fun addApplicant(applicant: Applicant): Boolean
     suspend fun getApplicant(uID: String): Applicant
     suspend fun getApplicants(): ArrayList<Applicant>
-    suspend fun updateApplicant(applicant: Applicant, fields: HashMap<String, Any?>): Boolean //TODO: Not yet implemented
+    suspend fun updateApplicant(applicant: Applicant, fields: HashMap<String, Any?>): Boolean
     suspend fun deleteApplicant(applicant: Applicant): Boolean
 }
 
@@ -33,7 +33,6 @@ class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), 
     }
 
     override suspend fun getApplicant(uID: String): Applicant {
-//        TODO("Not yet implemented")
         val task = reference
             .document(uID)
             .get()
@@ -74,7 +73,6 @@ class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), 
     }
 
     override suspend fun updateApplicant(applicant: Applicant, fields: HashMap<String, Any?>): Boolean {
-//        TODO("Not yet implemented")
         val task = reference.document(applicant.applicantID)
             .update(fields)
         task.await()

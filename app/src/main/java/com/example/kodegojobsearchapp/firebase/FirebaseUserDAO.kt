@@ -5,27 +5,25 @@ import android.util.Log
 import android.widget.Toast
 import com.example.kodegojobsearchapp.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
 
 interface FirebaseUserDAO {
     suspend fun addUser(user: User): Boolean
     suspend fun getUser(uID: String): User?
     suspend fun updateUser(fields: HashMap<String, Any?>): Boolean
-    suspend fun deleteUser()
+    suspend fun deleteUser(user: User): Boolean
 }
 
-open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{ //TODO: Implement
+open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{
     internal val auth = FirebaseAuth.getInstance()
     internal val fireStore = FirebaseFirestore.getInstance()
     private val collection = FirebaseCollections.Users
+    private val reference = fireStore.collection(collection)
 
     override suspend fun addUser(user: User): Boolean {
-        val task = fireStore
-            .collection(collection)
+        val task = reference
             .document(user.uID)
             .set(user, SetOptions.merge())
         task.await()
@@ -39,8 +37,7 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{ 
     }
 
     override suspend fun getUser(uID: String): User? {
-        val task = fireStore
-            .collection(collection)
+        val task = reference
             .document(uID)
             .get()
         task.await()
@@ -55,15 +52,17 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{ 
     }
 
     override suspend fun updateUser(fields: HashMap<String, Any?>): Boolean {
-        val task = fireStore
-            .collection(collection)
+        val task = reference
             .document(auth.currentUser!!.uid)
             .update(fields)
         task.await()
         return task.isSuccessful
     }
 
-    override suspend fun deleteUser() {
-        TODO("Not yet implemented")
+    override suspend fun deleteUser(user: User): Boolean {
+//        TODO("Not yet implemented")
+        val task = reference.document(user.uID).delete()
+        task.await()
+        return task.isSuccessful
     }
 }

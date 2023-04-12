@@ -14,7 +14,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 
-//TODO: implement update profile details using DAO
+//TODO: implement sqliteDAO
 
 class ChangeProfileDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChangeProfileDetailsBinding
