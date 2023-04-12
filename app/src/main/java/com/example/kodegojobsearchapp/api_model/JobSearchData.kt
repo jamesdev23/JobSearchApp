@@ -147,10 +147,10 @@ class JobListingData {
 
 class JobHighlights{
     @SerializedName("Qualifications")
-    var qualifications: ArrayList<String> = arrayListOf()
+    var qualifications: MutableList<String> = mutableListOf()
 
     @SerializedName("Responsibilities")
-    var responsibilities: ArrayList<String> = arrayListOf()
+    var responsibilities: MutableList<String> = mutableListOf()
 }
 
 class JobRequiredEducation{
