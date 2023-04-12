@@ -42,4 +42,5 @@
     <string name="change_password">Change Password</string>
     <string name="log_out">Log out</string>
     <string name="updating_applicant_data">Updating Applicant Data</string>
+    <string name="updating_profile_picture">Updating Profile Picture</string>
 </resources>
