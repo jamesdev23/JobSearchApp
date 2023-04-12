@@ -52,8 +52,8 @@ object JobSearchAPIClient {
 class CustomInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request: Request = chain.request().newBuilder()
-            .addHeader("X-RapidAPI-Key", JobSearchAPIClient.API_KEY)
-            .addHeader("X-RapidAPI-Host", JobSearchAPIClient.API_HOST)
+            .addHeader("X-RapidAPI-Key", JobSearchAPIClient.API_KEY)  // don't change this one. it is intentional for direct var access
+            .addHeader("X-RapidAPI-Host", JobSearchAPIClient.API_HOST) // don't change this one. it is intentional for direct var access
             .build()
 
         return chain.proceed(request)
