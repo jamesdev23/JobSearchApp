@@ -35,6 +35,8 @@
         android:textSize="14sp"
         android:padding="8dp"
         android:textColor="@android:color/black"
+        android:maxLines="20"
+        android:scrollbarStyle="insideOverlay"
         />
 
 </LinearLayout>

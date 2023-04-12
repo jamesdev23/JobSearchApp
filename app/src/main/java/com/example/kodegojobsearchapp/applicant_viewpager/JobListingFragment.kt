@@ -6,27 +6,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kodegojobsearchapp.R
-import com.example.kodegojobsearchapp.adapter.JobListingAdapter
+import androidx.appcompat.widget.SearchView
+import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
-import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
 import com.example.kodegojobsearchapp.databinding.FragmentJobListingBinding
-import com.example.kodegojobsearchapp.model.JobListing
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: job listing implementation. might need API first
+// TODO: job listing implementation. might need API first. also, add searchbar (in progress)
 
 class JobListingFragment : Fragment() {
 
     private var _binding: FragmentJobListingBinding? = null
     private val binding get() = _binding!!
-    private lateinit var jobListingAdapter: JobListingAdapter
-    private val jobListing: ArrayList<JobListing> = ArrayList()
+    private lateinit var jobListingDataAdapter: JobListingDataAdapter
+    private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
 
     init {
         if(this.arguments == null) {
@@ -53,13 +50,19 @@ class JobListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        init()
+        binding.appSearchJobListing.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // TODO: add dao search function implementation. also, update list
+                return false
+            }
 
-//        getData()
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // TODO: add filter
+                return false
+            }
 
-        jobListingAdapter = JobListingAdapter(jobListing)
-        binding.appJobList.layoutManager = LinearLayoutManager(activity)
-        binding.appJobList.adapter = jobListingAdapter
+        })
+
     }
 
 
@@ -69,49 +72,42 @@ class JobListingFragment : Fragment() {
 
     }
 
-    private fun init(){
-        jobListing.add(JobListing("Software Developer", "New York, NY", "Looking for an experienced software developer to join our team"))
-        jobListing.add(JobListing("Data Analyst", "San Francisco, CA", "Seeking a data analyst with experience in machine learning"))
-        jobListing.add(JobListing("Product Manager", "Los Angeles, CA", "Exciting opportunity for a product manager with a background in mobile apps"))
-        jobListing.add(JobListing("Marketing Coordinator", "Chicago, IL", "Join our growing marketing team as a coordinator"))
-        jobListing.add(JobListing("Graphic Designer", "Houston, TX", "In-house graphic designer needed for a variety of projects"))
-    }
-
-//    private fun getData(){
-//        val apiKey = "b160f8de0fmsh9bf806435608629p1f65b0jsnea1fc1fbc488"
-//        val apiHost = "jsearch.p.rapidapi.com"
-//        val query = "Python%20developer%20in%20Texas%2C%20USA"
-//        val page = 1
-//        val numPages = 1
-//
-//
-//        val call: Call<JobSearchResultResponse> = JobSearchAPIClient.getJobSearchData.getJobData(
-//            apiKey = apiKey,
-//            apiHost = apiHost,
-//            query = query,
-//            page = page,
-//            numPages = numPages
-//        )
-//
-//        call.enqueue(object : Callback<JobSearchResultResponse> {
-//            override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
-//                Log.d("API CALL", "Failed API CALL")
-//            }
-//
-//            override fun onResponse(
-//                call: Call<JobSearchResultResponse>,
-//                response: Response<JobSearchResultResponse>
-//            ) {
-//                var response: JobSearchResultResponse = response!!.body()!!
-//
-//                jobListingAdapter!!.setJobListing(response.dataList)
-//
-//                var jobListings = response.dataList
-//                for(jobListing in jobListings) {
-//                    Log.d("API CALL", "${jobListing.job_title} ${jobListing.employer_name}")
-//                }
-//            }
-//        })
+//    private fun init(){
+//        jobListing.add(JobListing("Software Developer", "New York, NY", "Looking for an experienced software developer to join our team"))
+//        jobListing.add(JobListing("Data Analyst", "San Francisco, CA", "Seeking a data analyst with experience in machine learning"))
+//        jobListing.add(JobListing("Product Manager", "Los Angeles, CA", "Exciting opportunity for a product manager with a background in mobile apps"))
+//        jobListing.add(JobListing("Marketing Coordinator", "Chicago, IL", "Join our growing marketing team as a coordinator"))
+//        jobListing.add(JobListing("Graphic Designer", "Houston, TX", "In-house graphic designer needed for a variety of projects"))
 //    }
+
+    private fun getData(){
+        val call: Call<JobSearchResultResponse> = JobSearchAPIClient
+            .getJobSearchData.getJobData(
+                HomeFragment.query,
+                HomeFragment.page,
+                HomeFragment.numPages
+            )
+
+        call.enqueue(object : Callback<JobSearchResultResponse> {
+            override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
+                Log.d("API CALL", "Failed API CALL")
+                Log.e("error", t.message.toString())
+            }
+
+            override fun onResponse(
+                call: Call<JobSearchResultResponse>,
+                response: Response<JobSearchResultResponse>
+            ) {
+                var response: JobSearchResultResponse = response!!.body()!!
+
+                jobListingDataAdapter!!.setList(response.dataList)
+
+                val dataLists = response.dataList
+                for(data in dataLists) {
+                    Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
+                }
+            }
+        })
+    }
 
 }
