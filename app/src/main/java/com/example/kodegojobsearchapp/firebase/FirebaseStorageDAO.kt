@@ -3,16 +3,15 @@ package com.example.kodegojobsearchapp.firebase
 import android.content.Context
 import android.net.Uri
 import android.util.Log
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageException
 import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.tasks.await
 
 interface FirebaseStorageDAO {
-    suspend fun uploadProfilePicture(uri: Uri): Uri?
+    suspend fun uploadImage(uri: Uri): Uri?
     suspend fun updateProfilePicture(uri: Uri): Boolean
-    suspend fun deleteProfilePicture(url: String): Boolean
+    suspend fun deleteImage(url: String): Boolean
 }
 
 class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), FirebaseStorageDAO{
@@ -20,7 +19,7 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
     private val parentTree = auth.currentUser!!.uid
     private val imageTree = "images"
 
-    override suspend fun uploadProfilePicture(uri: Uri): Uri? {
+    override suspend fun uploadImage(uri: Uri): Uri? {
         val reference = firebaseStorage
             .getReference(parentTree)
             .child(imageTree)
@@ -49,7 +48,7 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
      * Uploads the selected Profile Picture then Deletes the old one
      */
     override suspend fun updateProfilePicture(uri: Uri): Boolean { //TODO: Optimize
-        val storageUri = uploadProfilePicture(uri)
+        val storageUri = uploadImage(uri)
         if (storageUri != null){
             val user = auth.currentUser!!
             Log.d("User PhotoUrl", user.photoUrl.toString())
@@ -57,7 +56,7 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
                 val oldReference = firebaseStorage.getReferenceFromUrl(user.photoUrl.toString())
                 val newReference = firebaseStorage.getReferenceFromUrl(storageUri.toString())
                 if (oldReference != newReference) {
-                    deleteProfilePicture(user.photoUrl.toString())
+                    deleteImage(user.photoUrl.toString())
                 }
             }
             val userProfileChangeMap: HashMap<String, Any?> = hashMapOf("photoUri" to storageUri)
@@ -73,7 +72,7 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
         }
     }
 
-    override suspend fun deleteProfilePicture(url: String): Boolean {
+    override suspend fun deleteImage(url: String): Boolean {
         return try {
             val imageReference = firebaseStorage.getReferenceFromUrl(url)
             val task = imageReference.delete()
