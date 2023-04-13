@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
@@ -50,21 +51,26 @@ class JobListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.appSearchJobListing.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextChange(newText: String?): Boolean {
-                // TODO: add dao search function implementation. also, update list
-                return false
-            }
+//        binding.appSearchJobListing.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+//            override fun onQueryTextChange(newText: String?): Boolean {
+//                // TODO: add dao search function implementation. also, update list
+//                return false
+//            }
+//
+//            override fun onQueryTextSubmit(query: String?): Boolean {
+//                // TODO: add filter
+//                return false
+//            }
+//
+//        })
 
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                // TODO: add filter
-                return false
-            }
+        jobListingDataAdapter = JobListingDataAdapter(requireActivity().applicationContext, jobListingDatas)
+        binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.appJobListing.adapter = jobListingDataAdapter
+        getData(defaultQuery)
 
-        })
 
     }
-
 
 
     override fun onDestroy() {
@@ -72,21 +78,10 @@ class JobListingFragment : Fragment() {
 
     }
 
-//    private fun init(){
-//        jobListing.add(JobListing("Software Developer", "New York, NY", "Looking for an experienced software developer to join our team"))
-//        jobListing.add(JobListing("Data Analyst", "San Francisco, CA", "Seeking a data analyst with experience in machine learning"))
-//        jobListing.add(JobListing("Product Manager", "Los Angeles, CA", "Exciting opportunity for a product manager with a background in mobile apps"))
-//        jobListing.add(JobListing("Marketing Coordinator", "Chicago, IL", "Join our growing marketing team as a coordinator"))
-//        jobListing.add(JobListing("Graphic Designer", "Houston, TX", "In-house graphic designer needed for a variety of projects"))
-//    }
 
-    private fun getData(){
+    private fun getData(queryText: String){
         val call: Call<JobSearchResultResponse> = JobSearchAPIClient
-            .getJobSearchData.getJobData(
-                HomeFragment.query,
-                HomeFragment.page,
-                HomeFragment.numPages
-            )
+            .getJobSearchData.getJobData(queryText, page, numPages)
 
         call.enqueue(object : Callback<JobSearchResultResponse> {
             override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
@@ -108,6 +103,12 @@ class JobListingFragment : Fragment() {
                 }
             }
         })
+    }
+
+    companion object {
+        var defaultQuery = "Android developer in Texas, USA"
+        val page = 1
+        val numPages = 1
     }
 
 }
