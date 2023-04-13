@@ -11,5 +11,6 @@ interface JobSearchAPI {
     fun getJobData(
         @Query("query") query: String,
         @Query("page") page: Int,
-        @Query("num_pages") numPages: Int): Call<JobSearchResultResponse>
+        @Query("num_pages") numPages: Int):
+            Call<JobSearchResultResponse>
 }

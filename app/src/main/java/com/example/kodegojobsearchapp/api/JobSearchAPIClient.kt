@@ -27,14 +27,6 @@ object JobSearchAPIClient {
 
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
-//                .addConverterFactory(
-//                    GsonConverterFactory.create(
-//                        GsonBuilder()
-//                            .setLenient()
-//                            .registerTypeAdapter(JobSearchResultResponse::class.java, JobSearchResultDeserializer())
-//                            .create()
-//                    )
-//                )
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .client(client)
                 .build()
@@ -42,6 +34,28 @@ object JobSearchAPIClient {
             Log.d("gson", gson.toString())
 
             return retrofit.create(JobSearchAPI::class.java)
+        }
+
+    val getJobDetailsData: JobDetailsAPI
+        get() {
+            val gson = GsonBuilder().setLenient().create()
+            val interceptor = HttpLoggingInterceptor()
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+            val client = OkHttpClient.Builder()
+                .addInterceptor(CustomInterceptor())
+                .addInterceptor(interceptor)
+                .build()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .client(client)
+                .build()
+
+            Log.d("gson", gson.toString())
+
+            return retrofit.create(JobDetailsAPI::class.java)
         }
 }
 

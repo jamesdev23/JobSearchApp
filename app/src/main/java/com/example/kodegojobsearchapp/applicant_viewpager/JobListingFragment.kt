@@ -64,7 +64,7 @@ class JobListingFragment : Fragment() {
 //
 //        })
 
-        jobListingDataAdapter = JobListingDataAdapter(requireActivity().applicationContext, jobListingDatas)
+        jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
         binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.appJobListing.adapter = jobListingDataAdapter
         getData(defaultQuery)

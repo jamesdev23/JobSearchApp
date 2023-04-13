@@ -53,4 +53,10 @@
     <string name="job_company_1">Job Company 1</string>
     <string name="job_listing_for">Job Listing for:</string>
     <string name="search_sample_1">Android developer in Texas, USA</string>
+    <string name="job_description_label">Job Description:</string>
+    <string name="job_publisher_label">Job Publisher:</string>
+    <string name="job_publisher_1">Job Publisher 1</string>
+    <string name="employment_type_label">Employment Type:</string>
+    <string name="fulltime">FULLTIME</string>
+    <string name="apply_now">Apply Now</string>
 </resources>

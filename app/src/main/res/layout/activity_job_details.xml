@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".JobDetailsActivity"
+    android:padding="10dp"
+    android:scrollbars="vertical"
+    android:scrollbarStyle="insideOverlay">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/job_title_1"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/holo_blue_dark"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_company"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/job_company_1"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/job_location_1"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Posted at:"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_posted_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="April 14,2023"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/employment_type_label"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_employment_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/fulltime"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/job_publisher_label"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_publisher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/job_publisher_1"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/job_description_label"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/job_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/job_description_sample"
+            android:textSize="14sp"
+            android:padding="8dp"
+            android:textColor="@android:color/black"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_apply"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:text="@string/apply_now"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:background="@drawable/round_button_green"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+
+
+</ScrollView>

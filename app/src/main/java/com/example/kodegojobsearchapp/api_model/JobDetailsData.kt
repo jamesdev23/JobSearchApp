@@ -2,91 +2,92 @@ package com.example.kodegojobsearchapp.api_model
 
 import com.google.gson.annotations.SerializedName
 
-data class JobDetailsData(
+class JobDetailsData{
     @SerializedName("employer_name")
-    val employerName: String,
+    val employerName: String = ""
 
     @SerializedName("employer_logo")
-    val employerLogo: String,
+    val employerLogo: String = ""
 
     @SerializedName("employer_website")
-    val employerWebsite: String,
+    val employerWebsite: String = ""
 
     @SerializedName("employer_company_type")
-    val employerCompanyType: String,
+    val employerCompanyType: String = ""
 
     @SerializedName("job_publisher")
-    val jobPublisher: String,
+    val jobPublisher: String = ""
 
     @SerializedName("job_id")
-    val jobId: String,
+    val jobId: String = ""
 
     @SerializedName("job_employment_type")
-    val jobEmploymentType: String,
+    val jobEmploymentType: String = ""
 
     @SerializedName("job_title")
-    val jobTitle: String,
+    val jobTitle: String = ""
 
     @SerializedName("job_apply_link")
-    val jobApplyLink: String,
+    val jobApplyLink: String = ""
 
     @SerializedName("job_apply_is_direct")
-    val jobApplyIsDirect: Boolean,
+    val jobApplyIsDirect: Boolean = false
 
     @SerializedName("job_apply_quality_score")
-    val jobApplyQualityScore: Double,
+    val jobApplyQualityScore: Double = 0.0
 
     @SerializedName("job_description")
-    val jobDescription: String,
+    val jobDescription: String = ""
 
     @SerializedName("job_is_remote")
-    val jobIsRemote: Boolean,
+    val jobIsRemote: Boolean = false
 
     @SerializedName("job_posted_at_timestamp")
-    val jobPostedAtTimestamp: Int,
+    val jobPostedAtTimestamp: Int = 0
 
     @SerializedName("job_posted_at_datetime_utc")
-    val jobPostedAtDatetimeUtc: String,
+    val jobPostedAtDatetimeUtc: String = ""
 
     @SerializedName("job_city")
-    val jobCity: String,
+    val jobCity: String = ""
 
     @SerializedName("job_state")
-    val jobState: String,
+    val jobState: String  = ""
 
     @SerializedName("job_country")
-    val jobCountry: String,
+    val jobCountry: String  = ""
 
     @SerializedName("job_latitude")
-    val jobLatitude: Double,
+    val jobLatitude: Double = 0.0
 
     @SerializedName("job_longitude")
-    val jobLongitude: Double,
+    val jobLongitude: Double = 0.0
 
     @SerializedName("job_benefits")
-    val jobBenefits: String?,
+    val jobBenefits: String = ""
 
     @SerializedName("job_google_link")
-    val jobGoogleLink: String
-)
+    val jobGoogleLink: String = ""
+}
 
-data class JobDetailsResponse(
+class JobDetailsResponse{
     @SerializedName("status")
-    val status: String,
+    val status: String = ""
 
     @SerializedName("request_id")
-    val requestId: String,
+    val requestId: String = ""
 
     @SerializedName("parameters")
-    val parameters: JobDetailsParameters,
+    val parameters: JobDetailsParameters = JobDetailsParameters()
 
     @SerializedName("data")
-    val data: List<JobDetailsData>
-)
+    val data: ArrayList<JobDetailsData> = arrayListOf()
+}
 
-data class JobDetailsParameters(
+class JobDetailsParameters{
     @SerializedName("job_id")
-    val jobId: String,
+    val jobId: String  = ""
+
     @SerializedName("extended_publisher_details")
-    val extendedPublisherDetails: Boolean
-)
+    val extendedPublisherDetails: Boolean = false
+}
