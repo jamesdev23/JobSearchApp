@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".employer_viewpager.EmployerAccountFragment">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_edit_profile_picture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/edit_profile_picture" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_edit_profile_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:text="@string/edit_profile_details"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_change_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:text="@string/change_password"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_signout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button_red"
+        android:text="@string/sign_out"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        />
+
+</LinearLayout>
