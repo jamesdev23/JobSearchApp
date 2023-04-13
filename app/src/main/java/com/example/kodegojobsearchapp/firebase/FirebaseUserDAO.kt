@@ -55,6 +55,7 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{
     }
 
     override suspend fun updateUser(fields: HashMap<String, Any?>): Boolean {
+        updateUserProfile(fields)
         val task = reference
             .document(auth.currentUser!!.uid)
             .update(fields)
