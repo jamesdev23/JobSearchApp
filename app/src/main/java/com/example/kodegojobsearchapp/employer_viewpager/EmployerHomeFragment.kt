@@ -22,7 +22,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO: (anyone) employer home implementation. might need to wait for API first
+/* TODO: (anyone) employer home uses firebase adapter to show it's own job listing
+* */
 
 class EmployerHomeFragment : Fragment() {
     private lateinit var _binding: FragmentEmployerHomeBinding
