@@ -13,7 +13,6 @@
         <item name="android:statusBarColor">@color/royal_azure_blue</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/sourcesanspro_regular</item>
-        <item name="android:windowBackground">@color/snow_white</item>
 
     </style>
     <style name="Theme.KodegoJobSearchApp.NoActionBar">

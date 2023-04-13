@@ -24,7 +24,6 @@ class JobListingAdapter(var jobListings: ArrayList<JobListing>): RecyclerView.Ad
         with(binding){
             jobTitle.text = jobList.title
             jobLocation.text = jobList.location
-            jobDescription.text = jobList.description
 
             root.setOnClickListener {
                 Snackbar.make(

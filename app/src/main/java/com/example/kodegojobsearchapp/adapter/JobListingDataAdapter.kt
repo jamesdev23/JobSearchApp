@@ -38,8 +38,8 @@ class JobListingDataAdapter (private var context: Context,
 
         fun bindItems(jobLists: JobListingData) {
             itemBinding.jobTitle.text = jobLists.jobTitle
-            itemBinding.jobLocation.text = jobLists.jobCountry
-            itemBinding.jobDescription.text = jobLists.jobDescription
+            itemBinding.jobLocation.text = "${jobLists.jobCity}, ${jobLists.jobState}, ${jobLists.jobCountry}"
+            itemBinding.jobCompany.text = jobLists.employerName
         }
     }
 }
