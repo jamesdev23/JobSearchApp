@@ -51,4 +51,6 @@
     <string name="updating_employer_data">Updating Employer Data</string>
     <string name="job_description_sample">We are seeking a skilled and experienced software engineer to join our dynamic team. The successful candidate will be responsible for designing, developing, and maintaining high-quality software solutions that meet the needs of our clients. As a software engineer, you will work closely with our project managers, developers, and quality assurance team to ensure that our software solutions are delivered on time and meet our clients\' requirements.</string>
     <string name="job_company_1">Job Company 1</string>
+    <string name="job_listing_for">Job Listing for:</string>
+    <string name="search_sample_1">Android developer in Texas, USA</string>
 </resources>
