@@ -45,6 +45,9 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
         }
     }
 
+    /**
+     * Uploads the selected Profile Picture then Deletes the old one
+     */
     override suspend fun updateProfilePicture(uri: Uri): Boolean { //TODO: Optimize
         val storageUri = uploadProfilePicture(uri)
         if (storageUri != null){
@@ -76,15 +79,15 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
     }
 
     override suspend fun deleteProfilePicture(url: String): Boolean {
-        try {
+        return try {
             val imageReference = firebaseStorage.getReferenceFromUrl(url)
             val task = imageReference.delete()
             task.await()
             Log.d("Photo Deletion", task.exception?.message.toString())
-            return task.isSuccessful
+            task.isSuccessful
         }catch (e: StorageException){
             Log.e("Photo Deletion", e.message.toString())
-            return false
+            false
         }
     }
 }
