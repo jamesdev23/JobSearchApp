@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.kodegojobsearchapp.ChangeEmployerProfileActivity
 import com.example.kodegojobsearchapp.ChangeProfilePictureActivity
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.SignInActivity
@@ -33,6 +34,10 @@ class EmployerAccountFragment : Fragment() {
 
         binding.btnEditProfilePicture.setOnClickListener {
             val intent = Intent(requireContext(), ChangeProfilePictureActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnEditProfileDetails.setOnClickListener {
+            val intent = Intent(requireContext(), ChangeEmployerProfileActivity::class.java)
             startActivity(intent)
         }
         binding.btnSignout.setOnClickListener {
