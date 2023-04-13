@@ -64,7 +64,6 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{
     }
 
     override suspend fun updateUserProfile(fields: HashMap<String, Any?>): Boolean {
-//        TODO("Not yet implemented")
         val user = auth.currentUser!!
         val request = userProfileChangeRequest {
             if (fields.containsKey("firstName") && fields.containsKey("lastName")){
