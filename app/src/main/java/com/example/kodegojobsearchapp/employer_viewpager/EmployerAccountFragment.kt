@@ -39,6 +39,7 @@ class EmployerAccountFragment : Fragment() {
         binding.btnEditProfileDetails.setOnClickListener {
             val intent = Intent(requireContext(), ChangeEmployerProfileActivity::class.java)
             startActivity(intent)
+            requireActivity().finish()
         }
         binding.btnSignout.setOnClickListener {
             AuthUI.getInstance().signOut(requireContext()).addOnSuccessListener {

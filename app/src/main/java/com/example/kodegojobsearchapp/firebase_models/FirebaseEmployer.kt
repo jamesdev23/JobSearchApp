@@ -10,6 +10,6 @@ data class FirebaseEmployer(
     var companyName: String = "",
     var position: String = "",
     var companyAddress: String = "",
-    var telephoneNumber: String = "",
-    var website: String = ""
+    var companyTelephone: String = "",
+    var companyWebsite: String = ""
 ): Parcelable

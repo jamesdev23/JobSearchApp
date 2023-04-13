@@ -10,10 +10,10 @@ class Employer: User(), Parcelable {
     var companyName: String = ""
     var position: String = ""
     var companyAddress: String = ""
-    var telephoneNumber: String = ""
-    var website: String = ""
+    var companyTelephone: String = ""
+    var companyWebsite: String = ""
 
     fun exportFirebaseEmployer(): FirebaseEmployer{
-        return FirebaseEmployer(uID, employerID, companyName, position, companyAddress, telephoneNumber, website)
+        return FirebaseEmployer(uID, employerID, companyName, position, companyAddress, companyTelephone, companyWebsite)
     }
 }

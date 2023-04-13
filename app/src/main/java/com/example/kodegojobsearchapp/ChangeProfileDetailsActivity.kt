@@ -9,7 +9,9 @@ import com.example.kodegojobsearchapp.applicant_viewpager.ApplicantViewPagerActi
 import com.example.kodegojobsearchapp.databinding.ActivityChangeProfileDetailsBinding
 import com.example.kodegojobsearchapp.firebase.FirebaseApplicantDAOImpl
 import com.example.kodegojobsearchapp.model.Applicant
+import com.example.kodegojobsearchapp.model.User
 import com.example.kodegojobsearchapp.utils.ProgressDialog
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
@@ -54,6 +56,8 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
 
     private fun setApplicantData(){
         with(binding){
+            firstName.setText(applicant.firstName)
+            lastName.setText(applicant.lastName)
             tvAboutText.setText(applicant.about)
             tvEducationText.setText(applicant.education)
             tvPositionText.setText(applicant.positionDesired)
@@ -65,9 +69,13 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
     }
 
     private fun validateForm(){
+        val updatedUser = User(applicant)
+        val updatedUserFields: HashMap<String, Any?> = HashMap()
         val updatedApplicant = applicant.exportFirebaseApplicant()
-        val updatedFields: HashMap<String, Any?> = HashMap()
+        val updatedApplicantFields: HashMap<String, Any?> = HashMap()
         with(binding){
+            updatedUser.firstName = firstName.text.toString()
+            updatedUser.lastName = lastName.text.toString()
             updatedApplicant.about = tvAboutText.text.toString().trim()
             updatedApplicant.education = tvEducationText.text.toString().trim()
             updatedApplicant.positionDesired = tvPositionText.text.toString().trim()
@@ -76,32 +84,40 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
             updatedApplicant.licensesOrCertifications = tvLicenseText.text.toString().trim()
             updatedApplicant.employment = tvEmploymentText.text.toString().trim()
         }
-        if (applicant.about != updatedApplicant.about){
-            updatedFields["about"] = updatedApplicant.about
+
+        if (applicant.firstName != updatedUser.firstName){
+            updatedUserFields["firstName"] = updatedUser.firstName
         }
-        if (applicant.education != updatedApplicant.education){
-            updatedFields["education"] = updatedApplicant.education
-        }
-        if (applicant.positionDesired != updatedApplicant.positionDesired){
-            updatedFields["positionDesired"] = updatedApplicant.positionDesired
-        }
-        if (applicant.salary != updatedApplicant.salary){
-            updatedFields["salary"] = updatedApplicant.salary
-        }
-        if (applicant.skills != updatedApplicant.skills){
-            updatedFields["skills"] = updatedApplicant.skills
-        }
-        if (applicant.licensesOrCertifications != updatedApplicant.licensesOrCertifications){
-            updatedFields["licensesOrCertifications"] = updatedApplicant.licensesOrCertifications
-        }
-        if (applicant.employment != updatedApplicant.employment){
-            updatedFields["employment"] = updatedApplicant.employment
+        if (applicant.lastName != updatedUser.lastName){
+            updatedUserFields["lastName"] = updatedUser.lastName
         }
 
-        if (updatedFields.isNotEmpty()){
+        if (applicant.about != updatedApplicant.about){
+            updatedApplicantFields["about"] = updatedApplicant.about
+        }
+        if (applicant.education != updatedApplicant.education){
+            updatedApplicantFields["education"] = updatedApplicant.education
+        }
+        if (applicant.positionDesired != updatedApplicant.positionDesired){
+            updatedApplicantFields["positionDesired"] = updatedApplicant.positionDesired
+        }
+        if (applicant.salary != updatedApplicant.salary){
+            updatedApplicantFields["salary"] = updatedApplicant.salary
+        }
+        if (applicant.skills != updatedApplicant.skills){
+            updatedApplicantFields["skills"] = updatedApplicant.skills
+        }
+        if (applicant.licensesOrCertifications != updatedApplicant.licensesOrCertifications){
+            updatedApplicantFields["licensesOrCertifications"] = updatedApplicant.licensesOrCertifications
+        }
+        if (applicant.employment != updatedApplicant.employment){
+            updatedApplicantFields["employment"] = updatedApplicant.employment
+        }
+
+        if (updatedUserFields.isNotEmpty() || updatedApplicantFields.isNotEmpty()){
             progressDialog.show()
             lifecycleScope.launch {
-                if(dao.updateApplicant(applicant, updatedFields)){
+                if(dao.updateApplicant(applicant, updatedApplicantFields) && dao.updateUser(updatedUserFields)){
                     Toast.makeText(applicationContext, "Applicant Updated", Toast.LENGTH_SHORT).show()
                     backToApplicantViewPager()
                 }else{
@@ -109,6 +125,8 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
                 }
                 progressDialog.dismiss()
             }
+        }else{
+            Snackbar.make(binding.root, "No Fields Changed", Toast.LENGTH_SHORT).show()
         }
     }
 

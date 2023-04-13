@@ -33,6 +33,9 @@ class FirebaseEmployerDAOImpl(context: Context): FirebaseUserDAOImpl(context), F
         }
     }
 
+    /**
+     * Gets Employer model or Creates if it doesn't exist
+     */
     override suspend fun getEmployer(uID: String): Employer {
 //        TODO("Not yet implemented")
         val task = reference

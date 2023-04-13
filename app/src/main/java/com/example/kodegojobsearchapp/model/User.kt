@@ -31,6 +31,9 @@ open class User(): Parcelable {
         uID = firebaseUser.uid
         email = firebaseUser.email!!
     }
+    constructor(user: User): this(){
+        setUser(user)
+    }
 }
 
 enum class UserType(){
