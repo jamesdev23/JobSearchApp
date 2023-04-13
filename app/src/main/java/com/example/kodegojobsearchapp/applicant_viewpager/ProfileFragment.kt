@@ -69,6 +69,7 @@ class ProfileFragment : Fragment() {
 
     private fun setApplicantData(){
         with(binding){
+            name.text = "${applicant.firstName} ${applicant.lastName}"
             tvAboutText.text = applicant.about
             tvEducationText.text = applicant.education
             tvPositionText.text = applicant.positionDesired

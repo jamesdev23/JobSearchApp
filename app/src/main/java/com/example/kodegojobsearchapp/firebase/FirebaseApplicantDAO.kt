@@ -32,6 +32,9 @@ class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), 
         }
     }
 
+    /**
+     * Gets Applicant model or Creates if it doesn't exist
+     */
     override suspend fun getApplicant(uID: String): Applicant {
         val task = reference
             .document(uID)
