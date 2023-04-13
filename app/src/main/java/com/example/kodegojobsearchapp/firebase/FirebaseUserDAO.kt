@@ -3,8 +3,10 @@ package com.example.kodegojobsearchapp.firebase
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.core.net.toUri
 import com.example.kodegojobsearchapp.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.tasks.await
@@ -13,6 +15,7 @@ interface FirebaseUserDAO {
     suspend fun addUser(user: User): Boolean
     suspend fun getUser(uID: String): User?
     suspend fun updateUser(fields: HashMap<String, Any?>): Boolean
+    suspend fun updateUserProfile(fields: HashMap<String, Any?>): Boolean
     suspend fun deleteUser(user: User): Boolean
 }
 
@@ -57,6 +60,27 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{
             .update(fields)
         task.await()
         return task.isSuccessful
+    }
+
+    override suspend fun updateUserProfile(fields: HashMap<String, Any?>): Boolean {
+//        TODO("Not yet implemented")
+        val user = auth.currentUser!!
+        val request = userProfileChangeRequest {
+            if (fields.containsKey("firstName") && fields.containsKey("lastName")){
+                displayName = "${fields["firstName"]} ${fields["lastName"]}"
+            }
+            if (fields.containsKey("photoUri")){
+                photoUri = fields["photoUri"].toString().toUri()
+            }
+        }
+        val task = user.updateProfile(request)
+        task.await()
+        return if (task.isSuccessful){
+            true
+        }else{
+            Log.e("UserProfile Update", task.exception?.message.toString())
+            false
+        }
     }
 
     override suspend fun deleteUser(user: User): Boolean {

@@ -60,17 +60,18 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
                     deleteProfilePicture(user.photoUrl.toString())
                 }
             }
-            val photoUriUpdate = userProfileChangeRequest {
-                photoUri = storageUri
-            }
-            val task = user.updateProfile(photoUriUpdate)
-            task.await()
-            return if (task.isSuccessful){
+//            val photoUriUpdate = userProfileChangeRequest {
+//                photoUri = storageUri
+//            }
+//            val task = user.updateProfile(photoUriUpdate)
+//            task.await()
+            val userProfileChangeMap: HashMap<String, Any?> = hashMapOf("photoUri" to storageUri)
+            return if (updateUserProfile(userProfileChangeMap)){
                 val updateImageMap = HashMap<String, Any?>()
                 updateImageMap["image"] = storageUri.toString()
                 updateUser(updateImageMap)
             }else{
-                Log.e("PhotoUpdate", task.exception?.message.toString())
+//                Log.e("PhotoUpdate", task.exception?.message.toString())
                 false
             }
         }else{
