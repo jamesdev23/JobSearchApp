@@ -48,4 +48,5 @@
     <string name="job_description_1">Job Description 1</string>
     <string name="search_job_listing_hint_1">Search job listing (Ex. Android developer in Texas, USA</string>
     <string name="search_job_listing">Search Job Listing</string>
+    <string name="updating_employer_data">Updating Employer Data</string>
 </resources>
