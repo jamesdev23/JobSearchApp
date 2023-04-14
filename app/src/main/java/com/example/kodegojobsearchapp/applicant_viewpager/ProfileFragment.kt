@@ -77,6 +77,8 @@ class ProfileFragment : Fragment() {
             tvSkillsText.text = applicant.skills
             tvLicenseText.text = applicant.licensesOrCertifications
             tvEmploymentText.text = applicant.employment
+
+            // TODO: add profile picture from db
         }
     }
 }

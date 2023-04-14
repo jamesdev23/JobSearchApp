@@ -15,6 +15,8 @@ class Applicant(): User(), Parcelable {
     var licensesOrCertifications: String = ""
     var employment: String = ""
 
+    // TODO: add profile picture from db
+
     /**
      * Separate unnecessary inherited data from Super Class to prevent redundant data storage
      */
