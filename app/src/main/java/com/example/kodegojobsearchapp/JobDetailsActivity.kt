@@ -3,6 +3,7 @@ package com.example.kodegojobsearchapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobDetailsData
 import com.example.kodegojobsearchapp.api_model.JobDetailsResponse
@@ -16,7 +17,6 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJobDetailsBinding
     
     private lateinit var jobDetailsList: ArrayList<JobDetailsData>
-    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,8 +30,6 @@ class JobDetailsActivity : AppCompatActivity() {
             title = "Job Details"
             setDisplayHomeAsUpEnabled(true)
         }
-
-        progressDialog.show()
 
         getData(jobID!!)
 
@@ -47,11 +45,17 @@ class JobDetailsActivity : AppCompatActivity() {
     }
     
     private fun getData(jobId: String){
+        binding.scrollJobDetails.visibility = View.GONE
+        binding.loadingData.visibility = View.VISIBLE
+
         val call: Call<JobDetailsResponse> = JobSearchAPIClient
             .getJobDetailsData.getJobDetails(jobId, false)
 
         call.enqueue(object : Callback<JobDetailsResponse> {
             override fun onFailure(call: Call<JobDetailsResponse>, t: Throwable) {
+                binding.scrollJobDetails.visibility = View.VISIBLE
+                binding.loadingData.visibility = View.GONE
+
                 Log.d("API CALL", "Failed API CALL")
                 Log.e("error", t.message.toString())
             }
@@ -60,6 +64,9 @@ class JobDetailsActivity : AppCompatActivity() {
                 call: Call<JobDetailsResponse>,
                 response: Response<JobDetailsResponse>
             ) {
+                binding.scrollJobDetails.visibility = View.VISIBLE
+                binding.loadingData.visibility = View.GONE
+
                 var response: JobDetailsResponse = response!!.body()!!
 
                 jobDetailsList = response.data
