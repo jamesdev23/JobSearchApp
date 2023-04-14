@@ -26,7 +26,7 @@
     <string name="listing_title">Listing Title</string>
 
     <string-array name="contract_type_options">
-        <item>-- Choose Contract Type--</item>
+        <item>-- Choose Employment Type--</item>
         <item>Full Time</item>
         <item>Part Time</item>
     </string-array>
@@ -64,4 +64,5 @@
     <string name="fulltime">FULLTIME</string>
     <string name="apply_now">Apply Now</string>
     <string name="applicant_list">Applicant List</string>
+    <string name="post_job_listing">Post Job Listing</string>
 </resources>

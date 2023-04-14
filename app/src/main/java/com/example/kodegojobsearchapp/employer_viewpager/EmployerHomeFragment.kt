@@ -11,23 +11,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.kodegojobsearchapp.ApplicantSearchActivity
 import com.example.kodegojobsearchapp.R
-import com.example.kodegojobsearchapp.adapter.JobListingAdapter
 import com.example.kodegojobsearchapp.adapter.UserListAdapter
-import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api.UserListAPIClient
-import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.UserListResponse
 import com.example.kodegojobsearchapp.api_model.UserListData
 import com.example.kodegojobsearchapp.applicant_viewpager.FragmentKeys
-import com.example.kodegojobsearchapp.applicant_viewpager.HomeFragment
 import com.example.kodegojobsearchapp.databinding.FragmentEmployerHomeBinding
-import com.example.kodegojobsearchapp.model.JobListing
-import com.example.kodegojobsearchapp.model.User
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-/* TODO: (anyone) employer home uses firebase adapter to show it's own job listing
+/* TODO: urgent. add search function
 * */
 
 class EmployerHomeFragment : Fragment() {
@@ -70,15 +64,11 @@ class EmployerHomeFragment : Fragment() {
         
         getData()
 
-        binding.btnApplicantSearch.setOnClickListener {
-            val intent = Intent(requireContext(), ApplicantSearchActivity::class.java)
-            startActivity(intent)
-        }
+//        binding.btnApplicantSearch.setOnClickListener {
+//            val intent = Intent(requireContext(), ApplicantSearchActivity::class.java)
+//            startActivity(intent)
+//        }
 
-        binding.btnCreateJobListing.setOnClickListener {
-            val viewPager = activity?.findViewById<ViewPager2>(R.id.viewPager2)
-            viewPager?.currentItem = 1
-        }
     }
 
     private fun getData(){
