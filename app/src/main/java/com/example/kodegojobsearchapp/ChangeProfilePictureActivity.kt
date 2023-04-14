@@ -35,7 +35,12 @@ class ChangeProfilePictureActivity : AppCompatActivity() {
         dao = FirebaseStorageDAOImpl(applicationContext)
         progressDialog = ProgressDialog(binding.root.context, R.string.updating_profile_picture)
 
-        supportActionBar?.title = "Change Profile Picture"
+        supportActionBar?.apply{
+            title = "Change Profile Picture"
+            setDisplayHomeAsUpEnabled(true)
+        }
+
+
 
         binding.btnUploadPicture.setOnClickListener {
             openDocumentLauncher.launch(arrayOf("image/*"))
@@ -48,6 +53,11 @@ class ChangeProfilePictureActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         super.onBackPressed()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     private fun onImageSelected(uri: Uri){
@@ -70,8 +80,8 @@ class ChangeProfilePictureActivity : AppCompatActivity() {
             .with(binding.root.context)
             .load(photoUrl)
             .memoryPolicy(MemoryPolicy.NO_CACHE)
-            .placeholder(R.drawable.job_search_logo_text_white)
-            .error(R.drawable.job_search_logo_text_white)
+            .placeholder(R.drawable.baseline_person_24)
+            .error(R.drawable.baseline_person_24)
             .into(binding.jobseekerProfilePicture)
     }
 }

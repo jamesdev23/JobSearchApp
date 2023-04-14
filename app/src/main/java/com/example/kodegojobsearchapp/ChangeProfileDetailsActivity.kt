@@ -30,7 +30,10 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         progressDialog = ProgressDialog(binding.root.context, R.string.updating_applicant_data)
 
-        supportActionBar?.title = "Change Profile Details"
+        supportActionBar?.apply{
+            title = "Change Profile Details"
+            setDisplayHomeAsUpEnabled(true)
+        }
 
         dao = FirebaseApplicantDAOImpl(applicationContext)
         getApplicant()
@@ -45,6 +48,11 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
     override fun onBackPressed() {
 //        super.onBackPressed() //TODO: Use ActivityForResult instead
         backToApplicantViewPager()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 
     private fun getApplicant(){

@@ -29,15 +29,15 @@
         android:padding="5dp"
         />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_change_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/round_button"
-        android:text="@string/change_password"
-        android:layout_margin="10dp"
-        android:padding="5dp"
-        />
+<!--    <com.google.android.material.button.MaterialButton-->
+<!--        android:id="@+id/btn_change_password"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@drawable/round_button"-->
+<!--        android:text="@string/change_password"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:padding="5dp"-->
+<!--        />-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_signout"
