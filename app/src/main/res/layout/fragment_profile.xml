@@ -104,7 +104,7 @@
             android:textStyle="bold"
             android:padding="8dp"
             android:textColor="@android:color/black"
-            android:text="Salary:"
+            android:text="Salary (in PHP):"
             />
 
         <com.google.android.material.textview.MaterialTextView

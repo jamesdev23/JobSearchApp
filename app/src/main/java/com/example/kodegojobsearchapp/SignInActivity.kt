@@ -49,7 +49,7 @@ class SignInActivity : AppCompatActivity() {
                 .setLogo(R.drawable.job_search_logo_text_white)
                 .setAvailableProviders(listOf(
                     AuthUI.IdpConfig.GoogleBuilder().build(),
-                    AuthUI.IdpConfig.GitHubBuilder().build()
+                    AuthUI.IdpConfig.EmailBuilder().build(),
                 ))
                 .build()
 
