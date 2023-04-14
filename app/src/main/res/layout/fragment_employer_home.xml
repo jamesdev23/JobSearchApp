@@ -9,29 +9,10 @@
     tools:context=".employer_viewpager.EmployerHomeFragment"
     android:weightSum="10">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.7"
-        android:text="@string/job_listing"
-        android:gravity="center_vertical"
-        android:textSize="20sp"
-        android:padding="5dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_job_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="5dp"
-        android:layout_weight="8.5"
-        android:scrollbars="vertical"
-        android:scrollbarStyle="insideOverlay"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="0.7"
         android:weightSum="10">
 
         <com.google.android.material.button.MaterialButton
@@ -53,6 +34,27 @@
 
 
     </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/applicant_list"
+        android:gravity="center_vertical"
+        android:textSize="20sp"
+        android:padding="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/applicant_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="10"
+        android:scrollbars="vertical"
+        android:scrollbarStyle="insideOverlay"/>
+
+
 
 
 </LinearLayout>

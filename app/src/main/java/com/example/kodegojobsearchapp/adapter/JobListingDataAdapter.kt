@@ -63,8 +63,9 @@ class JobListingDataAdapter (private var context: Context, private var jobListin
 
         fun bindItems(jobLists: JobListingData) {
             itemBinding.jobTitle.text = jobLists.jobTitle
-            itemBinding.jobLocation.text = "${jobLists.jobCity}, ${jobLists.jobState}, ${jobLists.jobCountry}"
             itemBinding.jobCompany.text = jobLists.employerName
+            itemBinding.jobLocation.text = "${jobLists.jobCity}, ${jobLists.jobState}, ${jobLists.jobCountry}"
+
         }
 
         override fun onClick(view: View?) {

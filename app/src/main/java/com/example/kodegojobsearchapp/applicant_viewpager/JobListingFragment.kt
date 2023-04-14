@@ -6,13 +6,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
 import com.example.kodegojobsearchapp.databinding.FragmentJobListingBinding
+import com.example.kodegojobsearchapp.utils.ProgressDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +26,7 @@ class JobListingFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var jobListingDataAdapter: JobListingDataAdapter
     private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
+    private lateinit var progressDialog: ProgressDialog
 
     init {
         if(this.arguments == null) {
@@ -51,7 +53,13 @@ class JobListingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        binding.appSearchJobListing.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
+        binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.appJobListing.adapter = jobListingDataAdapter
+
+        getData(defaultQuery)
+
+    //        binding.appSearchJobListing.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 //            override fun onQueryTextChange(newText: String?): Boolean {
 //                // TODO: add dao search function implementation. also, update list
 //                return false
@@ -64,27 +72,17 @@ class JobListingFragment : Fragment() {
 //
 //        })
 
-        jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
-        binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.appJobListing.adapter = jobListingDataAdapter
-        getData(defaultQuery)
-
 
     }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
-
-    }
-
 
     private fun getData(queryText: String){
         val call: Call<JobSearchResultResponse> = JobSearchAPIClient
-            .getJobSearchData.getJobData(queryText, page, numPages)
+            .getJobSearchData.getJobListing(queryText, page, numPages)
 
         call.enqueue(object : Callback<JobSearchResultResponse> {
             override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
+                progressDialog.dismiss()
+
                 Log.d("API CALL", "Failed API CALL")
                 Log.e("error", t.message.toString())
             }
@@ -93,6 +91,8 @@ class JobListingFragment : Fragment() {
                 call: Call<JobSearchResultResponse>,
                 response: Response<JobSearchResultResponse>
             ) {
+                progressDialog.dismiss()
+
                 var response: JobSearchResultResponse = response!!.body()!!
 
                 jobListingDataAdapter!!.setList(response.dataList)

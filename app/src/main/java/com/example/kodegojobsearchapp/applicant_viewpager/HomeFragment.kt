@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
 import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
+import com.example.kodegojobsearchapp.utils.ProgressDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +27,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var jobListingDataAdapter: JobListingDataAdapter
     private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
+    private lateinit var progressDialog: ProgressDialog
 
     init {
         if(this.arguments == null) {
@@ -37,15 +40,14 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+
+        progressDialog = ProgressDialog(binding.root.context, R.string.loading_job_listing)
+
         return binding.root
     }
 
@@ -55,21 +57,21 @@ class HomeFragment : Fragment() {
         jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
         binding.jobListingList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.jobListingList.adapter = jobListingDataAdapter
+
+        progressDialog.show()
+
         getData()  // uncomment to check api
-    }
-
-
-    override fun onDestroy() {
-        super.onDestroy()
 
     }
 
     private fun getData(){
         val call: Call<JobSearchResultResponse> = JobSearchAPIClient
-            .getJobSearchData.getJobData(query, page, numPages)
+            .getJobSearchData.getJobListing(query, page, numPages)
 
         call.enqueue(object : Callback<JobSearchResultResponse> {
             override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
+                progressDialog.dismiss()
+
                 Log.d("API CALL", "Failed API CALL")
                 Log.e("error", t.message.toString())
             }
@@ -78,6 +80,8 @@ class HomeFragment : Fragment() {
                 call: Call<JobSearchResultResponse>,
                 response: Response<JobSearchResultResponse>
             ) {
+                progressDialog.dismiss()
+
                 var response: JobSearchResultResponse = response!!.body()!!
 
                 jobListingDataAdapter!!.setList(response.dataList)

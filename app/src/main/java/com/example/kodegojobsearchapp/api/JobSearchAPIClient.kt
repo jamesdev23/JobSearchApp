@@ -36,7 +36,7 @@ object JobSearchAPIClient {
             return retrofit.create(JobSearchAPI::class.java)
         }
 
-    val getJobDetailsData: JobDetailsAPI
+    val getJobDetailsData: JobSearchAPI
         get() {
             val gson = GsonBuilder().setLenient().create()
             val interceptor = HttpLoggingInterceptor()
@@ -55,7 +55,7 @@ object JobSearchAPIClient {
 
             Log.d("gson", gson.toString())
 
-            return retrofit.create(JobDetailsAPI::class.java)
+            return retrofit.create(JobSearchAPI::class.java)
         }
 }
 

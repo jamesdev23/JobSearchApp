@@ -11,7 +11,11 @@
     <string name="welcome">Welcome!</string>
     <string name="job_seeker">Job Seeker</string>
     <string name="employer">Employer</string>
+
+    <!-- loading dialog text -->
     <string name="loading_user">Loading User</string>
+    <string name="loading_job_listing">Loading Job Listing</string>
+
     <string name="please_wait">Please Wait</string>
     <string name="applicant_search">Applicant Search</string>
     <string name="create_job_listing">Create Job Listing</string>
@@ -59,4 +63,5 @@
     <string name="employment_type_label">Employment Type:</string>
     <string name="fulltime">FULLTIME</string>
     <string name="apply_now">Apply Now</string>
+    <string name="applicant_list">Applicant List</string>
 </resources>

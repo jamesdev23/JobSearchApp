@@ -1,6 +1,5 @@
 package com.example.kodegojobsearchapp
 
-import android.app.ActionBar.OnNavigationListener
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +7,7 @@ import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobDetailsData
 import com.example.kodegojobsearchapp.api_model.JobDetailsResponse
 import com.example.kodegojobsearchapp.databinding.ActivityJobDetailsBinding
+import com.example.kodegojobsearchapp.utils.ProgressDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,6 +16,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJobDetailsBinding
     
     private lateinit var jobDetailsList: ArrayList<JobDetailsData>
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +30,8 @@ class JobDetailsActivity : AppCompatActivity() {
             title = "Job Details"
             setDisplayHomeAsUpEnabled(true)
         }
+
+        progressDialog.show()
 
         getData(jobID!!)
 
@@ -45,7 +48,7 @@ class JobDetailsActivity : AppCompatActivity() {
     
     private fun getData(jobId: String){
         val call: Call<JobDetailsResponse> = JobSearchAPIClient
-            .getJobDetailsData.getJobInfo(jobId, false)
+            .getJobDetailsData.getJobDetails(jobId, false)
 
         call.enqueue(object : Callback<JobDetailsResponse> {
             override fun onFailure(call: Call<JobDetailsResponse>, t: Throwable) {
