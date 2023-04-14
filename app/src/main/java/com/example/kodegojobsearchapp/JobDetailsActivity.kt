@@ -46,6 +46,7 @@ class JobDetailsActivity : AppCompatActivity() {
     
     private fun getData(jobId: String){
         binding.scrollJobDetails.visibility = View.GONE
+        binding.btnApply.visibility = View.GONE
         binding.loadingData.visibility = View.VISIBLE
 
         val call: Call<JobDetailsResponse> = JobSearchAPIClient
@@ -54,6 +55,7 @@ class JobDetailsActivity : AppCompatActivity() {
         call.enqueue(object : Callback<JobDetailsResponse> {
             override fun onFailure(call: Call<JobDetailsResponse>, t: Throwable) {
                 binding.scrollJobDetails.visibility = View.VISIBLE
+                binding.btnApply.visibility = View.VISIBLE
                 binding.loadingData.visibility = View.GONE
 
                 Log.d("API CALL", "Failed API CALL")
@@ -65,6 +67,7 @@ class JobDetailsActivity : AppCompatActivity() {
                 response: Response<JobDetailsResponse>
             ) {
                 binding.scrollJobDetails.visibility = View.VISIBLE
+                binding.btnApply.visibility = View.VISIBLE
                 binding.loadingData.visibility = View.GONE
 
                 var response: JobDetailsResponse = response!!.body()!!
