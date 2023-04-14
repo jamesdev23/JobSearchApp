@@ -17,6 +17,8 @@ import com.example.kodegojobsearchapp.utils.ProgressDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.HTTP
+import java.net.HttpURLConnection
 
 // TODO: job listing implementation. might need API first. also, add searchbar (in progress)
 
@@ -94,17 +96,25 @@ class JobListingFragment : Fragment() {
                 call: Call<JobSearchResultResponse>,
                 response: Response<JobSearchResultResponse>
             ) {
-                var response: JobSearchResultResponse = response.body()!!
-
-                jobListingDataAdapter.setList(response.dataList)
-
-                val dataLists = response.dataList
-                for(data in dataLists) {
-                    Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
-                }
-
                 binding.appJobListing.visibility = View.VISIBLE
                 binding.loadingData.visibility = View.GONE
+                if (response.isSuccessful) {
+                    val response: JobSearchResultResponse = response.body()!!
+                    response.status
+
+                    jobListingDataAdapter.setList(response.dataList)
+
+                    val dataLists = response.dataList
+                    for (data in dataLists) {
+                        Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
+                    }
+                }else{
+                    when (response.code()){
+                        HttpURLConnection.HTTP_BAD_REQUEST -> Log.e("API Call", "Bad Request")
+                        HttpURLConnection.HTTP_NOT_FOUND -> Log.e("API Call", "Not Found")
+                        else -> Log.e("API Call", response.message())
+                    }
+                }
             }
         })
     }
