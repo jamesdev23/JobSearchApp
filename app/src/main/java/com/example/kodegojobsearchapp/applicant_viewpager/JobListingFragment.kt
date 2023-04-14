@@ -52,7 +52,7 @@ class JobListingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        progressDialog = ProgressDialog(binding.root.context)
         jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
         binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.appJobListing.adapter = jobListingDataAdapter
@@ -76,12 +76,15 @@ class JobListingFragment : Fragment() {
     }
 
     private fun getData(queryText: String){
+        binding.appJobListing.visibility = View.GONE
+        binding.loadingData.visibility = View.VISIBLE
+
         val call: Call<JobSearchResultResponse> = JobSearchAPIClient
             .getJobSearchData.getJobListing(queryText, page, numPages)
-
         call.enqueue(object : Callback<JobSearchResultResponse> {
             override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
-                progressDialog.dismiss()
+                binding.appJobListing.visibility = View.VISIBLE
+                binding.loadingData.visibility = View.GONE
 
                 Log.d("API CALL", "Failed API CALL")
                 Log.e("error", t.message.toString())
@@ -91,16 +94,17 @@ class JobListingFragment : Fragment() {
                 call: Call<JobSearchResultResponse>,
                 response: Response<JobSearchResultResponse>
             ) {
-                progressDialog.dismiss()
+                var response: JobSearchResultResponse = response.body()!!
 
-                var response: JobSearchResultResponse = response!!.body()!!
-
-                jobListingDataAdapter!!.setList(response.dataList)
+                jobListingDataAdapter.setList(response.dataList)
 
                 val dataLists = response.dataList
                 for(data in dataLists) {
                     Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
                 }
+
+                binding.appJobListing.visibility = View.VISIBLE
+                binding.loadingData.visibility = View.GONE
             }
         })
     }
