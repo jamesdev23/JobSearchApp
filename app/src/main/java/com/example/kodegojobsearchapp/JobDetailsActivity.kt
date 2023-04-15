@@ -17,6 +17,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJobDetailsBinding
     
     private lateinit var jobDetailsList: ArrayList<JobDetailsData>
+    private lateinit var jobDetailsData: JobDetailsData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +35,17 @@ class JobDetailsActivity : AppCompatActivity() {
         getData(jobID!!)
 
         binding.btnApply.setOnClickListener{
-            // TODO: (for dave) add code when applicant clicks the apply button
+            /**
+             * TODO: (for dave) add code when applicant clicks the apply button
+             *  Supposedly 1 JobDetailsData
+             *      Save Job and Applicant IDs on JobApplication Model
+             *      Store JobApplication on Firestore
+             *
+             */
+
+
+
+
         }
         
     }
