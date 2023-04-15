@@ -2,53 +2,106 @@ package com.example.kodegojobsearchapp.api_model
 
 import com.google.gson.annotations.SerializedName
 
-class UserListData {
+data class UserListData (
     @SerializedName("id")
-    var iD: Int = -1
+    val id: Int,
 
-    @SerializedName("email")
-    var email = ""
+    @SerializedName("uid")
+    val uid: String,
+
+    @SerializedName("password")
+    val password: String,
 
     @SerializedName("first_name")
-    var firstName = ""
+    val firstName: String,
 
     @SerializedName("last_name")
-    var lastName = ""
+    val lastName: String,
+
+    @SerializedName("username")
+    val username: String,
+
+    @SerializedName("email")
+    val email: String,
 
     @SerializedName("avatar")
-    var avatarUrl = ""
+    val avatar: String,
 
-    constructor(firstname: String, lastname: String, url: String) {
-        this.firstName = firstname
-        this.lastName = lastname
-        this.avatarUrl = url
-    }
-}
+    @SerializedName("gender")
+    val gender: String,
 
-class UserListResponse {
-    @SerializedName("page")
-    var page: Int = -1
+    @SerializedName("phone_number")
+    val phoneNumber: String,
 
-    @SerializedName("per_page")
-    var perPage: Int = -1
+    @SerializedName("social_insurance_number")
+    val socialInsuranceNumber: String,
 
-    @SerializedName("total")
-    var total: Int = -1
+    @SerializedName("date_of_birth")
+    val dateOfBirth: String,
 
-    @SerializedName("total_pages")
-    var totalPages: Int = -1
+    @SerializedName("employment")
+    val employment: Employment,
 
-    @SerializedName("data")
-    var dataList: ArrayList<UserListData> = ArrayList<UserListData>()
+    @SerializedName("address")
+    val address: Address,
 
-    @SerializedName("support")
-    var support: Support = Support()
-}
+    @SerializedName("credit_card")
+    val creditCard: CreditCard,
 
-class Support {
-    @SerializedName("url")
-    var support_url = ""
+    @SerializedName("subscription")
+    val subscription: Subscription
+)
+data class Employment(
+    @SerializedName("title")
+    val title: String,
 
-    @SerializedName("text")
-    var support_text = ""
-}
+    @SerializedName("key_skill")
+    val keySkill: String
+)
+
+data class Address(
+    @SerializedName("city")
+    val city: String,
+
+    @SerializedName("street_name")
+    val streetName: String,
+
+    @SerializedName("street_address")
+    val streetAddress: String,
+
+    @SerializedName("zip_code")
+    val zipCode: String,
+
+    @SerializedName("state")
+    val state: String,
+
+    @SerializedName("country")
+    val country: String,
+
+    @SerializedName("coordinates")
+    val coordinates: Coordinates
+)
+
+data class Coordinates(
+    @SerializedName("lat")
+    val lat: Double,
+
+    @SerializedName("lng")
+    val lng: Double
+)
+
+data class CreditCard(
+    @SerializedName("cc_number")
+    val ccNumber: String
+)
+
+data class Subscription(
+    @SerializedName("plan")
+    val plan: String,
+    @SerializedName("status")
+    val status: String,
+    @SerializedName("payment_method")
+    val paymentMethod: String,
+    @SerializedName("term")
+    val term: String
+)

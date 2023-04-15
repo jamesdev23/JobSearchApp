@@ -32,12 +32,30 @@
                 android:id="@+id/user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/job_title_1"
+                android:text="@string/john_smith"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:padding="8dp"
                 android:maxLines="1"
                 android:textColor="@android:color/holo_blue_dark"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/user_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/job_title_1"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/user_key_skill"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/user_key_skill_1"
+                android:padding="8dp"
+                android:textColor="@color/black"
                 />
 
         </LinearLayout>

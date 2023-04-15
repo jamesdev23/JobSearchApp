@@ -8,12 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
-import com.example.kodegojobsearchapp.ApplicantSearchActivity
-import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.UserListAdapter
 import com.example.kodegojobsearchapp.api.UserListAPIClient
-import com.example.kodegojobsearchapp.api_model.UserListResponse
 import com.example.kodegojobsearchapp.api_model.UserListData
 import com.example.kodegojobsearchapp.applicant_viewpager.FragmentKeys
 import com.example.kodegojobsearchapp.databinding.FragmentEmployerHomeBinding
@@ -30,7 +26,7 @@ class EmployerHomeFragment : Fragment() {
 
     private lateinit var userListAdapter: UserListAdapter
     private var userList: ArrayList<UserListData> = arrayListOf()
-    private var startIndex = 1
+    private var userListSize = 10
 
     init {
         if(this.arguments == null) {
@@ -61,7 +57,7 @@ class EmployerHomeFragment : Fragment() {
         userListAdapter = UserListAdapter(requireContext(), userList, requireActivity().supportFragmentManager)
         binding.applicantList.layoutManager = LinearLayoutManager(activity)
         binding.applicantList.adapter = userListAdapter
-        
+
         getData()
 
 //        binding.btnApplicantSearch.setOnClickListener {
@@ -72,28 +68,34 @@ class EmployerHomeFragment : Fragment() {
     }
 
     private fun getData(){
-        val call: Call<UserListResponse> = UserListAPIClient.getUserListData.getUserList(startIndex)
+        val call: Call<List<UserListData>> = UserListAPIClient.getUserListData.getUserList(userListSize, responseType)
 
-        call.enqueue(object : Callback<UserListResponse> {
-            override fun onFailure(call: Call<UserListResponse>, t: Throwable) {
+        call.enqueue(object : Callback<List<UserListData>> {
+            override fun onFailure(call: Call<List<UserListData>>, t: Throwable) {
                 Log.d("API CALL", "Failed API CALL")
                 Log.e("error", t.message.toString())
             }
 
             override fun onResponse(
-                call: Call<UserListResponse>,
-                response: Response<UserListResponse>
+                call: Call<List<UserListData>>,
+                response: Response<List<UserListData>>
             ) {
-                var response: UserListResponse = response!!.body()!!
+                var response: List<UserListData> = response!!.body()!!
 
-                userListAdapter.setList(response.dataList)
+                var userList = response as ArrayList
 
-                val dataLists = response.dataList
-                for(data in dataLists) {
-                    Log.d("API CALL", "${data.firstName} ${data.lastName}")
+                userListAdapter.setList(userList)
+
+                for(user in userList) {
+                    Log.d("API CALL", "${user.firstName} ${user.lastName}")
                 }
+
             }
         })
+    }
+
+    companion object{
+        const val responseType = "json"
     }
 
 }

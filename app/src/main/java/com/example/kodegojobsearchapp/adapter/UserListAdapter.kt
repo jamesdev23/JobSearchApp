@@ -62,18 +62,20 @@ class UserListAdapter (private var context: Context, private var userLists : Arr
         }
 
         fun bindItems(user: UserListData) {
-            val imageURL = user.avatarUrl
+            val fullName = "${user.firstName} ${user.lastName}"
 
-            itemBinding.userName.text = "${user.firstName} ${user.lastName}"
+            itemBinding.userName.text = fullName
+            itemBinding.userTitle.text = user.employment.title
+            itemBinding.userKeySkill.text = user.employment.keySkill
 
-            imageURL?.let{
+            itemBinding.userAvatar.let{
                 Picasso
                     .with(itemView.context)
-                    .load(it)
+                    .load(R.drawable.baseline_person_24)
                     .memoryPolicy(MemoryPolicy.NO_CACHE)
                     .placeholder(R.drawable.baseline_person_24)
                     .error(R.drawable.baseline_person_24)
-                    .into(itemBinding!!.userAvatar)
+                    .into(it)
             }
         }
 

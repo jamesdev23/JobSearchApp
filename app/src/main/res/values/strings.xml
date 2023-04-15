@@ -65,4 +65,6 @@
     <string name="apply_now">Apply Now</string>
     <string name="applicant_list">Applicant List</string>
     <string name="post_job_listing">Post Job Listing</string>
+    <string name="john_smith">John Smith</string>
+    <string name="user_key_skill_1">User Key Skill 1</string>
 </resources>

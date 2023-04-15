@@ -60,6 +60,7 @@ object JobSearchAPIClient {
 }
 
 class CustomInterceptor : Interceptor {
+    // comment/uncomment these 2 lines to turn on and off api
     private val API_KEY = ""
 //    private val API_KEY = "c855032a98mshcf0ec945a5fdd59p19ddbcjsnbf92c3e6d4f7"
     private val API_HOST = "jsearch.p.rapidapi.com"

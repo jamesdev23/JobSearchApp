@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object UserListAPIClient {
-    private const val BASE_URL = "https://reqres.in/api/"
+    private const val BASE_URL = "https://random-data-api.com/api/v2/"
 
     val getUserListData: UserListAPI
         get() {
