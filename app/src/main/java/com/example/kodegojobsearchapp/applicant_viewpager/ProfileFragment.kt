@@ -13,6 +13,8 @@ import com.example.kodegojobsearchapp.firebase.FirebaseApplicantDAOImpl
 import com.example.kodegojobsearchapp.model.Applicant
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
 // TODO: applicant profile implementation. hint: grab info from firebase db
@@ -78,7 +80,16 @@ class ProfileFragment : Fragment() {
             tvLicenseText.text = applicant.licensesOrCertifications
             tvEmploymentText.text = applicant.employment
 
-            // TODO: add profile picture from db
+            loadProfilePicture()
         }
+    }
+
+    private fun loadProfilePicture(){
+        Picasso
+            .with(requireContext())
+            .load(applicant.image)
+            .memoryPolicy(MemoryPolicy.NO_CACHE)
+            .error(R.drawable.baseline_person_24)
+            .into(binding.tvProfilePicture)
     }
 }
