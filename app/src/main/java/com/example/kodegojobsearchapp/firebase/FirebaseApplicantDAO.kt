@@ -14,9 +14,9 @@ interface FirebaseApplicantDAO {
     suspend fun deleteApplicant(applicant: Applicant): Boolean
 }
 
-class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), FirebaseApplicantDAO{
+open class FirebaseApplicantDAOImpl(context: Context): FirebaseUserDAOImpl(context), FirebaseApplicantDAO{
     private val collection = FirebaseCollections.Applicants
-    private val reference = fireStore.collection(collection)
+    internal val reference = fireStore.collection(collection)
 
     override suspend fun addApplicant(applicant: Applicant): Boolean {
         val document = reference.document(applicant.uID)

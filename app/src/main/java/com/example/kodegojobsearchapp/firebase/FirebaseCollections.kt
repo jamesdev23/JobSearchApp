@@ -4,4 +4,5 @@ object FirebaseCollections {
     const val Users: String = "users"
     const val Applicants: String = "applicants"
     const val Employers: String = "employers"
+    const val JobApplications: String = "jobApplications"
 }

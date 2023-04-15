@@ -14,6 +14,7 @@ import kotlinx.coroutines.tasks.await
 interface FirebaseUserDAO {
     suspend fun addUser(user: User): Boolean
     suspend fun getUser(uID: String): User?
+    suspend fun getCurrentUser(): User
     suspend fun updateUser(fields: HashMap<String, Any?>): Boolean
     suspend fun updateUserProfile(fields: HashMap<String, Any?>): Boolean
     suspend fun deleteUser(user: User): Boolean
@@ -52,6 +53,16 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{
             Log.e("User Error", task.exception?.message.toString())
             null
         }
+    }
+
+    override suspend fun getCurrentUser(): User {
+        val uID = auth.currentUser!!.uid
+        val task = reference
+            .document(uID)
+            .get()
+        task.await()
+        Log.i("User Document Retrieved", task.result.toString())
+        return task.result.toObject(User::class.java)!!
     }
 
     override suspend fun updateUser(fields: HashMap<String, Any?>): Boolean {

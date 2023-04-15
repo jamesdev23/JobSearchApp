@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.kodegojobsearchapp.databinding.ActivityChangeProfilePictureBinding
 import com.example.kodegojobsearchapp.firebase.FirebaseStorageDAO
 import com.example.kodegojobsearchapp.firebase.FirebaseStorageDAOImpl
+import com.example.kodegojobsearchapp.model.User
 import com.example.kodegojobsearchapp.utils.OpenDocumentContract
 import com.example.kodegojobsearchapp.utils.ProgressDialog
 import com.google.firebase.auth.ktx.auth
@@ -18,6 +19,7 @@ import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
 // TODO: profile picture function via Picasso and Intent
+//  ImageURL is stored on User Model and FirebaseUser photourl
 class ChangeProfilePictureActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChangeProfilePictureBinding
     private lateinit var dao: FirebaseStorageDAOImpl
