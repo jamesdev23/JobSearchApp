@@ -65,4 +65,5 @@
     <string name="apply_now">Apply Now</string>
     <string name="applicant_list">Applicant List</string>
     <string name="post_job_listing">Post Job Listing</string>
+    <string name="sending_job_application">Sending Job Application</string>
 </resources>

@@ -28,6 +28,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var jobDetailsData: JobDetailsData
     private lateinit var applicant: Applicant
     private lateinit var dao: FirebaseJobApplicationDAOImpl
+    private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +36,7 @@ class JobDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         dao = FirebaseJobApplicationDAOImpl(applicationContext)
         getApplicant()
+        progressDialog = ProgressDialog(binding.root.context, R.string.sending_job_application)
 
         val bundle = intent.extras
         val jobID = bundle?.getString("job_id")
@@ -136,6 +138,7 @@ class JobDetailsActivity : AppCompatActivity() {
     }
 
     private fun apply(){
+        progressDialog.show()
         lifecycleScope.launch {
             val jobApplication = JobApplication(jobDetailsData.jobId, applicant.applicantID)
             if (dao.addJobApplication(jobApplication)){
@@ -152,6 +155,7 @@ class JobDetailsActivity : AppCompatActivity() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+            progressDialog.dismiss()
         }
     }
 }
