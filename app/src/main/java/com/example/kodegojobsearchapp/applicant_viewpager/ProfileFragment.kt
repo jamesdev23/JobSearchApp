@@ -85,10 +85,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun loadProfilePicture(applicantImage: String){
-
-        if (applicantImage.isEmpty()){
-            // do nothing
-        } else{
+        if (applicantImage.isNotEmpty()){
             Picasso
                 .with(requireContext())
                 .load(applicantImage)
@@ -97,6 +94,5 @@ class ProfileFragment : Fragment() {
                 .error(R.drawable.baseline_person_24)
                 .into(binding.tvProfilePicture)
         }
-
     }
 }

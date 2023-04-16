@@ -63,8 +63,7 @@ class JobDetailsData{
     @SerializedName("job_longitude")
     val jobLongitude: Double = 0.0
 
-//    @SerializedName("job_benefits") //TODO: Sometimes returns an array which turns to an error
-//    val jobBenefits: String = ""
+    // job benefits goes here
 
     @SerializedName("job_google_link")
     val jobGoogleLink: String = ""

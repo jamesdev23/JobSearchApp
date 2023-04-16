@@ -12,8 +12,6 @@ import com.example.kodegojobsearchapp.databinding.ItemUserListBinding
 import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 
-// TODO: (for nico) adapter for displaying applicant list
-
 class UserListAdapter (private var context: Context, private var userLists : ArrayList<UserListData>, private val fragmentManager: FragmentManager)
     : RecyclerView.Adapter<UserListAdapter.ViewHolder>() {
 

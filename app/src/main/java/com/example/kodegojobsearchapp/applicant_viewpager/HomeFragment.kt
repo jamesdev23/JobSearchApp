@@ -19,9 +19,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.net.HttpURLConnection
 
-// TODO: (anyone) applicant home implementation. might need to wait for API
-// TODO: additional: fix failed api call issue
-
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -47,8 +44,6 @@ class HomeFragment : Fragment() {
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-//        progressDialog = ProgressDialog(binding.root.context, R.string.loading_job_listing)
-
         return binding.root
     }
 
@@ -59,10 +54,7 @@ class HomeFragment : Fragment() {
         binding.jobListingList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.jobListingList.adapter = jobListingDataAdapter
 
-//        progressDialog.show()
-
         getData()  // uncomment to check api
-
     }
 
     private fun getData(){
@@ -73,7 +65,6 @@ class HomeFragment : Fragment() {
 
         call.enqueue(object : Callback<JobSearchResultResponse> {
             override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
-//                progressDialog.dismiss()
                 binding.jobListingList.visibility = View.VISIBLE
                 binding.loadingData.visibility = View.GONE
 
@@ -85,7 +76,6 @@ class HomeFragment : Fragment() {
                 call: Call<JobSearchResultResponse>,
                 response: Response<JobSearchResultResponse>
             ) {
-//                progressDialog.dismiss()
                 binding.jobListingList.visibility = View.VISIBLE
                 binding.loadingData.visibility = View.GONE
                 if (response.isSuccessful) {

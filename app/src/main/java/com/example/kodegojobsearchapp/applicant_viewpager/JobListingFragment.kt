@@ -20,8 +20,6 @@ import retrofit2.Response
 import retrofit2.http.HTTP
 import java.net.HttpURLConnection
 
-// TODO: job listing implementation. might need API first. also, add searchbar (in progress)
-
 class JobListingFragment : Fragment() {
 
     private var _binding: FragmentJobListingBinding? = null
@@ -60,20 +58,6 @@ class JobListingFragment : Fragment() {
         binding.appJobListing.adapter = jobListingDataAdapter
 
         getData(defaultQuery)
-
-    //        binding.appSearchJobListing.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-//            override fun onQueryTextChange(newText: String?): Boolean {
-//                // TODO: add dao search function implementation. also, update list
-//                return false
-//            }
-//
-//            override fun onQueryTextSubmit(query: String?): Boolean {
-//                // TODO: add filter
-//                return false
-//            }
-//
-//        })
-
 
     }
 
