@@ -19,7 +19,6 @@ interface FirebaseJobApplicationDAO {
 
 class FirebaseJobApplicationDAOImpl(context: Context): FirebaseApplicantDAOImpl(context), FirebaseJobApplicationDAO{
     private val collection = FirebaseCollections.JobApplications
-//    private val reference = fireStore.collection(collection) //TODO: Probably Change Directory
 
     override suspend fun addJobApplication(jobApplication: JobApplication): Boolean {
 //        TODO("Not yet implemented")

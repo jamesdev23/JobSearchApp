@@ -16,8 +16,8 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 
-// TODO: (anyone) employer profile implementation. hint: firebase db
 // TODO: #2: add prompt to create/fill up profile info (implementation is up to you) -nico
+//  Need to elaborate
 class EmployerProfileFragment : Fragment() {
     private lateinit var _binding: FragmentEmployerProfileBinding
     private val binding get() = _binding

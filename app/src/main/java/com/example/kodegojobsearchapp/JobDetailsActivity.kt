@@ -53,10 +53,7 @@ class JobDetailsActivity : AppCompatActivity() {
 
         binding.btnApply.setOnClickListener{
             /**
-             * TODO: (for dave) add code when applicant clicks the apply button
-             *  Supposedly 1 JobDetailsData
-             *      Save Job and Applicant IDs on JobApplication Model
-             *      Store JobApplication on Firestore
+             * TODO: DAO has been implemented but has a chance of modification
              */
             apply()
         }
@@ -98,19 +95,6 @@ class JobDetailsActivity : AppCompatActivity() {
 
                     jobDetailsData = response.data[0]
                     setJobDetailsData()
-
-//                    for (jobDetails in jobDetailsList) {
-//                        binding.jobTitle.text = jobDetails.jobTitle
-//                        binding.jobCompany.text = jobDetails.employerName
-//                        binding.jobLocation.text =
-//                            "${jobDetails.jobCity}, ${jobDetails.jobState}, ${jobDetails.jobCountry}"
-//                        binding.jobPostedTime.text = jobDetails.jobPostedAtDatetimeUtc
-//                        binding.jobEmploymentType.text = jobDetails.jobEmploymentType
-//                        binding.jobPublisher.text = jobDetails.jobPublisher
-//                        binding.jobDescription.text = jobDetails.jobDescription
-//
-//                        Log.d("API CALL", "${jobDetails.jobTitle} ${jobDetails.employerName}")
-//                    }
                 }else{
                     Log.e("JobDetail Call", response.message())
                     Toast.makeText(

@@ -18,8 +18,6 @@ import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
-// TODO: profile picture function via Picasso and Intent
-//  ImageURL is stored on User Model and FirebaseUser photourl
 class ChangeProfilePictureActivity : AppCompatActivity() {
     private lateinit var binding: ActivityChangeProfilePictureBinding
     private lateinit var dao: FirebaseStorageDAOImpl
