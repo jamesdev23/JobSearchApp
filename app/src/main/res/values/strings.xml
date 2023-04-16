@@ -25,11 +25,13 @@
     <string name="full_description">Full Description</string>
     <string name="listing_title">Listing Title</string>
 
+    <!-- spinner job list options -->
     <string-array name="contract_type_options">
         <item>-- Choose Employment Type--</item>
         <item>Full Time</item>
         <item>Part Time</item>
     </string-array>
+
     <string name="title_activity_applicant_search">ApplicantSearchActivity</string>
 
     <!-- Strings used for fragments for navigation -->
@@ -38,8 +40,6 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="sign_out">Sign Out</string>
     <string name="edit_profile_picture">Edit Profile Picture</string>
     <string name="edit_profile_details">Edit Profile Details</string>
@@ -65,4 +65,7 @@
     <string name="apply_now">Apply Now</string>
     <string name="applicant_list">Applicant List</string>
     <string name="post_job_listing">Post Job Listing</string>
+    <string name="john_smith">John Smith</string>
+    <string name="user_key_skill_1">User Key Skill 1</string>
+    <string name="sending_job_application">Sending Job Application</string>
 </resources>
