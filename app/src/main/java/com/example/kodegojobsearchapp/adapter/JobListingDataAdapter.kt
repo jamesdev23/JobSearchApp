@@ -8,11 +8,15 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kodegojobsearchapp.JobDetailsActivity
+import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.databinding.ItemJobListingBinding
+import com.squareup.picasso.MemoryPolicy
+import com.squareup.picasso.Picasso
 
 class JobListingDataAdapter (private var context: Context, private var jobListings : ArrayList<JobListingData>, private val fragmentManager: FragmentManager)
     : RecyclerView.Adapter<JobListingDataAdapter.ViewHolder>() {
@@ -65,11 +69,21 @@ class JobListingDataAdapter (private var context: Context, private var jobListin
             itemBinding.jobTitle.text = jobLists.jobTitle
             itemBinding.jobCompany.text = jobLists.employerName
             itemBinding.jobLocation.text = "${jobLists.jobCity}, ${jobLists.jobState}, ${jobLists.jobCountry}"
-
+            loadCompanyLogo(itemBinding.companyLogo, jobLists.employerLogo.toString())
         }
 
         override fun onClick(view: View?) {
             // do nothing for now
         }
+    }
+
+    private fun loadCompanyLogo(imageView: ImageView, image: String){
+        Picasso
+            .with(imageView.context)
+            .load(image)
+//            .memoryPolicy(MemoryPolicy.NO_CACHE)
+            .placeholder(R.drawable.company_logo_placeholder)
+            .error(R.drawable.company_logo_placeholder)
+            .into(imageView)
     }
 }
