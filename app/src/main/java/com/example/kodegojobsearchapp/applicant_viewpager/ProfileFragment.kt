@@ -80,16 +80,23 @@ class ProfileFragment : Fragment() {
             tvLicenseText.text = applicant.licensesOrCertifications
             tvEmploymentText.text = applicant.employment
 
-            loadProfilePicture()
+            loadProfilePicture(applicant.image)
         }
     }
 
-    private fun loadProfilePicture(){
-        Picasso
-            .with(requireContext())
-            .load(applicant.image)
-            .memoryPolicy(MemoryPolicy.NO_CACHE)
-            .error(R.drawable.baseline_person_24)
-            .into(binding.tvProfilePicture)
+    private fun loadProfilePicture(applicantImage: String){
+
+        if (applicantImage.isEmpty()){
+            // do nothing
+        } else{
+            Picasso
+                .with(requireContext())
+                .load(applicantImage)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .placeholder(R.drawable.baseline_person_24)
+                .error(R.drawable.baseline_person_24)
+                .into(binding.tvProfilePicture)
+        }
+
     }
 }
