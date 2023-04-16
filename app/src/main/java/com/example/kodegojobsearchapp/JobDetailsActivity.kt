@@ -34,12 +34,15 @@ class JobDetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityJobDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        dao = FirebaseJobApplicationDAOImpl(applicationContext)
-        getApplicant()
-        progressDialog = ProgressDialog(binding.root.context, R.string.sending_job_application)
 
         val bundle = intent.extras
         val jobID = bundle?.getString("job_id")
+
+        progressDialog = ProgressDialog(binding.root.context, R.string.sending_job_application)
+
+        dao = FirebaseJobApplicationDAOImpl(applicationContext)
+        getApplicant()
+
         
         supportActionBar?.apply{
             title = "Job Details"
