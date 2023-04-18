@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getData(){
+    private fun getData(){ //TODO: Refresh Button to call this function
         val call: Call<JobSearchResultResponse> = JobSearchAPIClient
             .getJobSearchData.getJobListing(defaultQuery, page, numPages)
 

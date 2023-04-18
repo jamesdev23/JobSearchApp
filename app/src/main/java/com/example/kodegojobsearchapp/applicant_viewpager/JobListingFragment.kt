@@ -12,6 +12,8 @@ import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
+import com.example.kodegojobsearchapp.dao.JobListingDAO
+import com.example.kodegojobsearchapp.dao.KodegoJobSearchApplication
 import com.example.kodegojobsearchapp.databinding.FragmentJobListingBinding
 import com.example.kodegojobsearchapp.utils.ProgressDialog
 import retrofit2.Call
@@ -28,6 +30,7 @@ class JobListingFragment : Fragment() {
     private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
     private var currentPage = defaultPage
     private var currentQuery = defaultQuery
+    private lateinit var dao: JobListingDAO
 
     init {
         if(this.arguments == null) {
@@ -53,6 +56,8 @@ class JobListingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dao = (requireActivity().application as KodegoJobSearchApplication).jobListingDatabase.jobListingDAO() //TODO: Continue Implementation
+
         jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
         binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.appJobListing.adapter = jobListingDataAdapter
