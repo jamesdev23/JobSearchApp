@@ -9,21 +9,46 @@
     android:orientation="vertical"
     android:padding="10dp">
 
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recently_applied_jobs"
+        android:textColor="@color/sea_serpent_blue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="5dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_recent_jobs"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="20dp"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_recent_jobs_empty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No recently applied jobs."
+        android:visibility="gone"
+        android:layout_marginBottom="20dp"
+        />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/job_listing_for"
+        android:text="@string/featured_job_listing"
         android:textColor="@color/sea_serpent_blue"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="5dp"/>
 
     <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/text_featured_query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/search_sample_1"
-        android:layout_marginStart="10dp"
+        android:text=""
         android:layout_marginBottom="10dp"
         />
 
@@ -42,7 +67,6 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:visibility="gone"
-        tools:visibility="visible"
         android:gravity="center">
         <ProgressBar
             android:layout_width="wrap_content"

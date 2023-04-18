@@ -1,16 +1,22 @@
 package com.example.kodegojobsearchapp.applicant_viewpager
 
+import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import com.example.kodegojobsearchapp.ChangeProfileDetailsActivity
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
 import com.example.kodegojobsearchapp.databinding.FragmentProfileBinding
 import com.example.kodegojobsearchapp.firebase.FirebaseApplicantDAOImpl
 import com.example.kodegojobsearchapp.model.Applicant
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.squareup.picasso.MemoryPolicy
@@ -25,7 +31,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var dao: FirebaseApplicantDAOImpl
-    private lateinit var applicant: Applicant
+    private var applicant: Applicant = Applicant()
 
     init {
         if(this.arguments == null) {
@@ -82,6 +88,18 @@ class ProfileFragment : Fragment() {
 
             loadProfilePicture(applicant.image)
         }
+
+        if(applicant.firstName.isEmpty()){
+            val toast = Toast.makeText(
+                requireContext(),
+                "Profile empty. Fill out the details here and press \"Update\".",
+                Toast.LENGTH_LONG)
+
+            toast.show()
+
+            val intent = Intent(requireContext(), ChangeProfileDetailsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun loadProfilePicture(applicantImage: String){
@@ -95,4 +113,5 @@ class ProfileFragment : Fragment() {
                 .into(binding.tvProfilePicture)
         }
     }
+
 }

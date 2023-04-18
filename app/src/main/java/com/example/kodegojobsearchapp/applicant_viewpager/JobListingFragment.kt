@@ -7,7 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kodegojobsearchapp.R
+import androidx.appcompat.widget.SearchView
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
@@ -26,7 +26,8 @@ class JobListingFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var jobListingDataAdapter: JobListingDataAdapter
     private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
-    private lateinit var progressDialog: ProgressDialog
+    private var currentPage = defaultPage
+    private var currentQuery = defaultQuery
 
     init {
         if(this.arguments == null) {
@@ -52,16 +53,43 @@ class JobListingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        progressDialog = ProgressDialog(binding.root.context)
         jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
         binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.appJobListing.adapter = jobListingDataAdapter
 
-        getData(defaultQuery)
+        getData(defaultQuery, defaultPage)
+
+        binding.searchJobListing.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // do nothing coz api needs whole query anyway
+                return false
+            }
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    currentQuery = query
+                    getData(query, currentPage)
+                }
+                return false
+            }
+
+        })
+
+        binding.btnPrevious.setOnClickListener {
+            currentPage -= 1
+            if (currentPage >= 1) {
+                getData(currentQuery, currentPage)
+            }
+        }
+
+        binding.btnNext.setOnClickListener {
+            currentPage += 1
+            getData(currentQuery, currentPage)
+        }
 
     }
 
-    private fun getData(queryText: String){
+    private fun getData(queryText: String, page: Int){
         binding.appJobListing.visibility = View.GONE
         binding.loadingData.visibility = View.VISIBLE
 
@@ -104,8 +132,8 @@ class JobListingFragment : Fragment() {
     }
 
     companion object {
-        var defaultQuery = "Android developer in Texas, USA"
-        val page = 1
+        var defaultQuery = "Android developer in Metro Manila, Philippines"
+        val defaultPage = 1
         val numPages = 1
     }
 

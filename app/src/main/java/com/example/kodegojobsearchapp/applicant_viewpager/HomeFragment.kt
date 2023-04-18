@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isEmpty
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
@@ -19,6 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.net.HttpURLConnection
 
+// TODO: recent job list implementation using firebase or local db
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
@@ -50,16 +52,25 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        var recentJobList = binding.listRecentJobs
+
+        if(recentJobList.isEmpty()){
+            binding.textRecentJobsEmpty.visibility = View.VISIBLE
+            recentJobList.visibility = View.GONE
+        }
+
         jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
         binding.jobListingList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.jobListingList.adapter = jobListingDataAdapter
+
+        binding.textFeaturedQuery.text = defaultQuery
 
         getData()  // uncomment to check api
     }
 
     private fun getData(){
         val call: Call<JobSearchResultResponse> = JobSearchAPIClient
-            .getJobSearchData.getJobListing(query, page, numPages)
+            .getJobSearchData.getJobListing(defaultQuery, page, numPages)
         binding.jobListingList.visibility = View.GONE
         binding.loadingData.visibility = View.VISIBLE
 
@@ -100,7 +111,7 @@ class HomeFragment : Fragment() {
     }
 
     companion object {
-        val query = "Android developer in Texas, USA"
+        var defaultQuery = "Android developer in Metro Manila, Philippines"
         val page = 1
         val numPages = 1
     }

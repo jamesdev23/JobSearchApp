@@ -21,18 +21,40 @@
         android:layout_marginBottom="10dp"
         />
 
-    <androidx.appcompat.widget.SearchView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/search_job_listing"
-        android:hint="@string/search_job_listing_hint_1"
-        android:contextClickable="true"
-        android:inputType="text"
-        app:endIconMode="clear_text"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"/>
+        android:orientation="horizontal"
+        android:weightSum="10">
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="0dp"
+            android:layout_weight="7.4"
+            android:layout_height="wrap_content"
+            android:id="@+id/search_job_listing"
+            app:queryHint="@string/search_job_listing_hint_1"
+            android:contextClickable="true"
+            android:inputType="text"
+            app:endIconMode="clear_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_previous"
+            android:layout_width="0dp"
+            android:layout_weight="1.3"
+            android:layout_height="50dp"
+            android:text="@string/prev"
+            android:layout_marginEnd="5dp"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_next"
+            android:layout_width="0dp"
+            android:layout_weight="1.3"
+            android:layout_height="50dp"
+            android:text="@string/nxt" />
+    </LinearLayout>
+
+
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -41,6 +63,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+
     <LinearLayout
         android:id="@+id/loading_data"
         android:layout_width="match_parent"
@@ -48,7 +72,6 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:visibility="gone"
-        tools:visibility="visible"
         android:gravity="center">
         <ProgressBar
             android:layout_width="wrap_content"
@@ -60,5 +83,7 @@
             android:text="@string/loading_job_listing"
             />
     </LinearLayout>
+
+
 
 </LinearLayout>
