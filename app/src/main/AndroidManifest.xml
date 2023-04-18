@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".dao.KodegoJobSearchApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,9 +21,10 @@
         <activity
             android:name=".ChangeEmployerProfileActivity"
             android:exported="false" />
-        <activity
-            android:name=".ChangePasswordActivity"
-            android:exported="false" />
+<!--        TODO: Missing Activity?-->
+<!--        <activity-->
+<!--            android:name=".ChangePasswordActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".ApplicantSearchActivity"
             android:exported="false" />

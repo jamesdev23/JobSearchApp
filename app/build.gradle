@@ -3,6 +3,9 @@ plugins {
     id 'com.google.gms.google-services'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-parcelize'
+
+    //Room Annotation Processing Tool
+    id 'kotlin-kapt'
 }
 
 android {
@@ -63,6 +66,12 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
     implementation 'com.firebaseui:firebase-ui-database:8.0.2'
+
+    //Rooms Implementation
+    implementation("androidx.room:room-runtime:2.5.1")
+    annotationProcessor("androidx.room:room-compiler:2.5.1")
+    kapt("androidx.room:room-compiler:2.5.1")
+    implementation("androidx.room:room-ktx:2.5.1")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

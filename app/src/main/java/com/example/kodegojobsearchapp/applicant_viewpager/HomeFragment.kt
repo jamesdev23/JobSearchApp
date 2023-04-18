@@ -7,14 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isEmpty
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
+import com.example.kodegojobsearchapp.dao.KodegoJobSearchApplication
+import com.example.kodegojobsearchapp.dao.JobDetailsDAO
+import com.example.kodegojobsearchapp.dao.JobListingDAO
 import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
-import com.example.kodegojobsearchapp.utils.ProgressDialog
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +30,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var jobListingDataAdapter: JobListingDataAdapter
     private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
+    private lateinit var dao: JobListingDAO
 //    private lateinit var progressDialog: ProgressDialog
 
     init {
@@ -51,6 +55,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dao = (requireActivity().application as KodegoJobSearchApplication).jobListingDatabase.jobListingDAO()
 
         var recentJobList = binding.listRecentJobs
 
@@ -65,14 +70,29 @@ class HomeFragment : Fragment() {
 
         binding.textFeaturedQuery.text = defaultQuery
 
-        getData()  // uncomment to check api
+//        getData()  // uncomment to check api
+
+        binding.jobListingList.visibility = View.GONE
+        binding.loadingData.visibility = View.VISIBLE
+        populateList()
+    }
+
+    private fun populateList(){
+        lifecycleScope.launch {
+            val list = dao.getJobLists() as ArrayList<JobListingData>
+            if (list.isEmpty()){
+                getData()
+            }else{
+                jobListingDataAdapter.setList(list)
+                binding.jobListingList.visibility = View.VISIBLE
+                binding.loadingData.visibility = View.GONE
+            }
+        }
     }
 
     private fun getData(){
         val call: Call<JobSearchResultResponse> = JobSearchAPIClient
             .getJobSearchData.getJobListing(defaultQuery, page, numPages)
-        binding.jobListingList.visibility = View.GONE
-        binding.loadingData.visibility = View.VISIBLE
 
         call.enqueue(object : Callback<JobSearchResultResponse> {
             override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
@@ -96,8 +116,12 @@ class HomeFragment : Fragment() {
                     jobListingDataAdapter.setList(response.dataList)
 
                     val dataLists = response.dataList
-                    for (data in dataLists) {
-                        Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
+                    lifecycleScope.launch {
+                        dao.clean()
+                        for (data in dataLists) {
+                            dao.insert(data)
+                            Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
+                        }
                     }
                 }else{
                     when (response.code()){

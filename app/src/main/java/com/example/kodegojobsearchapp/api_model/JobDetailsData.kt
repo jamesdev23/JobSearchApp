@@ -1,72 +1,76 @@
 package com.example.kodegojobsearchapp.api_model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-
+//TODO: Deprecate?
+@Entity(tableName = "job_details-table")
 class JobDetailsData{
     @SerializedName("employer_name")
-    val employerName: String = ""
+    var employerName: String = ""
 
     @SerializedName("employer_logo")
-    val employerLogo: String = ""
+    var employerLogo: String = ""
 
     @SerializedName("employer_website")
-    val employerWebsite: String = ""
+    var employerWebsite: String = ""
 
     @SerializedName("employer_company_type")
-    val employerCompanyType: String = ""
+    var employerCompanyType: String = ""
 
     @SerializedName("job_publisher")
-    val jobPublisher: String = ""
+    var jobPublisher: String = ""
 
+    @PrimaryKey(false)
     @SerializedName("job_id")
-    val jobId: String = ""
+    var jobId: String = ""
 
     @SerializedName("job_employment_type")
-    val jobEmploymentType: String = ""
+    var jobEmploymentType: String = ""
 
     @SerializedName("job_title")
-    val jobTitle: String = ""
+    var jobTitle: String = ""
 
     @SerializedName("job_apply_link")
-    val jobApplyLink: String = ""
+    var jobApplyLink: String = ""
 
     @SerializedName("job_apply_is_direct")
-    val jobApplyIsDirect: Boolean = false
+    var jobApplyIsDirect: Boolean = false
 
     @SerializedName("job_apply_quality_score")
-    val jobApplyQualityScore: Double = 0.0
+    var jobApplyQualityScore: Double = 0.0
 
     @SerializedName("job_description")
-    val jobDescription: String = ""
+    var jobDescription: String = ""
 
     @SerializedName("job_is_remote")
-    val jobIsRemote: Boolean = false
+    var jobIsRemote: Boolean = false
 
     @SerializedName("job_posted_at_timestamp")
-    val jobPostedAtTimestamp: Int = 0
+    var jobPostedAtTimestamp: Int = 0
 
     @SerializedName("job_posted_at_datetime_utc")
-    val jobPostedAtDatetimeUtc: String = ""
+    var jobPostedAtDatetimeUtc: String = ""
 
     @SerializedName("job_city")
-    val jobCity: String = ""
+    var jobCity: String = ""
 
     @SerializedName("job_state")
-    val jobState: String  = ""
+    var jobState: String  = ""
 
     @SerializedName("job_country")
-    val jobCountry: String  = ""
+    var jobCountry: String  = ""
 
     @SerializedName("job_latitude")
-    val jobLatitude: Double = 0.0
+    var jobLatitude: Double = 0.0
 
     @SerializedName("job_longitude")
-    val jobLongitude: Double = 0.0
+    var jobLongitude: Double = 0.0
 
     // job benefits goes here
 
     @SerializedName("job_google_link")
-    val jobGoogleLink: String = ""
+    var jobGoogleLink: String = ""
 }
 
 class JobDetailsResponse{
