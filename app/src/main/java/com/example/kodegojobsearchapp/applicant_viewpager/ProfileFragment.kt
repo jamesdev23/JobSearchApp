@@ -89,10 +89,10 @@ class ProfileFragment : Fragment() {
             loadProfilePicture(applicant.image)
         }
 
-        if(applicant.firstName.isEmpty()){
+        if(applicant.firstName.isEmpty() || applicant.lastName.isEmpty()){
             val toast = Toast.makeText(
                 requireContext(),
-                "Profile empty. Fill out the details here and press \"Update\".",
+                "Your profile is empty. Fill out the details here and press \"Update\".",
                 Toast.LENGTH_LONG)
 
             toast.show()
