@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.kodegojobsearchapp.api_model.JobDetailsData
 
-@Database(entities = [JobDetailsData::class], version = 1)
+@Database(entities = [JobDetailsData::class], version = 4)
 abstract class JobDetailsDatabase: RoomDatabase() {
     abstract fun jobDetailsDAO(): JobDetailsDAO
 

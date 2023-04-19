@@ -9,6 +9,8 @@ import androidx.lifecycle.lifecycleScope
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobDetailsData
 import com.example.kodegojobsearchapp.api_model.JobDetailsResponse
+import com.example.kodegojobsearchapp.dao.JobDetailsDAO
+import com.example.kodegojobsearchapp.dao.JobDetailsDatabase
 import com.example.kodegojobsearchapp.dao.KodegoJobSearchApplication
 import com.example.kodegojobsearchapp.databinding.ActivityJobDetailsBinding
 import com.example.kodegojobsearchapp.firebase.FirebaseJobApplicationDAOImpl
@@ -29,6 +31,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var jobDetailsData: JobDetailsData //TODO: DifferentModel???
     private lateinit var applicant: Applicant
     private lateinit var dao: FirebaseJobApplicationDAOImpl
+    private lateinit var roomsDAO: JobDetailsDAO
     private lateinit var progressDialog: ProgressDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,8 +53,8 @@ class JobDetailsActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
         }
 
-        getDataFromDB("jobID!!")
-        getData(jobID!!)
+        getDataFromDB(jobID!!)
+//        getData(jobID!!)
 
         binding.btnApply.setOnClickListener{
             /**
@@ -68,13 +71,22 @@ class JobDetailsActivity : AppCompatActivity() {
     }
 
     private fun getDataFromDB(jobId: String){
-        val dao = (application as KodegoJobSearchApplication).jobDetailsDatabase.jobDetailsDAO()
+        binding.scrollJobDetails.visibility = View.GONE
+        binding.btnApply.visibility = View.GONE
+        binding.loadingData.visibility = View.VISIBLE
+
+        roomsDAO = (application as KodegoJobSearchApplication).jobDetailsDatabase.jobDetailsDAO()
         lifecycleScope.launch {
-            val data = dao.getJobDetails(jobId)
+            val data = roomsDAO.getJobDetails(jobId)
             Log.d("DB Data", data.toString())
             if (data != null){
-                jobDetailsData = data!!
-
+                jobDetailsData = data
+                setJobDetailsData()
+                binding.scrollJobDetails.visibility = View.VISIBLE
+                binding.btnApply.visibility = View.VISIBLE
+                binding.loadingData.visibility = View.GONE
+            }else{
+                getData(jobId)
             }
         }
     }
@@ -105,9 +117,10 @@ class JobDetailsActivity : AppCompatActivity() {
                 binding.btnApply.visibility = View.VISIBLE
                 binding.loadingData.visibility = View.GONE
                 if (response.isSuccessful) {
-                    var response: JobDetailsResponse = response!!.body()!!
+                    val response: JobDetailsResponse = response.body()!!
 
                     jobDetailsData = response.data[0]
+                    lifecycleScope.launch { roomsDAO.insert(jobDetailsData) }
                     setJobDetailsData()
                 }else{
                     Log.e("JobDetail Call", response.message())

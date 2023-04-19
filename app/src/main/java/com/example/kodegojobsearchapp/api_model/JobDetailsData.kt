@@ -10,13 +10,13 @@ class JobDetailsData{
     var employerName: String = ""
 
     @SerializedName("employer_logo")
-    var employerLogo: String = ""
+    var employerLogo: String? = ""
 
     @SerializedName("employer_website")
-    var employerWebsite: String = ""
+    var employerWebsite: String? = ""
 
     @SerializedName("employer_company_type")
-    var employerCompanyType: String = ""
+    var employerCompanyType: String? = ""
 
     @SerializedName("job_publisher")
     var jobPublisher: String = ""
@@ -53,7 +53,7 @@ class JobDetailsData{
     var jobPostedAtDatetimeUtc: String = ""
 
     @SerializedName("job_city")
-    var jobCity: String = ""
+    var jobCity: String? = ""
 
     @SerializedName("job_state")
     var jobState: String  = ""
