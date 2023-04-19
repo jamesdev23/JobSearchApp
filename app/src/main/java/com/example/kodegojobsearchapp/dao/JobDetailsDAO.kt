@@ -23,4 +23,7 @@ interface JobDetailsDAO {
 
     @Query("SELECT * FROM `job_details-table`")
     suspend fun getJobDetailsList():List<JobDetailsData>
+
+    @Query("SELECT * FROM `job_details-table` WHERE jobId = :jobID")
+    suspend fun getJobDetails(jobID: String): JobDetailsData?
 }

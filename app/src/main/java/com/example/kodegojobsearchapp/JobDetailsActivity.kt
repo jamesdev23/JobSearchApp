@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobDetailsData
 import com.example.kodegojobsearchapp.api_model.JobDetailsResponse
+import com.example.kodegojobsearchapp.dao.KodegoJobSearchApplication
 import com.example.kodegojobsearchapp.databinding.ActivityJobDetailsBinding
 import com.example.kodegojobsearchapp.firebase.FirebaseJobApplicationDAOImpl
 import com.example.kodegojobsearchapp.model.Applicant
@@ -25,7 +26,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJobDetailsBinding
     
 //    private lateinit var jobDetailsList: ArrayList<JobDetailsData>
-    private lateinit var jobDetailsData: JobDetailsData
+    private lateinit var jobDetailsData: JobDetailsData //TODO: DifferentModel???
     private lateinit var applicant: Applicant
     private lateinit var dao: FirebaseJobApplicationDAOImpl
     private lateinit var progressDialog: ProgressDialog
@@ -49,6 +50,7 @@ class JobDetailsActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
         }
 
+        getDataFromDB("jobID!!")
         getData(jobID!!)
 
         binding.btnApply.setOnClickListener{
@@ -63,6 +65,18 @@ class JobDetailsActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         onBackPressed()
         return super.onSupportNavigateUp()
+    }
+
+    private fun getDataFromDB(jobId: String){
+        val dao = (application as KodegoJobSearchApplication).jobDetailsDatabase.jobDetailsDAO()
+        lifecycleScope.launch {
+            val data = dao.getJobDetails(jobId)
+            Log.d("DB Data", data.toString())
+            if (data != null){
+                jobDetailsData = data!!
+
+            }
+        }
     }
     
     private fun getData(jobId: String){

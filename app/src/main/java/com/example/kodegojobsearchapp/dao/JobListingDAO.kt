@@ -27,6 +27,9 @@ interface JobListingDAO {
 
     @Query("SELECT * FROM `job_listing-table`")
     suspend fun getJobLists():List<JobListingData>
+
+    @Query("SELECT * FROM `job_listing-table` WHERE jobId = :jobID")
+    suspend fun getJobListing(jobID: String) : JobListingData?
 }
 
 @Database(entities = [JobListingData::class], version = 3)

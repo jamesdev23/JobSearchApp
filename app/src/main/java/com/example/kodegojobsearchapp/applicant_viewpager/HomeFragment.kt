@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.core.view.isEmpty
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
@@ -44,6 +47,11 @@ class HomeFragment : Fragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -71,13 +79,22 @@ class HomeFragment : Fragment() {
         binding.textFeaturedQuery.text = defaultQuery
 
 //        getData()  // uncomment to check api
-
-        binding.jobListingList.visibility = View.GONE
-        binding.loadingData.visibility = View.VISIBLE
         populateList()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.action_refresh -> {
+                getData()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
     private fun populateList(){
+        binding.jobListingList.visibility = View.GONE
+        binding.loadingData.visibility = View.VISIBLE
         lifecycleScope.launch {
             val list = dao.getJobLists() as ArrayList<JobListingData>
             if (list.isEmpty()){
@@ -90,9 +107,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun getData(){ //TODO: Refresh Button to call this function
+    private fun getData(){
         val call: Call<JobSearchResultResponse> = JobSearchAPIClient
             .getJobSearchData.getJobListing(defaultQuery, page, numPages)
+        binding.jobListingList.visibility = View.GONE
+        binding.loadingData.visibility = View.VISIBLE
 
         call.enqueue(object : Callback<JobSearchResultResponse> {
             override fun onFailure(call: Call<JobSearchResultResponse>, t: Throwable) {
