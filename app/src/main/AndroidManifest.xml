@@ -14,19 +14,9 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.KodegoJobSearchApp"
-        tools:targetApi="31">
+        tools:targetApi="s">
         <activity
             android:name=".JobDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ChangeEmployerProfileActivity"
-            android:exported="false" />
-<!--        TODO: Missing Activity?-->
-<!--        <activity-->
-<!--            android:name=".ChangePasswordActivity"-->
-<!--            android:exported="false" />-->
-        <activity
-            android:name=".ApplicantSearchActivity"
             android:exported="false" />
         <activity
             android:name=".ChangeProfileDetailsActivity"
@@ -37,14 +27,17 @@
         <activity
             android:name=".UploadCoverLetterActivity"
             android:exported="false" />
-        <activity
-            android:name=".employer_viewpager.EmployerActivity"
-            android:exported="true">
 
-        </activity>
         <activity
             android:name=".applicant_viewpager.ApplicantViewPagerActivity"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".SignInActivity"
             android:exported="false"
@@ -52,11 +45,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

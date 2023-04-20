@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
+import com.example.kodegojobsearchapp.applicant_viewpager.ApplicantViewPagerActivity
 import com.example.kodegojobsearchapp.databinding.ActivitySignInBinding
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract
@@ -55,14 +56,14 @@ class SignInActivity : AppCompatActivity() {
 
             signIn.launch(signInIntent)
         } else {
-            goToMainActivity()
+            goToMain()
         }
     }
 
     private fun onSignInResult(result: FirebaseAuthUIAuthenticationResult) {
         if (result.resultCode == RESULT_OK) {
             Log.d(TAG, "Sign in successful!")
-            goToMainActivity()
+            goToMain()
         } else {
             Toast.makeText(
                 this,
@@ -78,8 +79,8 @@ class SignInActivity : AppCompatActivity() {
         }
     }
 
-    private fun goToMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
+    private fun goToMain() {
+        val intent = Intent(this, ApplicantViewPagerActivity::class.java)
         val bundle = Bundle()
         bundle.putString("data","from_sign_in")
         intent.putExtras(bundle)
