@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.MenuProvider
 import androidx.core.view.isEmpty
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +16,6 @@ import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
 import com.example.kodegojobsearchapp.dao.KodegoJobSearchApplication
-import com.example.kodegojobsearchapp.dao.JobDetailsDAO
 import com.example.kodegojobsearchapp.dao.JobListingDAO
 import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
 import kotlinx.coroutines.launch
@@ -131,13 +129,12 @@ class HomeFragment : Fragment() {
                 if (response.isSuccessful) {
                     var response: JobSearchResultResponse =
                         response.body()!!
+                    val dataList = response.dataList
+                    jobListingDataAdapter.setList(dataList)
 
-                    jobListingDataAdapter.setList(response.dataList)
-
-                    val dataLists = response.dataList
                     lifecycleScope.launch {
                         dao.clean()
-                        for (data in dataLists) {
+                        for (data in dataList) {
                             dao.insert(data)
                             Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
                         }
