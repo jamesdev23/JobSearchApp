@@ -28,6 +28,9 @@ interface JobListingDAO {
     @Query("SELECT * FROM `job_listing-table`")
     suspend fun getJobLists():List<JobListingData>
 
+    @Query("SELECT * FROM `job_listing-table` LIMIT :offset, 10")
+    suspend fun getJobLists(offset: Int): List<JobListingData>
+
     @Query("SELECT * FROM `job_listing-table` WHERE jobId = :jobID")
     suspend fun getJobListing(jobID: String) : JobListingData?
 }

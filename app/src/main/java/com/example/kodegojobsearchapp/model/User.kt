@@ -14,7 +14,7 @@ open class User(): Parcelable {
     var email: String = ""
     var type: String = ""
     var image: String = ""
-    var userType: UserType = UserType.UNKNOWN
+    var userType: UserType = UserType.APPLICANT
 
     fun setUser(user: User){
 //        id = user.id
