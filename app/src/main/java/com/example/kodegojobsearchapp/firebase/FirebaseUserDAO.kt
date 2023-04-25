@@ -51,7 +51,13 @@ open class FirebaseUserDAOImpl(internal val context: Context): FirebaseUserDAO{
             task.result.toObject(User::class.java)!!
         }else{
             Log.e("User Error", task.exception?.message.toString())
-            null
+            val user = User()
+            user.uID = uID
+            return if (addUser(user)){
+                user
+            }else {
+                null
+            }
         }
     }
 

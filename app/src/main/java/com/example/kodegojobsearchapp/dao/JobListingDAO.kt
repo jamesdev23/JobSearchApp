@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -13,7 +14,7 @@ import com.example.kodegojobsearchapp.api_model.JobListingData
 
 @Dao
 interface JobListingDAO {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(jobListing: JobListingData)
 
     @Update
@@ -27,6 +28,9 @@ interface JobListingDAO {
 
     @Query("SELECT * FROM `job_listing-table`")
     suspend fun getJobLists():List<JobListingData>
+
+    @Query("SELECT * FROM `job_listing-table` LIMIT :offset, 10")
+    suspend fun getJobLists(offset: Int): List<JobListingData>
 
     @Query("SELECT * FROM `job_listing-table` WHERE jobId = :jobID")
     suspend fun getJobListing(jobID: String) : JobListingData?
