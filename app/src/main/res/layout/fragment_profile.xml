@@ -13,178 +13,229 @@
         android:padding="10dp">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/tv_profile_picture"
+            android:id="@+id/profile_picture"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_gravity="center"
-            android:src="@drawable/baseline_person_24"
-            android:padding="8dp"/>
+            android:src="@drawable/baseline_person_24" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_name"
+            android:id="@+id/profile_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:text="James Nico Rara"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profile_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:text="Name:"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:text="John Smith"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_about"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:text="About:"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_about_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:text="I am a highly motivated software developer with 5 years of experience in mobile development. I have a strong background in Java and Kotlin and am always eager to learn new technologies and programming languages."
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_education"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:text="Education:"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_education_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:text="Bachelor of Science in Computer Science, XYZ University"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_position"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="8dp"
-            android:textColor="@android:color/black"
-            android:text="Position Desired:"
-            />
-
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_position_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:padding="8dp"
             android:textColor="@android:color/black"
             android:text="Mobile Developer"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_salary"
+            android:id="@+id/profile_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="8dp"
+            android:textSize="14sp"
             android:textColor="@android:color/black"
-            android:text="Salary (in PHP):"
+            android:text="Las Piñas, National Capital Region, Philippines"
+            android:paddingTop="8dp"
+            android:layout_marginBottom="8dp"
+            />
+
+
+        <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="?android:attr/listDivider" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/label_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:text="About"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_salary_text"
+            android:id="@+id/profile_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:text="I am a highly motivated software developer with 5 years of experience in mobile development. I have a strong background in Java and Kotlin and am always eager to learn new technologies and programming languages."
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/label_education"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:text="Education"
+            android:paddingTop="8dp"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profile_education"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:text="Bachelor of Science in Computer Science, XYZ University"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/label_current_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/black"
+            android:text="Current Position"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profile_current_position"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:text="Mobile Developer"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/label_salary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/black"
+            android:text="Salary (in PHP)"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profile_salary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:text="$100,000 - $120,000 per year"
             android:textColor="@android:color/black"
             android:textSize="14sp" />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_skills"
+            android:id="@+id/label_skills"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:padding="8dp"
+            android:paddingTop="8dp"
             android:textColor="@android:color/black"
-            android:text="Skills:"
+            android:text="Skills"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_skills_text"
+            android:id="@+id/profile_skills"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:padding="8dp"
             android:textColor="@android:color/black"
             android:text="Java, Kotlin, Android SDK, SQL, Git"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_license"
+            android:id="@+id/label_license_certification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
-            android:padding="8dp"
+            android:paddingTop="8dp"
             android:textColor="@android:color/black"
-            android:text="Licenses/Certifications:"
+            android:text="Licenses/Certifications"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_license_text"
+            android:id="@+id/profile_license_certification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:padding="8dp"
             android:textColor="@android:color/black"
             android:text="Android Certified Developer, Oracle Java SE 11 Developer"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_employment"
+            android:id="@+id/label_job_experience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:padding="8dp"
+            android:paddingTop="8dp"
             android:textColor="@android:color/black"
-            android:text="Employment:"
+            android:text="Job Experience"
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_employment_text"
+            android:id="@+id/profile_job_experience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="14sp"
-            android:padding="8dp"
             android:textColor="@android:color/black"
             android:text="Software Developer, ABC Company (2016-2021)\nSenior Mobile Developer, DEF Inc. (2013-2016)"
             />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/label_languages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/black"
+            android:text="Languages"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profile_languages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:text="Filipino, English"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/label_contact_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingTop="8dp"
+            android:textColor="@android:color/black"
+            android:text="Contact Info"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/profile_contact_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:text="email@email.com"
+            />
+
     </LinearLayout>
+
 </ScrollView>

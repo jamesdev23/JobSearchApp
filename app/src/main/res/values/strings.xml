@@ -73,4 +73,7 @@
     <string name="featured_job_listing">Featured Job Listing</string>
     <string name="recently_applied_jobs">Recently Applied Jobs</string>
     <string name="refresh">Refresh</string>
+    <string name="name">Name</string>
+    <string name="title">Title</string>
+    <string name="location">Location</string>
 </resources>

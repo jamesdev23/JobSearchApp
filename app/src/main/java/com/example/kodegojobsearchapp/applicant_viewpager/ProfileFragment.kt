@@ -77,14 +77,14 @@ class ProfileFragment : Fragment() {
 
     private fun setApplicantData(){
         with(binding){
-            name.text = "${applicant.firstName} ${applicant.lastName}"
-            tvAboutText.text = applicant.about
-            tvEducationText.text = applicant.education
-            tvPositionText.text = applicant.positionDesired
-            tvSalaryText.text = applicant.salary
-            tvSkillsText.text = applicant.skills
-            tvLicenseText.text = applicant.licensesOrCertifications
-            tvEmploymentText.text = applicant.employment
+            profileName.text = "${applicant.firstName} ${applicant.lastName}"
+            profileAbout.text = applicant.about
+            profileEducation.text = applicant.education
+            profileCurrentPosition.text = applicant.positionDesired
+            profileSalary.text = applicant.salary
+            profileSkills.text = applicant.skills
+            profileLicenseCertification.text = applicant.licensesOrCertifications
+            profileJobExperience.text = applicant.employment
 
             loadProfilePicture(applicant.image)
         }
@@ -110,7 +110,7 @@ class ProfileFragment : Fragment() {
                 .memoryPolicy(MemoryPolicy.NO_CACHE)
                 .placeholder(R.drawable.baseline_person_24)
                 .error(R.drawable.baseline_person_24)
-                .into(binding.tvProfilePicture)
+                .into(binding.profilePicture)
         }
     }
 
