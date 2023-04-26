@@ -76,4 +76,6 @@
     <string name="name">Name</string>
     <string name="title">Title</string>
     <string name="location">Location</string>
+    <string name="mobile_developer">Mobile Developer</string>
+    <string name="city_province_country">City, Province, Country</string>
 </resources>

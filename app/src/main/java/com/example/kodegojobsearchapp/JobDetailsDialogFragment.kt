@@ -10,7 +10,7 @@ class JobDetailsDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.dialog_job_details, container, false)
+        val view = inflater.inflate(R.layout.dialog_job_application, container, false)
         dialog?.setCancelable(true)
 
         return view

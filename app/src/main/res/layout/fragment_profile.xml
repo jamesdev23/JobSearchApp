@@ -26,7 +26,8 @@
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
-            android:text="James Nico Rara"
+            android:text="@string/john_smith"
+            android:textAlignment="center"
             />
 
         <com.google.android.material.textview.MaterialTextView
@@ -35,7 +36,8 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@android:color/black"
-            android:text="Mobile Developer"
+            android:text="@string/mobile_developer"
+            android:textAlignment="center"
             />
 
         <com.google.android.material.textview.MaterialTextView
@@ -44,7 +46,8 @@
             android:layout_height="wrap_content"
             android:textSize="14sp"
             android:textColor="@android:color/black"
-            android:text="Las Piñas, National Capital Region, Philippines"
+            android:text="@string/city_province_country"
+            android:textAlignment="center"
             android:paddingTop="8dp"
             android:layout_marginBottom="8dp"
             />
@@ -66,6 +69,7 @@
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:text="About"
+            android:paddingTop="8dp"
             />
 
         <com.google.android.material.textview.MaterialTextView
