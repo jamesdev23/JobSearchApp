@@ -12,12 +12,16 @@ interface FirebaseStorageDAO {
     suspend fun uploadImage(uri: Uri): Uri?
     suspend fun updateProfilePicture(uri: Uri): Boolean
     suspend fun deleteImage(url: String): Boolean
+    suspend fun uploadDocument(uri: Uri): Uri?
+    suspend fun uploadResume(uri: Uri): Boolean
+    suspend fun deleteDocument(url: String): Boolean
 }
 
 class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), FirebaseStorageDAO{
     internal val firebaseStorage = FirebaseStorage.getInstance()
     private val parentTree = auth.currentUser!!.uid
     private val imageTree = "images"
+    private val docsTree = "documents"
 
     override suspend fun uploadImage(uri: Uri): Uri? {
         val reference = firebaseStorage
@@ -81,6 +85,57 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
             task.isSuccessful
         }catch (e: StorageException){
             Log.e("Photo Deletion", e.message.toString())
+            false
+        }
+    }
+
+    override suspend fun uploadDocument(uri: Uri): Uri? {
+//        TODO("Not yet implemented")
+        val reference = firebaseStorage
+            .getReference(parentTree)
+            .child(docsTree)
+            .child(uri.lastPathSegment.toString())
+        val task: UploadTask = reference.putFile(uri)
+        task.await()
+        if (task.isSuccessful){
+            Log.d("Document Upload", task.result.toString())
+//            val urlTask = reference.downloadUrl
+            val urlTask = task.snapshot.metadata!!.reference!!.downloadUrl
+            urlTask.await()
+            if (urlTask.isSuccessful){
+                Log.d("DownloadURL", urlTask.result.toString())
+                return urlTask.result
+            }else{
+                Log.e("DownloadURL", task.exception!!.message!!)
+                return null
+            }
+        }else{
+            Log.e("Document Upload", task.exception!!.message!!)
+            return null
+        }
+    }
+
+    override suspend fun uploadResume(uri: Uri): Boolean {
+        TODO("Not yet implemented")
+        val storageUri = uploadDocument(uri)
+        if (storageUri != null){
+            //TODO
+            return true
+        }else{
+            return false
+        }
+    }
+
+    override suspend fun deleteDocument(url: String): Boolean {
+//        TODO("Not yet implemented")
+        return try {
+            val docReference = firebaseStorage.getReferenceFromUrl(url)
+            val task = docReference.delete()
+            task.await()
+            Log.d("Document Deletion", task.exception?.message.toString())
+            task.isSuccessful
+        }catch (e: StorageException){
+            Log.e("Document Deletion", e.message.toString())
             false
         }
     }

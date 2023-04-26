@@ -16,6 +16,7 @@ import com.example.kodegojobsearchapp.databinding.ActivityJobDetailsBinding
 import com.example.kodegojobsearchapp.firebase.FirebaseJobApplicationDAOImpl
 import com.example.kodegojobsearchapp.model.Applicant
 import com.example.kodegojobsearchapp.model.JobApplication
+import com.example.kodegojobsearchapp.utils.JobApplicationDialog
 import com.example.kodegojobsearchapp.utils.ProgressDialog
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -60,7 +61,8 @@ class JobDetailsActivity : AppCompatActivity() {
             /**
              * TODO: DAO has been implemented but has a chance of modification
              */
-            apply()
+//            apply()
+            JobApplicationDialog(it.context, jobDetailsData).show()
         }
         
     }

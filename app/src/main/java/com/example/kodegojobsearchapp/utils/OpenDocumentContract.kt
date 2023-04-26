@@ -31,4 +31,10 @@ class OpenDocumentContract : ActivityResultContracts.OpenDocument() {
 
         return intent;
     }
+
+    companion object{
+        const val IMAGES = "image/*"
+        const val MSWORD = "application/msword"
+        const val PDF = "application/pdf"
+    }
 }

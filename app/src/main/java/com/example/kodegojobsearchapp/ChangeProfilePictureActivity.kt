@@ -43,7 +43,7 @@ class ChangeProfilePictureActivity : AppCompatActivity() {
 
 
         binding.btnUploadPicture.setOnClickListener {
-            openDocumentLauncher.launch(arrayOf("image/*"))
+            openDocumentLauncher.launch(arrayOf(OpenDocumentContract.IMAGES))
         }
         binding.btnCancel.setOnClickListener{
             onBackPressed()

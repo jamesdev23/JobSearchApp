@@ -10,6 +10,7 @@ data class JobApplication(
 ): Parcelable {
     // TODO: list all possible info for job application
     var jobApplicationID: String = ""
+    var resume: String = ""
 }
 
 enum class ApplicationType{
