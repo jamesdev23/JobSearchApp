@@ -21,7 +21,6 @@ class FirebaseJobApplicationDAOImpl(context: Context): FirebaseApplicantDAOImpl(
     private val collection = FirebaseCollections.JobApplications
 
     override suspend fun addJobApplication(jobApplication: JobApplication): Boolean {
-//        TODO("Not yet implemented")
         val reference = reference.document(jobApplication.applicantID).collection(collection)
         val document = reference.document()
         jobApplication.jobApplicationID = document.id

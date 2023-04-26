@@ -57,7 +57,7 @@ class JobListingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dao = (requireActivity().application as KodegoJobSearchApplication).jobListingDatabase.jobListingDAO() //TODO: Continue Implementation
+        dao = (requireActivity().application as KodegoJobSearchApplication).jobListingDatabase.jobListingDAO()
 
         jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
         binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
