@@ -28,7 +28,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJobDetailsBinding
     
 //    private lateinit var jobDetailsList: ArrayList<JobDetailsData>
-    private lateinit var jobDetailsData: JobDetailsData //TODO: DifferentModel???
+    private lateinit var jobDetailsData: JobDetailsData
     private lateinit var applicant: Applicant
     private lateinit var dao: FirebaseJobApplicationDAOImpl
     private lateinit var roomsDAO: JobDetailsDAO
@@ -138,7 +138,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private fun setJobDetailsData(){
         binding.jobTitle.text = jobDetailsData.jobTitle
         binding.jobCompany.text = jobDetailsData.employerName
-        binding.jobLocation.text = "${jobDetailsData.jobCity}, ${jobDetailsData.jobState}, ${jobDetailsData.jobCountry}"
+        binding.jobLocation.text = jobDetailsData.location()
         binding.jobPostedTime.text = jobDetailsData.jobPostedAtDatetimeUtc
         binding.jobEmploymentType.text = jobDetailsData.jobEmploymentType
         binding.jobPublisher.text = jobDetailsData.jobPublisher

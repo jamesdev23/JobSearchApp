@@ -27,6 +27,8 @@ open class User(): Parcelable {
         image = user.image
     }
 
+    fun fullName(): String = "$firstName $lastName".trim()
+
     constructor(firebaseUser: FirebaseUser): this(){
         uID = firebaseUser.uid
         email = firebaseUser.email!!

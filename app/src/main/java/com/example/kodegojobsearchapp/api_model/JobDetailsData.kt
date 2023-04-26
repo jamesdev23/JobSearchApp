@@ -3,7 +3,7 @@ package com.example.kodegojobsearchapp.api_model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-//TODO: Deprecate?
+
 @Entity(tableName = "job_details-table")
 class JobDetailsData{
     @SerializedName("employer_name")
@@ -71,6 +71,8 @@ class JobDetailsData{
 
     @SerializedName("job_google_link")
     var jobGoogleLink: String = ""
+
+    fun location(): String = "$jobCity, $jobState, $jobCountry"
 }
 
 class JobDetailsResponse{

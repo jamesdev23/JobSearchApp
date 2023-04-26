@@ -23,9 +23,6 @@ import com.squareup.picasso.MemoryPolicy
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
-// TODO: applicant profile implementation. hint: grab info from firebase db
-// TODO: #2: add prompt to create/fill up profile info (implementation is up to you) -nico
-
 class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
@@ -71,13 +68,26 @@ class ProfileFragment : Fragment() {
     private fun getApplicant(){
         lifecycleScope.launch {
             applicant = dao.getApplicant(Firebase.auth.currentUser!!.uid)
-            setApplicantData()
+
+            if(applicant.fullName().isEmpty()){
+                val toast = Toast.makeText(
+                    requireContext(),
+                    "Your profile is empty. Fill out the details here and press \"Update\".",
+                    Toast.LENGTH_LONG)
+
+                toast.show()
+
+                val intent = Intent(requireContext(), ChangeProfileDetailsActivity::class.java)
+                startActivity(intent)
+            }else{
+                setApplicantData()
+            }
         }
     }
 
     private fun setApplicantData(){
         with(binding){
-            profileName.text = "${applicant.firstName} ${applicant.lastName}"
+            profileName.text = applicant.fullName()
             profileAbout.text = applicant.about
             profileEducation.text = applicant.education
             profileCurrentPosition.text = applicant.positionDesired
@@ -87,18 +97,6 @@ class ProfileFragment : Fragment() {
             profileJobExperience.text = applicant.employment
 
             loadProfilePicture(applicant.image)
-        }
-
-        if(applicant.firstName.isEmpty() || applicant.lastName.isEmpty()){
-            val toast = Toast.makeText(
-                requireContext(),
-                "Your profile is empty. Fill out the details here and press \"Update\".",
-                Toast.LENGTH_LONG)
-
-            toast.show()
-
-            val intent = Intent(requireContext(), ChangeProfileDetailsActivity::class.java)
-            startActivity(intent)
         }
     }
 

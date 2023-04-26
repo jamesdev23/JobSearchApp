@@ -25,6 +25,7 @@ import retrofit2.Response
 import java.net.HttpURLConnection
 
 // TODO: recent job list implementation using firebase or local db
+//  Retrieve Applied Jobs
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
