@@ -1,5 +1,6 @@
 package com.example.kodegojobsearchapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.os.Handler
 import com.example.kodegojobsearchapp.applicant_viewpager.ApplicantViewPagerActivity
 import com.example.kodegojobsearchapp.databinding.ActivitySplashScreenBinding
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashScreenBinding
     private val splashDisplayLength = 2000

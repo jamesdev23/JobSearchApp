@@ -64,15 +64,15 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
 
     private fun setApplicantData(){
         with(binding){
-            firstName.setText(applicant.firstName)
-            lastName.setText(applicant.lastName)
-            tvAboutText.setText(applicant.about)
-            tvEducationText.setText(applicant.education)
-            tvPositionText.setText(applicant.positionDesired)
-            tvSalaryText.setText(applicant.salary)
-            tvSkillsText.setText(applicant.skills)
-            tvLicenseText.setText(applicant.licensesOrCertifications)
-            tvEmploymentText.setText(applicant.employment)
+            updateFirstName.setText(applicant.firstName)
+            updateLastName.setText(applicant.lastName)
+            updateAbout.setText(applicant.about)
+            updateEducation.setText(applicant.education)
+            updatePositionDesired.setText(applicant.positionDesired)
+            updateSalary.setText(applicant.salary)
+            updateSkills.setText(applicant.skills)
+            updateLicenseCertification.setText(applicant.licensesOrCertifications)
+            updateEmployment.setText(applicant.employment)
         }
     }
 
@@ -82,15 +82,15 @@ class ChangeProfileDetailsActivity : AppCompatActivity() {
         val updatedApplicant = applicant.exportFirebaseApplicant()
         val updatedApplicantFields: HashMap<String, Any?> = HashMap()
         with(binding){
-            updatedUser.firstName = firstName.text.toString()
-            updatedUser.lastName = lastName.text.toString()
-            updatedApplicant.about = tvAboutText.text.toString().trim()
-            updatedApplicant.education = tvEducationText.text.toString().trim()
-            updatedApplicant.positionDesired = tvPositionText.text.toString().trim()
-            updatedApplicant.salary = tvSalaryText.text.toString().trim()
-            updatedApplicant.skills = tvSkillsText.text.toString().trim()
-            updatedApplicant.licensesOrCertifications = tvLicenseText.text.toString().trim()
-            updatedApplicant.employment = tvEmploymentText.text.toString().trim()
+            updatedUser.firstName = updateFirstName.text.toString()
+            updatedUser.lastName = updateLastName.text.toString()
+            updatedApplicant.about = updateAbout.text.toString().trim()
+            updatedApplicant.education = updateEducation.text.toString().trim()
+            updatedApplicant.positionDesired = updatePositionDesired.text.toString().trim()
+            updatedApplicant.salary = updateSalary.text.toString().trim()
+            updatedApplicant.skills = updateSkills.text.toString().trim()
+            updatedApplicant.licensesOrCertifications = updateLicenseCertification.text.toString().trim()
+            updatedApplicant.employment = updateEmployment.text.toString().trim()
         }
 
         if (applicant.firstName != updatedUser.firstName){

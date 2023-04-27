@@ -75,4 +75,22 @@
     <string name="cancel">Cancel</string>
     <string name="apply_for_a_job">Apply for a Job</string>
     <string name="email">Email</string>
+    <string name="sample_about1">I am a highly motivated software developer with 5 years of experience in mobile development. I have a strong background in Java and Kotlin and am always eager to learn new technologies and programming languages.</string>
+    <string name="about">About</string>
+    <string name="last_name">Last Name</string>
+    <string name="smith">Smith</string>
+    <string name="position_desired">Position Desired</string>
+    <string name="android_developer">Android Developer</string>
+    <string name="education">Education</string>
+    <string name="education_2">Education 2</string>
+    <string name="sample_education1">Bachelor of Science in Computer Science, XYZ University</string>
+    <string name="education_3">Education 3</string>
+    <string name="salary_in_php">Salary (in PHP)</string>
+    <string name="skills_expertise">Skills/Expertise</string>
+    <string name="sample_skills1">Java, Kotlin, Android SDK, SQL, Git</string>
+    <string name="licenses_certifications">Licenses/Certifications</string>
+    <string name="employment">Employment</string>
+    <string name="sample_employment1">Software Developer, ABC Company (2016-2021)\nSenior Mobile Developer, DEF Inc. (2013-2016)</string>
+    <string name="employment_2">Employment 2</string>
+    <string name="update_profile">Update Profile</string>
 </resources>
