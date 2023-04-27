@@ -24,14 +24,6 @@
     <string name="part_time">Part-Time</string>
     <string name="full_description">Full Description</string>
     <string name="listing_title">Listing Title</string>
-
-    <!-- spinner job list options -->
-    <string-array name="contract_type_options">
-        <item>-- Choose Employment Type--</item>
-        <item>Full Time</item>
-        <item>Part Time</item>
-    </string-array>
-
     <string name="title_activity_applicant_search">ApplicantSearchActivity</string>
 
     <!-- Strings used for fragments for navigation -->
@@ -50,7 +42,7 @@
     <string name="job_title_1">Job Title 1</string>
     <string name="job_location_1">Job Location 1</string>
     <string name="job_description_1">Job Description 1</string>
-    <string name="search_job_listing_hint_1">Search job listing (Ex. Android developer in Texas, USA</string>
+    <string name="search_job_listing_hint_1">Search job listing (Ex. Android developer in Metro Manila, Philippines</string>
     <string name="search_job_listing">Search Job Listing</string>
     <string name="updating_employer_data">Updating Employer Data</string>
     <string name="job_description_sample">We are seeking a skilled and experienced software engineer to join our dynamic team. The successful candidate will be responsible for designing, developing, and maintaining high-quality software solutions that meet the needs of our clients. As a software engineer, you will work closely with our project managers, developers, and quality assurance team to ensure that our software solutions are delivered on time and meet our clients\' requirements.</string>
@@ -78,4 +70,9 @@
     <string name="location">Location</string>
     <string name="mobile_developer">Mobile Developer</string>
     <string name="city_province_country">City, Province, Country</string>
+    <string name="search_query_example1">Ex. Android developer in Metro Manila, Philippines</string>
+    <string name="send_application">Send Application</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply_for_a_job">Apply for a Job</string>
+    <string name="email">Email</string>
 </resources>
