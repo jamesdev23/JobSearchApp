@@ -1,5 +1,6 @@
 package com.example.kodegojobsearchapp
 
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,7 @@ import com.example.kodegojobsearchapp.firebase.FirebaseJobApplicationDAOImpl
 import com.example.kodegojobsearchapp.model.Applicant
 import com.example.kodegojobsearchapp.model.JobApplication
 import com.example.kodegojobsearchapp.utils.JobApplicationDialog
+import com.example.kodegojobsearchapp.utils.OpenDocumentContract
 import com.example.kodegojobsearchapp.utils.ProgressDialog
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -34,6 +36,11 @@ class JobDetailsActivity : AppCompatActivity() {
     private lateinit var dao: FirebaseJobApplicationDAOImpl
     private lateinit var roomsDAO: JobDetailsDAO
     private lateinit var progressDialog: ProgressDialog
+    private lateinit var applicationDialog: JobApplicationDialog
+
+    private val openDocumentLauncher = registerForActivityResult(OpenDocumentContract()) { uri ->
+        uri?.let { applicationDialog.onDocumentSelected(it) } ?: Log.e("Document", "Document Pick Cancelled")
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +51,8 @@ class JobDetailsActivity : AppCompatActivity() {
         val jobID = bundle?.getString("job_id")
 
         progressDialog = ProgressDialog(binding.root.context, R.string.sending_job_application)
+        applicationDialog = JobApplicationDialog(binding.root.context)
+        applicationDialog.onSelectResume{ getDocument() }
 
         dao = FirebaseJobApplicationDAOImpl(applicationContext)
         getApplicant()
@@ -62,7 +71,7 @@ class JobDetailsActivity : AppCompatActivity() {
              * TODO: DAO has been implemented but has a chance of modification
              */
 //            apply()
-            JobApplicationDialog(it.context, jobDetailsData).show()
+            applicationDialog.show(applicant, jobDetailsData)
         }
         
     }
@@ -150,6 +159,7 @@ class JobDetailsActivity : AppCompatActivity() {
     private fun getApplicant(){
         lifecycleScope.launch {
             applicant = dao.getApplicant(Firebase.auth.currentUser!!.uid)
+            binding.btnApply.isEnabled = true
         }
     }
 
@@ -173,5 +183,12 @@ class JobDetailsActivity : AppCompatActivity() {
             }
             progressDialog.dismiss()
         }
+    }
+
+    private fun getDocument(){
+        openDocumentLauncher.launch(arrayOf(
+            OpenDocumentContract.DOCX,
+            OpenDocumentContract.PDF
+        ))
     }
 }

@@ -54,10 +54,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/apply_cover_letter"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="wrap_content"
+                    android:lines="3"
                     android:hint="Cover Letter"
                     android:inputType="textMultiLine"
-                    android:maxLines="3"
+                    android:gravity="top|start"
+                    android:scrollbars="vertical"
                     />
 
 
@@ -81,7 +83,7 @@
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
-                    android:id="@+id/btn_upload_resume"
+                    android:id="@+id/btn_select_resume"
                     android:text="Select File"
                     android:background="@drawable/round_button"
                     />
@@ -98,7 +100,21 @@
 
         </LinearLayout>
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+            android:text="Send Application"
+            android:layout_marginVertical="8dp"
+            />
 
-
-
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/round_button_red"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            />
 </LinearLayout>
