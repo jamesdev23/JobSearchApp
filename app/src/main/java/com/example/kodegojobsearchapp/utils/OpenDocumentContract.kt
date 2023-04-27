@@ -34,7 +34,8 @@ class OpenDocumentContract : ActivityResultContracts.OpenDocument() {
 
     companion object{
         const val IMAGES = "image/*"
-        const val MSWORD = "application/msword"
+        const val DOC = "application/vnd.msword" // .doc
         const val PDF = "application/pdf"
+        const val DOCX = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     }
 }
