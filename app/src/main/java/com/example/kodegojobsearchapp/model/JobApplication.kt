@@ -14,8 +14,12 @@ data class JobApplication(
     var contactNumber: String = ""
     var coverLetter: String = ""
     var resume: String = ""
+
+    var status: ApplicationStatus = ApplicationStatus.SENT
 }
 
-enum class ApplicationType{
-
+enum class ApplicationStatus{
+    SENT,
+    ACCEPTED,
+    DISMISSED
 }

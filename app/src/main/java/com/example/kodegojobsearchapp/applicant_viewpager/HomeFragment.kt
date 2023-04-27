@@ -12,12 +12,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.kodegojobsearchapp.R
 import com.example.kodegojobsearchapp.adapter.JobListingDataAdapter
+import com.example.kodegojobsearchapp.adapter.ListJobApplicationAdapter
 import com.example.kodegojobsearchapp.api.JobSearchAPIClient
 import com.example.kodegojobsearchapp.api_model.JobListingData
 import com.example.kodegojobsearchapp.api_model.JobSearchResultResponse
 import com.example.kodegojobsearchapp.dao.KodegoJobSearchApplication
 import com.example.kodegojobsearchapp.dao.JobListingDAO
 import com.example.kodegojobsearchapp.databinding.FragmentHomeBinding
+import com.example.kodegojobsearchapp.firebase.FirebaseJobApplicationDAOImpl
+import com.example.kodegojobsearchapp.model.Applicant
+import com.example.kodegojobsearchapp.model.JobApplication
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -30,10 +36,12 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var dao: JobListingDAO
     private lateinit var jobListingDataAdapter: JobListingDataAdapter
     private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
-    private lateinit var dao: JobListingDAO
-//    private lateinit var progressDialog: ProgressDialog
+    private lateinit var applicationsDAO: FirebaseJobApplicationDAOImpl
+    private lateinit var jobApplicationsAdapter: ListJobApplicationAdapter
+    private val applications: ArrayList<JobApplication> = ArrayList()
 
     init {
         if(this.arguments == null) {
@@ -63,8 +71,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dao = (requireActivity().application as KodegoJobSearchApplication).jobListingDatabase.jobListingDAO()
+        applicationsDAO = FirebaseJobApplicationDAOImpl(requireContext())
 
-        var recentJobList = binding.listRecentJobs
+        val recentJobList = binding.listRecentJobs
 
         if(recentJobList.isEmpty()){
             binding.textRecentJobsEmpty.visibility = View.VISIBLE
@@ -78,6 +87,7 @@ class HomeFragment : Fragment() {
         binding.textFeaturedQuery.text = defaultQuery
 
 //        getData()  // uncomment to check api
+        getApplications()
         populateList()
     }
 
@@ -128,7 +138,7 @@ class HomeFragment : Fragment() {
                 binding.jobListingList.visibility = View.VISIBLE
                 binding.loadingData.visibility = View.GONE
                 if (response.isSuccessful) {
-                    var response: JobSearchResultResponse =
+                    val response: JobSearchResultResponse =
                         response.body()!!
                     val dataList = response.dataList
                     jobListingDataAdapter.setList(dataList)
@@ -157,4 +167,21 @@ class HomeFragment : Fragment() {
         val numPages = 1
     }
 
+    private fun getApplications(){
+        lifecycleScope.launch {
+            val applicant = applicationsDAO.getApplicant(Firebase.auth.currentUser!!.uid)
+            applications.addAll(applicationsDAO.getJobApplications(applicant))
+            setApplicationsRecyclerView()
+        }
+    }
+
+    private fun setApplicationsRecyclerView(){
+        jobApplicationsAdapter = ListJobApplicationAdapter(applications)
+        binding.listRecentJobs.layoutManager = LinearLayoutManager(requireContext())
+        binding.listRecentJobs.adapter = jobApplicationsAdapter
+        if (applications.isNotEmpty()){
+            binding.textRecentJobsEmpty.visibility = View.GONE
+            binding.listRecentJobs.visibility = View.VISIBLE
+        }
+    }
 }

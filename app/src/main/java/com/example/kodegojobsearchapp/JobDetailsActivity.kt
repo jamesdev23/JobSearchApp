@@ -63,8 +63,8 @@ class JobDetailsActivity : AppCompatActivity() {
             setDisplayHomeAsUpEnabled(true)
         }
 
-        getDataFromDB(jobID!!)
-//        getData(jobID!!)
+//        getDataFromDB(jobID!!)
+        getData(jobID!!)
 
         binding.btnApply.setOnClickListener{
             /**
@@ -127,11 +127,11 @@ class JobDetailsActivity : AppCompatActivity() {
                 binding.scrollJobDetails.visibility = View.VISIBLE
                 binding.btnApply.visibility = View.VISIBLE
                 binding.loadingData.visibility = View.GONE
-                if (response.isSuccessful) {
+                if (response.isSuccessful && response.body()!!.data.isNotEmpty()) {
                     val response: JobDetailsResponse = response.body()!!
 
                     jobDetailsData = response.data[0]
-                    lifecycleScope.launch { roomsDAO.insert(jobDetailsData) }
+//                    lifecycleScope.launch { roomsDAO.insert(jobDetailsData) }
                     setJobDetailsData()
                 }else{
                     Log.e("JobDetail Call", response.message())
