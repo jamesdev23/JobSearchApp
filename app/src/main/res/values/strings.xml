@@ -93,4 +93,7 @@
     <string name="sample_employment1">Software Developer, ABC Company (2016-2021)\nSenior Mobile Developer, DEF Inc. (2013-2016)</string>
     <string name="employment_2">Employment 2</string>
     <string name="update_profile">Update Profile</string>
+    <string name="posted_at">Posted at:</string>
+    <string name="sample_date">April 14,2023</string>
+    <string name="apply_for_this_job">Apply For This Job</string>
 </resources>
