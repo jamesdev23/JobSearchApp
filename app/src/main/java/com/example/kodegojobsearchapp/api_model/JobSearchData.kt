@@ -32,7 +32,7 @@ data class JobListingData(
     var jobId: String = "",
 
     @SerializedName("job_employment_type")
-    var jobEmploymentType: String = "",
+    var jobEmploymentType: String? = "",
 
     @SerializedName("job_title")
     var jobTitle: String = "",

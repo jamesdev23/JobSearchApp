@@ -36,7 +36,7 @@ interface JobListingDAO {
     suspend fun getJobListing(jobID: String) : JobListingData?
 }
 
-@Database(entities = [JobListingData::class], version = 3)
+@Database(entities = [JobListingData::class], version = 5)
 abstract class JobListingDatabase: RoomDatabase(){
     abstract fun jobListingDAO(): JobListingDAO
 
