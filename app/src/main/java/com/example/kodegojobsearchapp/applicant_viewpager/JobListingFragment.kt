@@ -63,8 +63,8 @@ class JobListingFragment : Fragment() {
         binding.appJobListing.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         binding.appJobListing.adapter = jobListingDataAdapter
 
-//        getData(defaultQuery, defaultPage)
-        getDataFromDAO()
+        getData(defaultQuery, defaultPage)
+//        getDataFromDAO()
 
         binding.searchJobListing.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextChange(newText: String?): Boolean {
@@ -85,15 +85,15 @@ class JobListingFragment : Fragment() {
         binding.btnPrevious.setOnClickListener {
             if (currentPage > 1) {
                 currentPage -= 1
-//                getData(currentQuery, currentPage)
-                getDataFromDAO() //TODO: Revert in case of errors
+                getData(currentQuery, currentPage)
+//                getDataFromDAO() //TODO: Revert in case of errors
             }
         }
 
         binding.btnNext.setOnClickListener {
             currentPage += 1
-//            getData(currentQuery, currentPage)
-            getDataFromDAO() //TODO: Revert in case of errors
+            getData(currentQuery, currentPage)
+//            getDataFromDAO() //TODO: Revert in case of errors
         }
 
     }
@@ -143,7 +143,7 @@ class JobListingFragment : Fragment() {
                         jobListingDataAdapter.setList(dataList)
                         lifecycleScope.launch {
                             for (data in dataList) {
-                                dao.insert(data)
+//                                dao.insert(data) //TODO: Disable if not using DAO
                                 Log.d("API CALL", "${data.jobTitle} ${data.employerName}")
                             }
                         }

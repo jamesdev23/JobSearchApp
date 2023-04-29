@@ -67,6 +67,9 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
                 val uri = storage.uploadDocument(resume!!)
                 if (uri != null){
                     application.resume = uri.toString()
+                    application.jobTitle = jobDetails.jobTitle
+                    application.companyName = jobDetails.employerName
+                    application.companyLogo = jobDetails.employerLogo ?: ""
                     application.email = binding.applyEmail.text.toString()
                     application.contactNumber = binding.applyContactNumber.text.toString()
                     application.coverLetter = binding.applyCoverLetter.text.toString()
@@ -89,6 +92,8 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
                 }
                 progressDialog.dismiss()
             }
+        }else{
+            Toast.makeText(context, "Please Upload a Resume", Toast.LENGTH_SHORT).show()
         }
     }
 }

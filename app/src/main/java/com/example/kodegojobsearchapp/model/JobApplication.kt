@@ -10,6 +10,9 @@ data class JobApplication(
 ): Parcelable {
     // TODO: list all possible info for job application
     var jobApplicationID: String = ""
+    var jobTitle: String = ""
+    var companyName: String = ""
+    var companyLogo: String = ""
     var email: String = ""
     var contactNumber: String = ""
     var coverLetter: String = ""
