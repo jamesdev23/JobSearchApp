@@ -133,6 +133,37 @@
                 android:textColor="@android:color/black"
                 />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status:"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/job_application_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Application Sent"
+                    android:textSize="14sp"
+                    android:padding="8dp"
+                    android:textColor="@android:color/black"
+                    />
+
+            </LinearLayout>
+
+
+
+
+
         </LinearLayout>
 
     </ScrollView>
@@ -144,7 +175,7 @@
         android:layout_weight="1"
         android:orientation="horizontal"
         android:visibility="gone"
-        tools:visibility="visible"
+        tools:visibility="gone"
         android:gravity="center">
         <ProgressBar
             android:layout_width="wrap_content"
@@ -156,19 +187,6 @@
             android:text="@string/loading_job_listing"
             />
     </LinearLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_apply"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="@string/apply_for_this_job"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:enabled="false"
-        android:textColor="@color/white"
-        android:background="@drawable/round_button_green"
-        android:layout_margin="10dp"
-        android:layout_gravity="center" />
 
 
 </LinearLayout>
