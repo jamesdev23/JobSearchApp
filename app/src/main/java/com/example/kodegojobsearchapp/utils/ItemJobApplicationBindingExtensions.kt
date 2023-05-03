@@ -9,11 +9,13 @@ fun ItemJobApplicationBinding.bind(application: JobApplication) {
     jobTitle.text = application.jobTitle
     jobCompany.text = application.companyName
 
-    Picasso
-        .with(root.context)
-        .load(application.companyLogo)
+    if (application.companyLogo.isNotEmpty()) {
+        Picasso
+            .with(root.context)
+            .load(application.companyLogo)
 //            .memoryPolicy(MemoryPolicy.NO_CACHE)
-        .placeholder(R.drawable.company_logo_placeholder)
-        .error(R.drawable.company_logo_placeholder)
-        .into(companyLogo)
+            .placeholder(R.drawable.company_logo_placeholder)
+            .error(R.drawable.company_logo_placeholder)
+            .into(companyLogo)
+    }
 }

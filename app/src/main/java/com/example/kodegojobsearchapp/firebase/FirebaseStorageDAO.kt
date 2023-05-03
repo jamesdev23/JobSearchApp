@@ -12,8 +12,9 @@ interface FirebaseStorageDAO {
     suspend fun uploadImage(uri: Uri): Uri?
     suspend fun updateProfilePicture(uri: Uri): Boolean
     suspend fun deleteImage(url: String): Boolean
-    suspend fun uploadDocument(uri: Uri): Uri?
+    suspend fun uploadDocument(uri: Uri): String?
     suspend fun uploadResume(uri: Uri): Boolean
+    suspend fun getDocumentUri(gsReference: String): Uri?
     suspend fun deleteDocument(url: String): Boolean
 }
 
@@ -89,7 +90,7 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
         }
     }
 
-    override suspend fun uploadDocument(uri: Uri): Uri? { //TODO: Debug uploading same document
+    override suspend fun uploadDocument(uri: Uri): String? { //TODO: Debug uploading same document
         val reference = firebaseStorage
             .getReference(parentTree)
             .child(docsTree)
@@ -99,15 +100,7 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
         if (task.isSuccessful){
             Log.d("Document Upload", task.result.toString())
 //            val urlTask = reference.downloadUrl
-            val urlTask = task.snapshot.metadata!!.reference!!.downloadUrl
-            urlTask.await()
-            if (urlTask.isSuccessful){
-                Log.d("DownloadURL", urlTask.result.toString())
-                return urlTask.result
-            }else{
-                Log.e("DownloadURL", task.exception!!.message!!)
-                return null
-            }
+            return task.snapshot.storage.toString()
         }else{
             Log.e("Document Upload", task.exception!!.message!!)
             return null
@@ -122,6 +115,17 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
             return true
         }else{
             return false
+        }
+    }
+
+    override suspend fun getDocumentUri(gsReference: String): Uri? {
+//        TODO("Not yet implemented")
+        val task = firebaseStorage.getReferenceFromUrl(gsReference).downloadUrl
+        task.await()
+        return if (task.isSuccessful){
+            task.result
+        }else{
+            null
         }
     }
 
