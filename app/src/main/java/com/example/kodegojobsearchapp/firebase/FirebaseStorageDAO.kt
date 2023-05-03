@@ -89,8 +89,7 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
         }
     }
 
-    override suspend fun uploadDocument(uri: Uri): Uri? {
-//        TODO("Not yet implemented")
+    override suspend fun uploadDocument(uri: Uri): Uri? { //TODO: Debug uploading same document
         val reference = firebaseStorage
             .getReference(parentTree)
             .child(docsTree)

@@ -1,6 +1,7 @@
 package com.example.kodegojobsearchapp.model
 
 import android.os.Parcelable
+import com.google.firebase.Timestamp
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -17,6 +18,7 @@ data class JobApplication(
     var contactNumber: String = ""
     var coverLetter: String = ""
     var resume: String = ""
+    val timestamp: Long = Timestamp.now().seconds
 
     var status: ApplicationStatus = ApplicationStatus.SENT
 }

@@ -5,7 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.kodegojobsearchapp.model.Applicant
 import com.example.kodegojobsearchapp.model.JobApplication
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.tasks.await
 
@@ -53,9 +53,9 @@ class FirebaseJobApplicationDAOImpl(context: Context): FirebaseApplicantDAOImpl(
 
     override suspend fun getJobApplications(applicant: Applicant): ArrayList<JobApplication> {
 //        TODO("Not yet implemented")
-        val reference = reference.document(applicant.applicantID).collection(collection)
+        val query = reference.document(applicant.applicantID).collection(collection).orderBy("timestamp", Query.Direction.DESCENDING).limit(10)
         val jobApplications: ArrayList<JobApplication> = ArrayList()
-        val task = reference.get()
+        val task = query.get()
         task.await()
         if (task.isSuccessful && task.result.documents.isNotEmpty()){
             Log.i("Applications", task.result.documents.toString())
