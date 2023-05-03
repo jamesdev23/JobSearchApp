@@ -48,6 +48,7 @@ class ApplicantViewPagerActivity : AppCompatActivity() {
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager, lifecycle, this)
         
         viewPagerAdapter.addFragment(HomeFragment())
+        viewPagerAdapter.addFragment(JobApplicationFragment())
         viewPagerAdapter.addFragment(JobListingFragment())
         viewPagerAdapter.addFragment(ProfileFragment())
         viewPagerAdapter.addFragment(AccountFragment())

@@ -30,7 +30,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.net.HttpURLConnection
 
-// TODO: recent job list implementation using firebase or local db
+// TODO: recent job list implementation using firebase
 //  Retrieve Applied Jobs
 class HomeFragment : Fragment() {
 
@@ -73,12 +73,7 @@ class HomeFragment : Fragment() {
         dao = (requireActivity().application as KodegoJobSearchApplication).jobListingDatabase.jobListingDAO()
         applicationsDAO = FirebaseJobApplicationDAOImpl(requireContext())
 
-        val recentJobList = binding.listRecentJobs
 
-        if(recentJobList.isEmpty()){
-            binding.textRecentJobsEmpty.visibility = View.VISIBLE
-            recentJobList.visibility = View.GONE
-        }
 
         jobListingDataAdapter = JobListingDataAdapter(requireContext(), jobListingDatas, requireActivity().supportFragmentManager)
         binding.jobListingList.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -87,7 +82,6 @@ class HomeFragment : Fragment() {
         binding.textFeaturedQuery.text = defaultQuery
 
 //        getData()  // uncomment to check api
-        getApplications()
         populateList()
     }
 
@@ -161,27 +155,10 @@ class HomeFragment : Fragment() {
         })
     }
 
+
     companion object {
         var defaultQuery = "Android developer in Metro Manila, Philippines"
         val page = 1
         val numPages = 1
-    }
-
-    private fun getApplications(){
-        lifecycleScope.launch {
-            val applicant = applicationsDAO.getApplicant(Firebase.auth.currentUser!!.uid)
-            applications.addAll(applicationsDAO.getJobApplications(applicant))
-            setApplicationsRecyclerView()
-        }
-    }
-
-    private fun setApplicationsRecyclerView(){
-        jobApplicationsAdapter = ListJobApplicationAdapter(applications)
-        binding.listRecentJobs.layoutManager = LinearLayoutManager(requireContext())
-        binding.listRecentJobs.adapter = jobApplicationsAdapter
-        if (applications.isNotEmpty()){
-            binding.textRecentJobsEmpty.visibility = View.GONE
-            binding.listRecentJobs.visibility = View.VISIBLE
-        }
     }
 }

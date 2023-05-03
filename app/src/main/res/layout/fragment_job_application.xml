@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".applicant_viewpager.HomeFragment"
+    tools:context=".applicant_viewpager.JobApplicationFragment"
     android:orientation="vertical"
     android:paddingTop="10dp"
     android:paddingStart="10dp"
@@ -14,27 +14,20 @@
     <com.google.android.material.textview.MaterialTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/featured_job_listing"
+        android:text="@string/recently_applied_jobs"
         android:textColor="@color/sea_serpent_blue"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="5dp"/>
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/text_featured_query"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:layout_marginBottom="10dp"
-        />
-
-
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_recent_jobs"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/job_listing_list"
+        android:layout_marginBottom="20dp"
         />
+
 
     <LinearLayout
         android:id="@+id/loading_data"

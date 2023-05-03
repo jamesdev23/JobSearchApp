@@ -15,10 +15,11 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, v
 
     private val fragmentList: ArrayList<Fragment> = ArrayList()
 
-    private val tabTitles = arrayOf("Home", "Search", "Profile", "Account")
+//    private val tabTitles = arrayOf("Home", "My Jobs", "Job Search", "Profile", "Account")
 
     private val tabIcons = arrayOf(
         R.drawable.baseline_home_24,
+        R.drawable.baseline_business_center_24,
         R.drawable.baseline_format_list_bulleted_24,
         R.drawable.baseline_supervised_user_circle_24,
         R.drawable.baseline_manage_accounts_24
@@ -36,7 +37,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle, v
         val itemBinding = ItemTabBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         val tabTitle = itemBinding.tabTitle
         val tabIcon = itemBinding.tabIcon
-        tabTitle.text = tabTitles[position]
+//        tabTitle.text = tabTitles[position]
         tabIcon.setImageResource(tabIcons[position])
         return itemBinding.root
     }

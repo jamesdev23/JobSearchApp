@@ -18,15 +18,18 @@
         android:id="@+id/viewPager2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9"/>
+        android:layout_weight="10"/>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerColor="#CCCCCC"/>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         app:tabGravity="fill"
-        android:background="@color/royal_azure_blue"
         android:contentDescription="@string/main_menu_tabs"/>
 
 

@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".applicant_viewpager.AccountFragment"
-    android:padding="10dp">
+    android:paddingTop="10dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_edit_profile_picture"
