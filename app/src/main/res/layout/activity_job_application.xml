@@ -136,12 +136,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:weightSum="1">
 
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Status:"
+                    android:text="@string/status"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     android:padding="8dp"
@@ -152,17 +153,14 @@
                     android:id="@+id/job_application_status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Application Sent"
+                    android:layout_weight="1"
+                    android:text="@string/job_application_sent"
                     android:textSize="14sp"
                     android:padding="8dp"
                     android:textColor="@android:color/black"
                     />
 
             </LinearLayout>
-
-
-
-
 
         </LinearLayout>
 
@@ -187,6 +185,16 @@
             android:text="@string/loading_job_listing"
             />
     </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_change_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:text="Change Status"
+        android:textStyle="bold"
+        android:background="@drawable/round_button"
+        />
 
 
 </LinearLayout>

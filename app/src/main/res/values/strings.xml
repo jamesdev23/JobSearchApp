@@ -96,4 +96,6 @@
     <string name="posted_at">Posted at:</string>
     <string name="sample_date">April 14,2023</string>
     <string name="apply_for_this_job">Apply For This Job</string>
+    <string name="job_application_sent">Job Application Sent</string>
+    <string name="status">Status:</string>
 </resources>
