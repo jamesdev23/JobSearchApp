@@ -40,8 +40,6 @@ class HomeFragment : Fragment() {
     private lateinit var jobListingDataAdapter: JobListingDataAdapter
     private var jobListingDatas: ArrayList<JobListingData> = arrayListOf()
     private lateinit var applicationsDAO: FirebaseJobApplicationDAOImpl
-    private lateinit var jobApplicationsAdapter: ListJobApplicationAdapter
-    private val applications: ArrayList<JobApplication> = ArrayList()
 
     init {
         if(this.arguments == null) {
