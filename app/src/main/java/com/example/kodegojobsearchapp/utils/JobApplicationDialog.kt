@@ -137,9 +137,9 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
         message.append("Resume Submitted: ")
 //        message.append(storage.getDocumentUri(application.resume)) //TODO: Fix
 
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.setDataAndType(Uri.parse("mailto:"), "text/plain")
-        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(application.email))
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.setDataAndType(Uri.parse("mailto:${application.email}"), "text/plain")
+//        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(application.email))
         intent.putExtra(Intent.EXTRA_SUBJECT, subject.toString())
         intent.putExtra(Intent.EXTRA_TEXT, message.toString())
 
