@@ -26,6 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/email"
+                    android:inputType="textEmailAddress"
                     android:maxLines="1" />
 
 
@@ -41,6 +42,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="Contact Number"
+                    android:inputType="phone"
                     android:maxLines="1" />
 
 
@@ -83,8 +85,9 @@
                     android:layout_width="120dp"
                     android:layout_height="50dp"
                     android:id="@+id/btn_select_resume"
-                    android:text="Select File"
+                    android:text="@string/select_file"
                     android:textColor="@color/black"
+                    android:textStyle="bold"
                     android:background="@drawable/transparent_button"
                     />
 
@@ -93,7 +96,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/text_select_file_name"
                     android:layout_marginStart="10dp"
-                    android:text="samplefile.docx"
+                    android:text="Select a file."
                     android:layout_gravity="center_vertical"
                     android:maxLines="1"
                     />
@@ -104,28 +107,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_weight="10"
             android:gravity="end">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_cancel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="48dp"
-                    android:background="@drawable/transparent_button"
-                    android:text="@string/cancel"
-                    />
-
-                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btn_submit"
-                    android:layout_width="150dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@drawable/round_button_green"
                     android:text="@string/send_application"
                     android:textColor="@color/white"
                     android:textStyle="bold"
                     />
 
-
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/transparent_button"
+                    android:text="@string/cancel"
+                    android:textStyle="bold"
+                    />
 
         </LinearLayout>
 
