@@ -60,6 +60,7 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
     }
 
     private fun submitApplication(){
+        binding.btnSubmit.isEnabled = false
         if (resume != null){
             val application = JobApplication(jobDetails.jobId, applicant.applicantID)
             progressDialog.show()
@@ -91,9 +92,11 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
                     Toast.makeText(context, "Error Uploading Resume", Toast.LENGTH_SHORT).show()
                 }
                 progressDialog.dismiss()
+                binding.btnSubmit.isEnabled = true
             }
         }else{
             Toast.makeText(context, "Please Upload a Resume", Toast.LENGTH_SHORT).show()
+            binding.btnSubmit.isEnabled = true
         }
     }
 }
