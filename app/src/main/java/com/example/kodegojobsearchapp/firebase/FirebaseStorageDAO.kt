@@ -19,7 +19,7 @@ interface FirebaseStorageDAO {
 }
 
 class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), FirebaseStorageDAO{
-    internal val firebaseStorage = FirebaseStorage.getInstance()
+    private val firebaseStorage = FirebaseStorage.getInstance()
     private val parentTree = auth.currentUser!!.uid
     private val imageTree = "images"
     private val docsTree = "documents"
@@ -98,7 +98,7 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
         val task: UploadTask = reference.putFile(uri)
         task.await()
         if (task.isSuccessful){
-            Log.d("Document Upload", task.result.toString())
+            Log.d("Document Upload", task.snapshot.storage.toString())
 //            val urlTask = reference.downloadUrl
             return task.snapshot.storage.toString()
         }else{
@@ -120,10 +120,16 @@ class FirebaseStorageDAOImpl(context: Context): FirebaseUserDAOImpl(context), Fi
 
     override suspend fun getDocumentUri(gsReference: String): Uri? {
 //        TODO("Not yet implemented")
-        val task = firebaseStorage.getReferenceFromUrl(gsReference).downloadUrl
-        task.await()
-        return if (task.isSuccessful){
-            task.result
+        return if (gsReference.startsWith("gs://")) {
+            val task = firebaseStorage.getReferenceFromUrl(gsReference).downloadUrl
+            task.await()
+            if (task.isSuccessful) {
+                Log.d("Document URI", task.result.toString())
+                task.result
+            } else {
+                Log.e("Document URI", task.exception.toString())
+                null
+            }
         }else{
             null
         }

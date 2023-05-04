@@ -1,5 +1,6 @@
 package com.example.kodegojobsearchapp
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -31,8 +32,6 @@ import retrofit2.Response
 
 class JobApplicationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityJobDetailsBinding
-    
-//    private lateinit var jobDetailsList: ArrayList<JobDetailsData>
     private lateinit var jobDetailsData: JobDetailsData
     private lateinit var applicant: Applicant
     private lateinit var dao: FirebaseJobApplicationDAOImpl
@@ -55,6 +54,10 @@ class JobApplicationActivity : AppCompatActivity() {
         progressDialog = ProgressDialog(binding.root.context, R.string.sending_job_application)
         applicationDialog = JobApplicationDialog(binding.root.context)
         applicationDialog.onSelectResume{ getDocument() }
+        applicationDialog.onDismiss {
+            Log.d("Dialog", "Dismissed")
+            notifyClient()
+        }
 
         dao = FirebaseJobApplicationDAOImpl(applicationContext)
         getApplicant()
@@ -72,7 +75,6 @@ class JobApplicationActivity : AppCompatActivity() {
             /**
              * TODO: DAO has been implemented but has a chance of modification
              */
-//            apply()
             applicationDialog.show(applicant, jobDetailsData)
         }
         
@@ -165,32 +167,22 @@ class JobApplicationActivity : AppCompatActivity() {
         }
     }
 
-    private fun apply(){
-        progressDialog.show()
-        lifecycleScope.launch {
-            val jobApplication = JobApplication(jobDetailsData.jobId, applicant.applicantID)
-            if (dao.addJobApplication(jobApplication)){
-                Toast.makeText(
-                    applicationContext,
-                    "Job Application has been sent",
-                    Toast.LENGTH_SHORT
-                ).show()
-                finish()
-            }else{
-                Toast.makeText(
-                    applicationContext,
-                    "Error applying for the job",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-            progressDialog.dismiss()
-        }
-    }
-
     private fun getDocument(){
         openDocumentLauncher.launch(arrayOf(
             OpenDocumentContract.DOCX,
             OpenDocumentContract.PDF
         ))
+    }
+
+    private fun notifyClient(){
+        val intent = applicationDialog.emailIntent
+        Log.d("Email", intent.toString())
+        if (intent != null){
+            try{
+                startActivity(Intent.createChooser(intent, "Choose Email Client"))
+            }catch (e: Exception){
+                Log.e("Notify", e.message.toString())
+            }
+        }
     }
 }

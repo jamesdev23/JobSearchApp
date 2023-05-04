@@ -1,15 +1,15 @@
 package com.example.kodegojobsearchapp.utils
 
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View.OnClickListener
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.appcompat.app.AlertDialog
-import com.example.kodegojobsearchapp.JobDetailsActivity
 import com.example.kodegojobsearchapp.api_model.JobDetailsData
 import com.example.kodegojobsearchapp.databinding.DialogJobApplicationBinding
 import com.example.kodegojobsearchapp.firebase.FirebaseJobApplicationDAOImpl
@@ -29,6 +29,11 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
     private lateinit var applicant: Applicant
     private lateinit var jobDetails: JobDetailsData
     private var resume: Uri? = null
+    var emailIntent: Intent? = null
+
+    init {
+        create()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +48,20 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
         }
     }
 
+    override fun show() {
+        super.show()
+        resume = null
+        emailIntent = null
+    }
+
     fun show(applicant: Applicant, jobDetailsData: JobDetailsData){
         this.applicant = applicant
         jobDetails = jobDetailsData
         show()
+    }
+
+    fun onDismiss(listener: DialogInterface.OnDismissListener){
+        setOnDismissListener(listener)
     }
 
     fun onSelectResume(listener: OnClickListener){
@@ -75,6 +90,7 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
                     application.contactNumber = binding.applyContactNumber.text.toString()
                     application.coverLetter = binding.applyCoverLetter.text.toString()
                     if(dao.addJobApplication(application)){
+                        prepareEmail(application)
                         Toast.makeText(
                             context,
                             "Application Successfully Submitted",
@@ -98,5 +114,35 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
             Toast.makeText(context, "Please Upload a Resume", Toast.LENGTH_SHORT).show()
             binding.btnSubmit.isEnabled = true
         }
+    }
+
+    private fun prepareEmail(application: JobApplication){
+        val subject = StringBuilder()
+        subject.append("Application for ")
+        subject.append(jobDetails.jobTitle)
+        subject.append(" under ")
+        subject.append(jobDetails.employerName)
+
+        val message = StringBuilder()
+        message.append("Email Used: ")
+        message.append(application.email).appendLine()
+        message.append("Contact Number Used: ")
+        message.append(application.contactNumber).appendLine().appendLine()
+        message.append("Company/Employer Name: ")
+        message.append(application.companyName).appendLine()
+        message.append("Job Title: ")
+        message.append(application.jobTitle).appendLine()
+        message.append("Cover Letter: ")
+        message.append(application.coverLetter).appendLine()
+        message.append("Resume Submitted: ")
+//        message.append(storage.getDocumentUri(application.resume)) //TODO: Fix
+
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.setDataAndType(Uri.parse("mailto:"), "text/plain")
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(application.email))
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject.toString())
+        intent.putExtra(Intent.EXTRA_TEXT, message.toString())
+
+        emailIntent = intent
     }
 }
