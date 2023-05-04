@@ -98,4 +98,5 @@
     <string name="apply_for_this_job">Apply For This Job</string>
     <string name="job_application_sent">Job Application Sent</string>
     <string name="status">Status:</string>
+    <string name="select_file">Select File</string>
 </resources>
