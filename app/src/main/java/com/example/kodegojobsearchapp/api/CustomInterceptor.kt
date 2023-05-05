@@ -6,7 +6,7 @@ import okhttp3.Response
 
 class CustomInterceptor : Interceptor {
     //    private val API_KEY = ""
-    private val API_KEY = "a255ef7b41msh9fc271ec6bfdc5bp1dcadejsn0764b064eee7"
+    private val API_KEY = "b958ea6718mshfa77b9027b96fabp176892jsn7b18b73e6425"
     private val API_HOST = "jsearch.p.rapidapi.com"
 
     override fun intercept(chain: Interceptor.Chain): Response {
