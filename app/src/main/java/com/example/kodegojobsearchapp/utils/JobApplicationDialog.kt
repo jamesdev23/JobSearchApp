@@ -72,44 +72,57 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
 
     private fun submitApplication(){
         binding.btnSubmit.isEnabled = false
-        if (resume != null){
-            val application = JobApplication(jobDetails.jobId, applicant.applicantID)
-            progressDialog.show()
-            lifecycleScope.launch {
-                val uri = storage.uploadDocument(resume!!)
-                if (uri != null){
-                    application.resume = uri.toString()
-                    application.jobTitle = jobDetails.jobTitle
-                    application.companyName = jobDetails.employerName
-                    application.companyLogo = jobDetails.employerLogo ?: ""
-                    application.email = binding.applyEmail.text.toString()
-                    application.contactNumber = binding.applyContactNumber.text.toString()
-                    application.coverLetter = binding.applyCoverLetter.text.toString()
-                    if(dao.addJobApplication(application)){
-                        prepareEmail(application)
-                        Toast.makeText(
-                            context,
-                            "Application Successfully Submitted",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }else{
-                        Toast.makeText(
-                            context,
-                            "Error Submitting Application",
-                            Toast.LENGTH_SHORT
-                        ).show()
+
+        when {
+            resume == null ->
+                toast("Please Upload a Resume", context)
+
+            binding.applyEmail.text.isNullOrEmpty() ->
+                toast("Email is Empty", context)
+
+            binding.applyContactNumber.text.isNullOrEmpty() ->
+                toast("Contact number is Empty", context)
+
+            binding.applyCoverLetter.text.isNullOrEmpty() ->
+                toast("Cover Letter is Empty", context)
+
+            else -> {
+                val application = JobApplication(jobDetails.jobId, applicant.applicantID)
+                progressDialog.show()
+                lifecycleScope.launch {
+                    val uri = storage.uploadDocument(resume!!)
+                    if (uri != null) {
+                        application.resume = uri.toString()
+                        application.jobTitle = jobDetails.jobTitle
+                        application.companyName = jobDetails.employerName
+                        application.companyLogo = jobDetails.employerLogo ?: ""
+                        application.email = binding.applyEmail.text.toString()
+                        application.contactNumber = binding.applyContactNumber.text.toString()
+                        application.coverLetter = binding.applyCoverLetter.text.toString()
+                        if (dao.addJobApplication(application)) {
+                            prepareEmail(application)
+                            Toast.makeText(
+                                context,
+                                "Application Successfully Submitted",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "Error Submitting Application",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                        dismiss()
+                    } else {
+                        Toast.makeText(context, "Error Uploading Resume", Toast.LENGTH_SHORT).show()
                     }
-                    dismiss()
-                }else{
-                    Toast.makeText(context, "Error Uploading Resume", Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
+                    binding.btnSubmit.isEnabled = true
                 }
-                progressDialog.dismiss()
-                binding.btnSubmit.isEnabled = true
             }
-        }else{
-            Toast.makeText(context, "Please Upload a Resume", Toast.LENGTH_SHORT).show()
-            binding.btnSubmit.isEnabled = true
         }
+
     }
 
     private fun prepareEmail(application: JobApplication){
@@ -142,4 +155,9 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
 
         emailIntent = intent
     }
+
+    fun toast(message: String, context: Context){
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+    }
+
 }
