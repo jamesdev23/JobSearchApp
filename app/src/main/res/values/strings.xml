@@ -101,4 +101,7 @@
     <string name="select_file">Select File</string>
     <string name="app_settings">App Settings</string>
     <string name="email_address">Email Address</string>
+    <string name="first_name">First Name</string>
+    <string name="education_add_comma_for_multiple_entries">Education (Add comma for multiple entries)</string>
+    <string name="skills_expertise_add_comma_for_multiple_entries">Skills/Expertise (Add comma for multiple entries)</string>
 </resources>

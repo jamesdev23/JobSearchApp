@@ -31,8 +31,8 @@
                     android:id="@+id/update_first_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="First Name"
-                    android:text="John"
+                    android:hint="@string/first_name"
+                    android:text=""
                     android:inputType="textPersonName"
                     android:maxLines="1" />
 
@@ -48,7 +48,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/last_name"
-                    android:text="@string/smith"
+                    android:text=""
                     android:inputType="textPersonName"
                     android:maxLines="1" />
 
@@ -64,9 +64,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/about"
-                    android:text="@string/sample_about1"
+                    android:text=""
                     android:inputType="textMultiLine"
-                    android:lines="5"
+                    android:lines="1"
                     android:maxLines="5"/>
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -80,44 +80,11 @@
                     android:id="@+id/update_education"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Education"
-                    android:text="Bachelor of Science in Computer Science, XYZ University"
+                    android:hint="@string/education_add_comma_for_multiple_entries"
+                    android:text=""
                     android:inputType="text"
-                    android:maxLines="1" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_education2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/education"
-                    android:text="@string/sample_education1"
-                    android:inputType="text"
-                    android:maxLines="1" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_education3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/education_3"
-                    android:text="@string/sample_education1"
-                    android:inputType="text"
-                    android:maxLines="1" />
+                    android:lines="1"
+                    android:maxLines="5" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -132,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/position_desired"
-                    android:text="@string/android_developer"
+                    android:text=""
                     android:inputType="text"
                     android:maxLines="1" />
 
@@ -149,7 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/salary_in_php"
-                    android:text="50,000"
+                    android:text=""
                     android:inputType="number"
                     android:maxLines="1" />
 
@@ -166,7 +133,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/skills_expertise"
-                    android:text="@string/sample_skills1"
+                    android:text=""
                     android:inputType="text"
                     android:maxLines="1" />
 
@@ -183,7 +150,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/licenses_certifications"
-                    android:text="Android Certified Developer, Oracle Java SE 11 Developer"
+                    android:text=""
                     android:inputType="text"
                     android:maxLines="1" />
 
@@ -199,48 +166,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/employment"
-                    android:text="@string/sample_employment1"
+                    android:text=""
                     android:inputType="text"
                     android:lines="2"
                     android:maxLines="2" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_employment2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="@string/employment_2"
-                    android:text="@string/sample_employment1"
-                    android:inputType="text"
-                    android:lines="2"
-                    android:maxLines="2" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:visibility="gone">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/update_employment3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:hint="Employment 3"
-                    android:text="@string/sample_employment1"
-                    android:inputType="text"
-                    android:lines="2"
-                    android:maxLines="2" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
