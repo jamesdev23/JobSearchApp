@@ -1,5 +1,6 @@
 package com.example.kodegojobsearchapp
 
+import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -53,6 +54,7 @@ class JobDetailsActivity : AppCompatActivity() {
         progressDialog = ProgressDialog(binding.root.context, R.string.sending_job_application)
         applicationDialog = JobApplicationDialog(binding.root.context)
         applicationDialog.onSelectResume{ getDocument() }
+        applicationDialog.setOnDismissListener { notifyClient() }
 
         dao = FirebaseJobApplicationDAOImpl(applicationContext)
         getApplicant()
@@ -190,5 +192,17 @@ class JobDetailsActivity : AppCompatActivity() {
             OpenDocumentContract.DOCX,
             OpenDocumentContract.PDF
         ))
+    }
+
+    private fun notifyClient(){
+        val intent = applicationDialog.emailIntent
+        Log.d("Email", intent.toString())
+        if (intent != null){
+            try{
+                startActivity(Intent.createChooser(intent, "Send a Copy of your application to"))
+            }catch (e: Exception){
+                Log.e("Notify", e.message.toString())
+            }
+        }
     }
 }

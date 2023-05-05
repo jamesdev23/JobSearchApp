@@ -54,10 +54,7 @@ class JobApplicationActivity : AppCompatActivity() {
         progressDialog = ProgressDialog(binding.root.context, R.string.sending_job_application)
         applicationDialog = JobApplicationDialog(binding.root.context)
         applicationDialog.onSelectResume{ getDocument() }
-        applicationDialog.onDismiss {
-            Log.d("Dialog", "Dismissed")
-            notifyClient()
-        }
+        applicationDialog.setOnDismissListener { notifyClient() }
 
         dao = FirebaseJobApplicationDAOImpl(applicationContext)
         getApplicant()
