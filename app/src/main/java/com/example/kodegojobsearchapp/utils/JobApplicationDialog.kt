@@ -74,9 +74,6 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
         binding.btnSubmit.isEnabled = false
 
         when {
-            resume == null ->
-                toast("Please Upload a Resume", context)
-
             binding.applyEmail.text.isNullOrEmpty() ->
                 toast("Email is Empty", context)
 
@@ -85,6 +82,9 @@ class JobApplicationDialog(context: Context): AlertDialog(context) {
 
             binding.applyCoverLetter.text.isNullOrEmpty() ->
                 toast("Cover Letter is Empty", context)
+
+            resume == null ->
+                toast("Please Upload a Resume", context)
 
             else -> {
                 val application = JobApplication(jobDetails.jobId, applicant.applicantID)
