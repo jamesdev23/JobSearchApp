@@ -54,7 +54,7 @@ class JobDetailsActivity : AppCompatActivity() {
         progressDialog = ProgressDialog(binding.root.context, R.string.sending_job_application)
         applicationDialog = JobApplicationDialog(binding.root.context)
         applicationDialog.onSelectResume{ getDocument() }
-        applicationDialog.setOnDismissListener { notifyClient() }
+//        applicationDialog.setOnDismissListener { notifyClient() } //TODO: Fix
 
         dao = FirebaseJobApplicationDAOImpl(applicationContext)
         getApplicant()
@@ -194,7 +194,7 @@ class JobDetailsActivity : AppCompatActivity() {
         ))
     }
 
-    private fun notifyClient(){
+    private fun notifyClient(){ //TODO: Doesn't properly show activity
         val intent = applicationDialog.emailIntent
         Log.d("Email", intent.toString())
         if (intent != null){
