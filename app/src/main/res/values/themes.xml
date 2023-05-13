@@ -22,4 +22,5 @@
     <style name="Theme.KodegoJobSearchApp.AppBarOverlay"
         parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.KodegoJobSearchApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
